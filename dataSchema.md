@@ -2,25 +2,29 @@
 class is top level class
 class can have more than one courses
 
-title:
-instructor:
-coInstructor:[]
-update:
-numCourses:
+title: STRING
+instructor:{
+  id:uid, STRING
+  provider: STRING
+}
+createdAt: TIMESTAMP
+updatedAt: TIMESTAMP
+pubStatus: Boolean
+coInstructor:[] //Edit Version
 students:[]
 courses:[]
 
 ##course
 course includes chapters
 
-title:
-classId:
+title: STRING
+classId: ID
 chapters:[]
 
 ####chapter
 chapter consists of materials and challenges
 
-title:
+title: STRING
 materials:[]
 challenges:[]
 
