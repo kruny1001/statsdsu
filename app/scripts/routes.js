@@ -159,6 +159,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/cs.html',
         controller: 'CsCtrl'
       })
+      .whenAuthenticated('/createContent', {
+        templateUrl: 'views/createcontent.html',
+        controller: 'CreatecontentCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
