@@ -1,0 +1,36 @@
+<md-content layout="row" layout-align="center center" style="background:inherit;">
+    <md-whiteframe class="medium md-whiteframe-5dp" style="width:100%; margin:0px; padding:5px;" layout="column" layout-align="center center">
+        <div class="medium" style="width:100%; padding:10px;" ng-bind-html="post.cnt">
+        </div>
+    </md-whiteframe>
+</md-content>
+<div ng-show="editable" layout="row" layout-align="center center"
+     style="position:fixed; top: 95px; right: 20px; z-index:20">
+    <md-button class="md-fab" ng-click="editPage()">
+        <md-icon md-svg-src="dImages/compose.svg"
+                 aria-label="Compose">
+        </md-icon>
+    </md-button>
+</div>
+<ng-transclude></ng-transclude>
+<div layout="column">
+    <md-list>
+        <md-subheader class="md-no-sticky" style="background-color: inherit"> Comments {{cmts.length}} </md-subheader>
+        <md-list-item class="md-2-line" ng-repeat="cmt in cmts track by $index">
+            <!--<img ng-src="{{cmt.profileImage}}" class="md-avatar" alt="{{cmt.name}}" />-->
+            <!--<img ng-src="dImages/epscorLogo.png" class="md-avatar" alt="{{cmt.name}}" />-->
+            <div class="md-list-item-text">
+                <h3>{{ cmt.name }}</h3>
+                <p>
+                    {{cmt.body}}
+                </p>
+            </div>
+            <div style="padding:5px; padding-top:15px;">
+                <div ng-show="checkAutho(cmt)" class="md-caption" ng-click=" removeComment(cmt)">Remove</div>
+                <div class="md-caption">Edit(Not Yet)</div>
+            </div>
+        </md-list-item>
+    </md-list>
+    <comment-form ng-show="authData" on-target="{{post.$id}}"></comment-form>
+
+</div>

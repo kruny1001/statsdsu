@@ -1,0 +1,155 @@
+
+<md-content layout-padding class="account-container"
+            style="overflow-x: hidden; height: 100%;
+            padding: 24px;color: whitesmoke;">
+  <div class="profile-container">
+    <div class="main-container">
+      <profile-header></profile-header>
+    </div>
+  </div>
+
+  <!--<md-toolbar class="md-warn">-->
+    <!--<div class="md-toolbar-tools">-->
+      <!--<h2 class="md-flex"style="font-weight: 700">-->
+        <!--<a href="#/" >SDSU Statistics</a>-->
+      <!--</h2>-->
+    <!--</div>-->
+  <!--</md-toolbar>-->
+  <div style="padding:10px;" >
+    <div>
+      <h3>Profile</h3>
+      <form role="form">
+        <p class="form-group">
+          <label>Account ID</label>
+          <br />{{user.uid}}
+        </p>
+        <p class="form-group">
+          <label>Name:</label>
+          <input style="color:black" type="text" name="name" ng-model="profile.name" />
+        </p>
+        <p class="form-group">
+          <label>Email:</label>
+          <br />{{profile.email}}
+        </p>
+      </form>
+      <p>
+        <button style="color:black" role="button" ng-click="logout()">Log Out</button>
+      </p>
+    </div>
+
+
+
+    <!--<div>-->
+      <!--<form role="form">-->
+        <!--<h3>Change Password</h3>-->
+
+        <!--<p class="form-group">-->
+          <!--<label>Old Password:</label>-->
+          <!--<input type="password" ng-keypress="clear()" ng-model="oldpass" />-->
+        <!--</p>-->
+
+        <!--<p class="form-group">-->
+          <!--<label>New Password:</label>-->
+          <!--<input type="password" ng-keypress="clear()" ng-model="newpass" />-->
+        <!--</p>-->
+
+        <!--<p class="form-group">-->
+          <!--<label>Confirm New Password:</label>-->
+          <!--<input type="password" ng-keypress="clear()" ng-model="confirm" />-->
+        <!--</p>-->
+
+        <!--<button ng-click="changePassword(oldpass, newpass, confirm)">change password</button>-->
+
+        <!--<p class="error" ng-show="err">{{err}}</p>-->
+        <!--<p class="good" ng-show="msg">{{msg}}</p>-->
+      <!--</form>-->
+    <!--</div>-->
+
+    <!--<div>-->
+      <!--<form>-->
+        <!--<h3>Change Email</h3>-->
+
+        <!--<p class="form-group">-->
+          <!--<label>New Email:</label>-->
+          <!--<input type="text" ng-keypress="clear()" ng-model="newEmail" />-->
+        <!--</p>-->
+
+        <!--<p class="form-group">-->
+          <!--<label>Password:</label>-->
+          <!--<input type="password" ng-keypress="clear()" ng-model="pass" />-->
+        <!--</p>-->
+
+        <!--<button ng-click="changeEmail(pass, newEmail)">update email</button>-->
+      <!--</form>-->
+    <!--</div>-->
+
+  </div>
+
+  <div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>
+  <style>
+    md-whiteframe{
+      min-height: 150px;
+      max-height: 250px;
+    }
+  </style>
+  <h3>Progress</h3>
+
+  <md-content layout-padding
+              style="padding: 24px; background-color: inherit; color: #203e54;">
+    <div layout="row" layout-align="center center" layout-padding>
+      <div layout="column" flex>
+        <h3 class="md-title"> Your Progress </h3>
+        <p> You can check your progress report here and re-take each subject of courses</p>
+        <div style="padding:10px; background-color:white">
+          <div flex id="chart_div" style="width: 100%;"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div ng-show="targetLabel!=null" layout="column" layout-align="center start" layout-padding>
+      <h3 class="md-title"> Selected Course Information</h3>
+      <div>
+        <span>{{targetLabel}} : </span>
+        <span>{{targetValue}}</span>
+      </div>
+    </div>
+
+
+    <div> # of Course </div>
+    <pre>Level: {{activityScore.level}}</pre>
+    <pre>Score: {{activityScore.score}}</pre>
+    <!--<div style="height:300px;">-->
+      <!--<code-terminal></code-terminal>-->
+    <!--</div>-->
+    <div ng-repeat="class in classes">
+      <div ng-repeat="cnt in class">
+        <div class="md-caption">Challenge #: {{cnt.challenge.length}}</div>
+        <div ng-repeat="chal in cnt.challenge">
+          {{chal.desc}},
+          {{chal.code}}
+        </div>
+        <div ng-repeat="mat in cnt.material" style="background-color:darkseagreen">
+          {{mat}}
+        </div>
+      </div>
+    </div>
+
+  </md-content>
+
+  <h3>Badges</h3>
+  <div layout="row" layout-padding layout-wrap
+       layout-align="center center"
+       style="padding-bottom: 32px; color:black; " ng-cloak>
+
+    <md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+      <span> Badge1 </span>
+    </md-whiteframe>
+    <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center">
+      <span> Badge2 </span>
+    </md-whiteframe>
+  </div>
+</md-content>
+
+
+

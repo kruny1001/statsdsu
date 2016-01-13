@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//cdn.opencpu.org/opencpu-0.4.js"></script>
+
+
+</head>
+<body>
+
+<h1>The Plottig Widget</h1>
+
+<b>Ticker</b> <input type="text" value="GOOG" id="ticker">
+
+<button id="submitbutton" type="button">Submit to server!</button> <br><br>
+
+<div id="plotdiv"></div>
+
+
+<!-- some text, not part of the app -->
+<p>This is a demo of the <code>rplot</code> function in the <a href="http://public.opencpu.org/jslib.html">opencpu.js</a> library. It calls the R function <a href="http://public.opencpu.org/ocpu/library/stocks/R/smoothplot">smoothplot</a> in the R package <a href="http://public.opencpu.org/ocpu/library/stocks/R/">stocks</a>.</p>
+<script>
+    //set CORS to call "stocks" package on public server
+    ocpu.seturl("//public.opencpu.org/ocpu/library/stocks/R")
+
+    //call R function: stocks::smoothplot(ticker=ticker)
+    $("#submitbutton").click(function(){
+        var ticker = $("#ticker").val();
+        var req = $("#plotdiv").rplot("smoothplot", {
+            ticker : ticker,
+            from : "2013-01-01"
+        });
+
+        //optional
+        req.fail(function(){
+            alert("R returned an error: " + req.responseText);
+        });
+    });
+
+</script>
+</body>
+</html>

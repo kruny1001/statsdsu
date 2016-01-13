@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
+    <link rel="stylesheet" href="bower_components/medium-editor/dist/css/medium-editor.css" />
+    <link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/text-only.css">
+      <link rel="stylesheet" href="styles/start.css">
+      <link rel="stylesheet" href="styles/menu.css">
+      <link rel="stylesheet" href="styles/intro.css">
+      <link rel="stylesheet" href="styles/course.css">
+      <link rel="stylesheet" href="styles/typed.css">
+      <link rel="stylesheet" href="styles/medium.css">
+      <link rel="stylesheet" href="styles/codeTerminal.css">
+      <link rel="stylesheet" href="styles/profile.css">
+      <link rel="stylesheet" href="styles/profile-icon.css">
+    <!-- endbuild -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+      <!--<style>-->
+          <!--#view-source {-->
+              <!--position: fixed;-->
+              <!--display: block;-->
+              <!--right: 0;-->
+              <!--bottom: 0;-->
+              <!--margin-right: 40px;-->
+              <!--margin-bottom: 40px;-->
+              <!--z-index: 900;-->
+          <!--}-->
+      <!--</style>-->
+
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/x-mathjax-config"> MathJax.Hub.Config({
+	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	    }
+	}); </script>
+
+  </head>
+  <body ng-app="statsdsuApp">
+  <script>
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId      : '153541338330247',
+              xfbml      : true,
+              version    : 'v2.5'
+          });
+      };
+
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=153541338330247";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+
+
+    <div ng-view="" style="height:100%"></div>
+
+
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/nvd3/nv.d3.js"></script>
+    <script src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/material-design-lite/material.min.js"></script>
+    <script src="bower_components/pixi/bin/pixi.js"></script>
+    <script src="bower_components/typed.js/dist/typed.min.js"></script>
+    <script src="bower_components/medium-editor/dist/js/medium-editor.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <!-- endbower -->
+
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/angularfire/config.js"></script>
+        <script src="scripts/angularfire/firebase.ref.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
+        <script src="scripts/filters/reverse.js"></script>
+        <script src="scripts/angularfire/auth.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/directives/ngShowAuth.js"></script>
+        <script src="scripts/directives/ngHideAuth.js"></script>
+        <script src="scripts/routes.js"></script>
+        <script src="scripts/controllers/start.js"></script>
+        <script src="scripts/directives/detailcard.js"></script>
+        <script src="scripts/controllers/opencpu.js"></script>
+        <script src="scripts/directives/rchart.js"></script>
+        <script src="scripts/services/dataset.js"></script>
+        <script src="scripts/controllers/pixi.js"></script>
+        <script src="scripts/controllers/menu.js"></script>
+        <script src="scripts/controllers/intro.js"></script>
+        <script src="scripts/services/runsrc.js"></script>
+        <script src="scripts/controllers/course.js"></script>
+        <script src="scripts/services/errhandler.js"></script>
+        <script src="scripts/services/rpcfactory.js"></script>
+        <script src="scripts/services/intro.js"></script>
+        <script src="scripts/controllers/coursedetail.js"></script>
+        <script src="scripts/directives/coursecnt.js"></script>
+        <script src="scripts/services/userfire.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/resources.js"></script>
+        <script src="scripts/controllers/editcourse.js"></script>
+        <script src="scripts/controllers/userinfo.js"></script>
+        <script src="scripts/controllers/write.js"></script>
+        <script src="scripts/directives/commentform.js"></script>
+        <script src="scripts/services/firebasereffactory.js"></script>
+        <script src="scripts/services/coursefactory.js"></script>
+        <script src="scripts/directives/newcoursecnt.js"></script>
+        <script src="scripts/services/activityscore.js"></script>
+        <script src="scripts/services/notification.js"></script>
+        <script src="scripts/controllers/notification.js"></script>
+        <script src="scripts/services/blogservice.js"></script>
+        <script src="scripts/controllers/read.js"></script>
+        <script src="scripts/directives/seblogread.js"></script>
+        <script src="scripts/controllers/edit.js"></script>
+        <script src="scripts/services/progressreport.js"></script>
+        <script src="scripts/directives/fbcomment.js"></script>
+        <script src="scripts/controllers/test-progress.js"></script>
+        <script src="scripts/directives/codeterminal.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/directives/profile-header.js"></script>
+        <script src="scripts/directives/profile-menu-box.js"></script>
+        <!-- endbuild -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+    <script type="text/javascript" src="3rd/gsap/uncompressed/TimelineMax.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+    <script type="text/javascript" src="3rd/gsap/uncompressed/TweenMax.js"></script>
+
+    <script src="//cdn.opencpu.org/opencpu-0.4.js"></script>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('41', {packages: ['corechart', 'bar']});
+    </script>
+
+</body>
+</html>

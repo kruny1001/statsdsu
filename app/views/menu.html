@@ -1,0 +1,132 @@
+<!--<div class="app" layout="column" style="overflow: hidden; padding-bottom: 15px; background-color: #4966ff;">-->
+
+<md-content layout-padding class="main-container"
+                             style="overflow-x: hidden; height: 100%;
+            padding: 24px; background-color: #1f253d; color: #203e54;">
+    <div class="profile-container">
+        <div class="main-container">
+            <profile-header></profile-header>
+        </div>
+    </div>
+
+    <!--<md-toolbar class="md-warn">-->
+        <!--<div class="md-toolbar-tools">-->
+            <!--<h2 class="md-flex" style="font-weight: 700">SDSU Statistics</h2>-->
+        <!--</div>-->
+    <!--</md-toolbar>-->
+
+    <div style="    margin-bottom: 25px;
+        margin: 0 auto;
+        color:white;
+        padding:8px;
+        max-width:950px;
+    border-radius: 5px;
+    background: #394264;
+    border-radius: 5px;">
+        <div class="logo_container"><img class="logo" src="dImages/logosdsu.png"></div>
+
+
+        <div layout="column" layout-align="center center">
+            <div class="md-title"> Terms</div>
+            <p class="md-body-2" style="max-width:970px;">
+                This material is based upon work supported by the National Science Foundation/EPSCoR Award No. IIA-1355423 and by the state of South Dakota. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+            </p>
+        </div>
+    </div>
+
+    <br>
+    <div style="    margin-bottom: 25px;
+    margin-top: 25px;
+        margin: 0 auto;
+        color:white;
+        padding:8px;
+        max-width:950px;
+    border-radius: 5px;
+    background: #394264;
+    border-radius: 5px;">
+        <div class="menu-container" layout="row" layout-sm="column" layout-margin="20" layout-align="center start">
+
+            <div layout="column" >
+                <div class="md-title"> Courses </div>
+                <md-button class="menu-btn1" ng-click="goto('/course')"> <div class="md-title">Descriptive Statistics</div></md-button>
+                <md-button class="menu-btn1" ng-click="goto('/course/r-intro')"> <div class="md-title">R Intro </div></md-button>
+                <md-button class="menu-btn1" ng-click="goto('/course/r-vis')"> <div class="md-title">R Visualization</div></md-button>
+
+            </div>
+            <div layout="column">
+                <div class="md-title"> Information </div>
+                <md-button class="menu-btn1" href="#/resources"> <div class="md-title">Resource</div></md-button>
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 2</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 3</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 4</div></md-button>-->
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div style="    margin-bottom: 25px;
+        margin: 0 auto;
+        color:white;
+        padding:8px;
+        max-width:950px;
+    border-radius: 5px;
+    background: #394264;
+    border-radius: 5px;">
+
+        <div class="menu-container" layout="row" layout-sm="column" layout-margin="20" layout-align="center start" >
+            <div layout="column" >
+                <div class="md-title"> Setting </div>
+                <md-button class="menu-btn1" href="#/login" ng-hide-auth> <div class="md-title">Login</div></md-button>
+                <md-button class="menu-btn1" href="#/account" ng-show-auth> <div class="md-title">Account</div></md-button>
+                <md-button class="menu-btn1" href="#/notification" ng-show-auth> <div class="md-title">Notification</div></md-button>
+                <md-button class="menu-btn1" href="#/test-progress" ng-show-auth> <div class="md-title">Progress</div></md-button>
+                <!--<md-button class="menu-btn1"> <div class="md-title">Register</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Test 3</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Test 4</div></md-button>-->
+            </div>
+            <div layout="column" ng-show-auth>
+                <div class="md-title"> Admin  </div>
+                <md-button class="menu-btn1" href="#/admin"> <div class="md-title">Admin Page</div></md-button>
+                <md-button class="menu-btn1" href="#/write" > <div class="md-title"> Wrtie Blog </div></md-button>
+                <!--<md-button class="menu-btn1"> <div class="md-title">Test 3</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Test 4</div></md-button>-->
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <!--<div style="    margin-bottom: 25px;-->
+        <!--margin: 0 auto;-->
+        <!--color:white;-->
+        <!--padding:8px;-->
+        <!--max-width:950px;-->
+    <!--border-radius: 5px;-->
+    <!--background: #394264;-->
+    <!--border-radius: 5px;">-->
+        <!--<div layout="row" layout-align="center center">-->
+            <!--<div id="fb-comment-box" fb-comment-->
+                 <!--class="fb-comments"-->
+                 <!--page-href="https://statsdsu.firebaseapp.com"-->
+                 <!--numposts="5"-->
+
+                 <!--colorscheme="light">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="fb-comments" data-href="https://statsdsu.firebaseapp.com" data-mobile data-numposts="5"></div>-->
+    <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+    </div>
+    <!--</div>-->
+
+</md-content>
+
+
+
+
+
+<!--</div>-->

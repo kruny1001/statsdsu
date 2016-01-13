@@ -1,0 +1,65 @@
+<md-content layout-padding
+            style="overflow-x: hidden; height: 100%;
+            padding: 24px; background-color: #fcda9d; color: #203e54;">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex"style="font-weight: 700">
+                <a href="#/" >SDSU Statistics</a>
+            </h2>
+        </div>
+    </md-toolbar>
+
+    <div layout="row" layout-align="center center"
+         style="position:fixed; top: 95px; right: 20px; z-index:20">
+        <md-button class="md-fab" ng-click="createNewContent()"></md-button>
+        <md-button class="md-fab md-warn"></md-button>
+        <md-button class="md-fab md-primary"></md-button>
+    </div>
+
+    <md-content class="medium" layout-padding>
+        <md-whiteframe style="background:white" class="md-whiteframe-1dp" layout layout-align="center center">
+            <md-subheader style="margin-top:5px;" class="md-no-sticky">Title</md-subheader>
+            <md-input-container flex="60">
+                <label>Title</label>
+                <input ng-model="docTitle">
+            </md-input-container>
+        </md-whiteframe>
+        <div id="container">
+            <md-subheader class="md-no-sticky">Body</md-subheader>
+            <div class="editable"></div>
+        </div>
+    </md-content>
+
+    <md-button class="md-primary" ng-click="createNewContent()"> Publish </md-button>
+    <md-button class="md-warn" ng-click="cancel()"> Cancel </md-button>
+
+    <!--<div>http://www.menucool.com/slider/jsImgSlider/images/image-slider-2.jpg</div>-->
+    <!--<div>https://imagecomics.com/uploads/backgrounds/Rumble08_Gallery.jpg</div>-->
+
+
+    <!--<div ng-repeat="write in testWrite">-->
+        <!--<hr/>-->
+        <!--<md-content class="medium" layout-padding>-->
+            <!--<div ng-bind-html="write.body"></div>-->
+            <!--<md-list>-->
+                <!--<md-subheader class="md-no-sticky"> Comments </md-subheader>-->
+                <!--<md-list-item class="md-3-line md-long-text" ng-repeat="cmt in write.cmts track by $index">-->
+                    <!--&lt;!&ndash;<img ng-src="{{cmt.profileImage}}" class="md-avatar" alt="{{cmt.name}}" />&ndash;&gt;-->
+                    <!--<img ng-src="dImages/epscorLogo.png" class="md-avatar" alt="{{cmt.name}}" />-->
+                    <!--<div class="md-list-item-text">-->
+                        <!--<h3>{{ cmt.name }}</h3>-->
+                        <!--<p>-->
+                            <!--{{cmt.body}}-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div style="padding:5px; padding-top:15px;">-->
+                        <!--<div ng-show="checkAutho(cmt)" class="md-caption" ng-click=" removeComment(cmt)">Remove</div>-->
+                        <!--<div class="md-caption">Edit(Not Yet)</div>-->
+                    <!--</div>-->
+                <!--</md-list-item>-->
+            <!--</md-list>-->
+            <!--<comment-form ng-show="authData" on-target="{{write.$id}}"></comment-form>-->
+        <!--</md-content>-->
+
+    <!--</div>-->
+</md-content>

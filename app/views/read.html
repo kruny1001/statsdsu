@@ -1,0 +1,23 @@
+<md-content layout-padding
+            style="overflow-x: hidden; height: 100%;
+            padding: 24px; background-color: #fcda9d; color: #203e54;">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex"style="font-weight: 700">
+                <a href="#/" >SDSU Statistics</a>
+            </h2>
+        </div>
+    </md-toolbar>
+
+
+<md-content style="background-color: inherit">
+
+    <se-blog-read>
+        <md-button class="md-raised" ng-click="deleteCnt()">Delete</md-button>
+        <md-button class="md-raised" ng-click="editPage()">Edit</md-button>
+        <md-button class="md-raised" ng-click="likeBtn()">Like {{post.likes}}</md-button>
+        <md-button class="md-raised" ng-click="disLikeBtn()">Dislike {{post.dislikes}}</md-button>
+    </se-blog-read>
+</md-content>
+
+</md-content>

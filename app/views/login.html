@@ -1,0 +1,106 @@
+
+<style>
+  .account-container {
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/194122/07t2mb2.gif');
+
+  }
+</style>
+
+<md-content layout-padding class="main-container"
+            style="overflow-x: hidden; height: 100%;
+            padding: 24px; background-color: #1f253d; color: #203e54;">
+
+  <div class="profile-container">
+    <div class="main-container">
+
+      <profile-header></profile-header>
+
+      <div layout="row" layout-sm="column" layout-align="center center">
+        <div class="right-container profile-inner-container">
+          <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
+            <h2 class="titular">SIGN IN TO YOUR ACCOUNT</h2>
+            <div class="input-container">
+              <input type="text" placeholder="yourname@gmail.com" class="email text-input">
+              <div class="input-icon envelope-icon-acount"><span class="fontawesome-envelope scnd-font-color"></span></div>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="Password" class="password text-input">
+              <div class="input-icon password-icon"><span class="fontawesome-lock scnd-font-color"></span></div>
+            </div>
+            <a class="sign-in button" >SIGN IN</a>
+            <p class="scnd-font-color">Forgot Password?</p>
+            <a class="fb-sign-in">
+              <p><span class="fb-border"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>
+            </a>
+          </div>
+        </div>
+
+        <div class="right-container profile-inner-container" style="margin-left:10px; width:100%;">
+          <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
+            <h2 class="titular">SDSU Statistics</h2>
+            <p> SDSU Statistics</p>
+            <p> asdlkfja alskdfjalkj alksdfjklasdjf alksdjflksj d</p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+  <!--<div style="padding:10px;" >-->
+    <!--<h2>Login Page</h2>-->
+
+    <!--<fieldset>-->
+      <!--<legend>Oauth</legend>-->
+      <!--<p style="color:black">-->
+        <!--<md-button class="md-raised md-primary" ng-click="oauthLogin('facebook')">Facebook</md-button>-->
+        <!--<md-button  class="md-raised md-warn" ng-click="oauthLogin('google')">Google</md-button>-->
+        <!--<md-button  class="md-raised md-primary md-hue-1" ng-click="oauthLogin('twitter')">Twitter</md-button>-->
+      <!--</p>-->
+    <!--</fieldset>-->
+
+    <!--<form role="form">-->
+      <!--<p class="form-group">-->
+        <!--<label for="loginEmail">email</label>-->
+        <!--<input style="color:black" id="loginEmail" required name="email" type="email" ng-model="email" />-->
+      <!--</p>-->
+      <!--<p class="form-group">-->
+        <!--<label for="loginPass">password</label>-->
+        <!--<input style="color:black" id="loginPass" required name="pass" type="password" ng-model="pass" />-->
+      <!--</p>-->
+      <!--<p class="form-group" ng-cloak ng-show="createMode">-->
+        <!--<label for="loginConfirm">confirm pass</label>-->
+        <!--<input style="color:black" id="loginConfirm" required name="confirm" type="password" ng-model="confirm" />-->
+      <!--</p>-->
+
+      <!--<p style="color:black">-->
+        <!--<md-button  class="md-raised" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</md-button>-->
+        <!--<md-button  class="md-raised" ng-click="createMode = true" ng-hide="createMode">Register</md-button>-->
+        <!--<md-button  class="md-raised" ng-cloak ng-show="createMode"-->
+                    <!--ng-click="createAccount(email, pass, confirm)">Create Account</md-button>-->
+        <!--<md-button class="md-raised" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</md-button>-->
+      <!--</p>-->
+    <!--</form>-->
+    <!--<p ng-show="err" class="error">{{err}}</p>-->
+  <!--</div>-->
+<!--<md-content layout-padding class="account-container"-->
+            <!--style="overflow-x: hidden; height: 100%;-->
+            <!--padding: 24px; color: whitesmoke;">-->
+
+  <!--<md-toolbar class="md-warn">-->
+    <!--<div class="md-toolbar-tools">-->
+      <!--<h2 class="md-flex"style="font-weight: 700">-->
+        <!--<a href="#/" >SDSU Statistics</a>-->
+      <!--</h2>-->
+    <!--</div>-->
+  <!--</md-toolbar>-->
+
+
+</md-content>
