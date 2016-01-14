@@ -24,8 +24,6 @@
     background: #394264;
     border-radius: 5px;">
         <div class="logo_container"><img class="logo" src="dImages/logosdsu.png"></div>
-
-
         <div layout="column" layout-align="center center">
             <div class="md-title"> Terms</div>
             <p class="md-body-2" style="max-width:970px;">
@@ -44,16 +42,56 @@
     border-radius: 5px;
     background: #394264;
     border-radius: 5px;">
+        <div class="menu-container" layout="row" style="margin:0px;"
+        layout-sm="column" layout-margin="20" layout-align="center start">
+
+            <div layout="column" style="height:100%; background-color:white; padding: 5px; border-radius: 5px; color:black;" flex>
+                <div class="md-title"> Classes </div>
+                <hr style="margin:5px"/>
+                <a ng-repeat="class in classes" href="#/class/{{class.$id}}">{{class.title}}</a>
+
+                <!-- <md-button class="menu-btn1" ng-click="goto('/course')"> <div class="md-title">Descriptive Statistics</div></md-button>
+                <md-button class="menu-btn1" ng-click="goto('/course/r-intro')"> <div class="md-title">R Intro </div></md-button>
+                <md-button class="menu-btn1" ng-click="goto('/course/r-vis')"> <div class="md-title">R Visualization</div></md-button> -->
+
+            </div>
+            <div layout="column" style="height:100%; background-color:white; padding: 5px; border-radius: 5px; color:black;" flex>
+                <div class="md-title"> Courses </div>
+                <hr style="margin:5px"/>
+                <a ng-repeat="course in courses" href="#/course-detail/{{course.$id}}">{{course.title}}</a>
+                <div class="md-title"> Information </div>
+                <hr style="margin:5px"/>
+                <a href="#/resources"> Resource </a>
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 2</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 3</div></md-button>-->
+                <!--<md-button class="menu-btn1"> <div class="md-title">Info 4</div></md-button>-->
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div style="    margin-bottom: 25px;
+    margin-top: 25px;
+        margin: 0 auto;
+        color:white;
+        padding:8px;
+        max-width:950px;
+    border-radius: 5px;
+    background: #394264;
+    border-radius: 5px;">
         <div class="menu-container" layout="row" layout-sm="column" layout-margin="20" layout-align="center start">
 
             <div layout="column" >
                 <div class="md-title"> Courses </div>
+
                 <md-button class="menu-btn1" ng-click="goto('/course')"> <div class="md-title">Descriptive Statistics</div></md-button>
                 <md-button class="menu-btn1" ng-click="goto('/course/r-intro')"> <div class="md-title">R Intro </div></md-button>
                 <md-button class="menu-btn1" ng-click="goto('/course/r-vis')"> <div class="md-title">R Visualization</div></md-button>
 
             </div>
             <div layout="column">
+
                 <div class="md-title"> Information </div>
                 <md-button class="menu-btn1" href="#/resources"> <div class="md-title">Resource</div></md-button>
                 <!--<md-button class="menu-btn1"> <div class="md-title">Info 2</div></md-button>-->
@@ -64,6 +102,7 @@
     </div>
 
     <br>
+
     <div style="    margin-bottom: 25px;
         margin: 0 auto;
         color:white;

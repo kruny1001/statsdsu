@@ -8,7 +8,7 @@
  * Factory in the statsdsuApp.
  */
 angular.module('statsdsuApp')
-  .factory('Class', function (FBURL, $firebaseArray) {
+  .factory('Class', function (FBURL, $firebaseObject, $firebaseArray) {
 
     var ref = new Firebase(FBURL);
     var classRef = ref.child('classes');
@@ -48,6 +48,9 @@ angular.module('statsdsuApp')
       },
       unpublish: function(id){
         classRef.child(id).update({pubStatus: false});
+      },
+      getInfo: function(id){
+        return $firebaseObject(classRef.child(id));
       }
     };
   });

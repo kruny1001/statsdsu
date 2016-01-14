@@ -8,7 +8,13 @@
  * Controller of the statsdsuApp
  */
 angular.module('statsdsuApp')
-  .controller('MenuCtrl', function ($scope, $location) {
+  .controller('MenuCtrl', function ($scope, $location,
+    Class, Course
+  ) {
+
+    $scope.classes = Class.list();
+    $scope.courses = Course.list();
+
     TweenMax.from('.logo', 1, {opacity:0.5, rotation:45});
     $scope.goto = function(path){
       $location.path( path );

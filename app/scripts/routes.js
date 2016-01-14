@@ -163,6 +163,18 @@ angular.module('statsdsuApp')
         templateUrl: 'views/createcontent.html',
         controller: 'CreatecontentCtrl'
       })
+      .when('/class/:id', {
+        templateUrl: 'views/class.html',
+        controller: 'ClassCtrl'
+      })
+      .when('/course-detail/:id', {
+        templateUrl: 'views/course-detail.html',
+        controller: 'CourseDetailCtrl'
+      })
+      .when('/chapter-detail/:id', {
+        templateUrl: 'views/chapter-detail.html',
+        controller: 'ChapterDetailCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

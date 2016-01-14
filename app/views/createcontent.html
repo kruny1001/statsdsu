@@ -2,10 +2,9 @@
 .md-datepicker-button {
   width: 36px; }
 </style>
-<pre>{{userInfo}}</pre>
-<div>{{classes}}</div>
+
 <section>
-  <div class="md-title">Create Class</span>
+  <div class="md-title">Create Class</div>
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
        <form name="classForm"  ng-submit="createClass()">
@@ -27,7 +26,8 @@
        </form>
     </md-content>
   </div>
-  <pre>{{targetClass}}</pre>
+
+  <div class="md-title">Update Class</div>
   <div layout="column" layout-align="center center" style="height: 100px;">
     <md-select placeholder="Select Class" ng-model="targetClass" md-on-open="loadClasses()" style="min-width: 200px;">
       <md-option ng-value="classItem" ng-repeat="classItem in classes">
@@ -35,7 +35,9 @@
       </md-option>
     </md-select>
   </div>
+
   <div ng-show="targetClass !== null" layout="column" ng-cloak class="md-inline-form" style="padding:8px">
+
     <md-content layout-padding style="overfolw:hidden">
        <form name="classForm"  ng-submit="updateClass()">
          <div layout-gt-xs="row">
@@ -76,28 +78,46 @@
        </form>
     </md-content>
   </div>
-  <div class="md-title">Update Class</span>
 </section>
 
 <section>
 <div>
+  <style>
+  .inputErrorsApp {
+  min-height: 48px; }</style>
+
   <div class="md-title">Create Course</div>
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
        <form name="courseForm"  ng-submit="createCourse()">
+         <md-input-container class="md-block">
+           <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+              md-on-open="loadClasses()" style="min-width: 200px;">
+             <md-option ng-value="classItem" ng-repeat="classItem in classes">
+               {{classItem.title}}
+             </md-option>
+           </md-select>
+           <div ng-messages="courseForm.parentClass.$error">
+             <div ng-message="required">This is required.</div>
+          </div>
+         </md-input-container>
+
          <div layout-gt-xs="row">
-           <md-input-container>
+           <md-input-container class="md-block">
              <label>Title</label>
-             <input ng-model="class.title">
+             <input required name="title" ng-model="course.title">
+             <div ng-messages="courseForm.title.$error">
+               <div ng-message="required">This is required.</div>
+            </div>
            </md-input-container>
            <md-input-container class="md-block" flex-gt-xs>
              <label>Instructor</label>
-             <input ng-model="class.instructor" disabled>
+             <input ng-model="course.instructor" disabled>
            </md-input-container>
          </div>
          <md-input-container class="md-block">
            <label>Description (optional)</label>
-           <textarea ng-model="class.description" columns="1" md-maxlength="150" rows="5"></textarea>
+           <textarea ng-model="course.description" columns="1" md-maxlength="150" rows="5"></textarea>
          </md-input-container>
          <md-button type="submit">Create Course</md-button>
        </form>
@@ -106,10 +126,21 @@
 </section>
 
 <section>
-  <div class="md-title">Create Course</div>
+  <div class="md-title">Create Chapter</div>
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
-       <form name="courseForm"  ng-submit="createCourse()">
+       <form name="chapterForm"  ng-submit="createChapter()">
+         <md-input-container class="md-block">
+           <md-select required name="parentCourse" placeholder="Select Parent Course"
+              ng-model="parentCourse" md-on-open="loadCourses()" style="min-width: 200px;">
+             <md-option ng-value="classItem" ng-repeat="classItem in courses">
+               {{classItem.title}}
+             </md-option>
+           </md-select>
+         <div ng-messages="courseForm.parentCourse.$error">
+           <div ng-message="required">This is required.</div>
+        </div>
+       </md-input-container>
          <div layout-gt-xs="row">
            <md-input-container>
              <label>Title</label>
@@ -134,7 +165,7 @@
   <div class="md-title">Create Material</div>
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
-       <form name="courseForm"  ng-submit="createCourse()">
+       <form name="materialForm"  ng-submit="createMaterial()">
          <div layout-gt-xs="row">
            <md-input-container>
              <label>Title</label>
@@ -159,7 +190,7 @@
   <div class="md-title">Create Challenge</div>
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
-       <form name="courseForm"  ng-submit="createCourse()">
+       <form name="challengeForm"  ng-submit="createCourse()">
          <div layout-gt-xs="row">
            <md-input-container>
              <label>Title</label>

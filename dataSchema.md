@@ -18,6 +18,7 @@ courses:[]
 course includes chapters
 
 title: STRING
+parentClass
 classId: ID
 chapters:[]
 
