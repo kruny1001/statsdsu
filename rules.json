@@ -1,0 +1,38 @@
+{
+  "rules": {
+    ".validate": "newData.hasChildren(['name', 'age', 'isMember'])",
+    ".read": "true",
+    ".write": "true",
+    "classes": {
+      ".read": "true",
+      "$id": {
+        ".validate": "newData.hasChildren(['title', 'description']) && newData.child('title').val() <= 20",
+        "title": {
+          ".validate": "newData.isString()"
+        },
+        "description": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true"
+      }
+    },
+    "name": {
+      ".validate": "newData.isString()"
+    },
+    "age": {
+      ".validate": "newData.isNumber()"
+    },
+    "isMember": {
+      ".validate": "newData.isBoolean()"
+    },
+    "extra": {
+      ".validate": "newData.hasChildren() || newData.val() == null"
+    },
+    "$other": {
+      ".validate": "false"
+    }
+  }
+}
