@@ -130,17 +130,33 @@
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
        <form name="chapterForm"  ng-submit="createChapter()">
-         <md-input-container class="md-block">
-           <md-select required name="parentCourse" placeholder="Select Parent Course"
-              ng-model="parentCourse" md-on-open="loadCourses()" style="min-width: 200px;">
-             <md-option ng-value="classItem" ng-repeat="classItem in courses">
-               {{classItem.title}}
-             </md-option>
-           </md-select>
-         <div ng-messages="courseForm.parentCourse.$error">
-           <div ng-message="required">This is required.</div>
-        </div>
-       </md-input-container>
+
+           <md-input-container class="md-block">
+               <p> Select Class </p>
+               <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+                          md-on-open="loadClassesForChapter()" style="min-width: 200px;">
+                   <md-option ng-value="classItem" ng-repeat="classItem in classesForChapter">
+                       {{classItem.title}}
+                   </md-option>
+               </md-select>
+               <div ng-messages="courseForm.parentClass.$error">
+                   <div ng-message="required">This is required.</div>
+               </div>
+           </md-input-container>
+
+
+           <md-input-container ng-show="parentClass !== undefined" class="md-block">
+               <p> Select Course </p>
+               <md-select required name="parentCourse" placeholder="Select Parent Course"
+                          ng-model="parentCourse" md-on-open="loadCourseForChapter(parentClass.$id)" style="min-width: 200px;">
+                   <md-option ng-value="courseItem" ng-repeat="courseItem in coursesForChapter">
+                       {{courseItem.title}}
+                   </md-option>
+               </md-select>
+               <div ng-messages="courseForm.parentCourse.$error">
+                   <div ng-message="required">This is required.</div>
+               </div>
+           </md-input-container>
          <div layout-gt-xs="row">
            <md-input-container>
              <label>Title</label>
@@ -162,10 +178,54 @@
 </section>
 
 <section>
+
   <div class="md-title">Create Material</div>
+
+
   <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
     <md-content layout-padding style="overfolw:hidden">
        <form name="materialForm"  ng-submit="createMaterial()">
+
+           <md-input-container class="md-block">
+               <p> Select Class </p>
+               <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+                          md-on-open="loadClassesForChapter()" style="min-width: 200px;">
+                   <md-option ng-value="classItem" ng-repeat="classItem in classesForChapter">
+                       {{classItem.title}}
+                   </md-option>
+               </md-select>
+               <div ng-messages="courseForm.parentClass.$error">
+                   <div ng-message="required">This is required.</div>
+               </div>
+           </md-input-container>
+
+
+           <md-input-container ng-show="parentClass !== undefined" class="md-block">
+               <p> Select Course </p>
+               <md-select required name="parentCourse" placeholder="Select Parent Course"
+                          ng-model="parentCourse" md-on-open="loadCourseForChapter(parentClass.$id)" style="min-width: 200px;">
+                   <md-option ng-value="courseItem" ng-repeat="courseItem in coursesForChapter">
+                       {{courseItem.title}}
+                   </md-option>
+               </md-select>
+               <div ng-messages="courseForm.parentCourse.$error">
+                   <div ng-message="required">This is required.</div>
+               </div>
+           </md-input-container>
+
+           <md-input-container ng-show="parentClass !== undefined" class="md-block">
+               <p> Select Chapter </p>
+               <md-select required name="parentChapter" placeholder="Select Parent Chapter"
+                          ng-model="parentChapter" md-on-open="loadChapterForCourser(parentCourse.$id)" style="min-width: 200px;">
+                   <md-option ng-value="chapterItem" ng-repeat="chapterItem in chapterForCourse">
+                       {{chapterItem.title}}
+                   </md-option>
+               </md-select>
+               <div ng-messages="courseForm.parentCourse.$error">
+                   <div ng-message="required">This is required.</div>
+               </div>
+           </md-input-container>
+
          <div layout-gt-xs="row">
            <md-input-container>
              <label>Title</label>

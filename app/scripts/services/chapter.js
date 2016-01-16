@@ -6,12 +6,14 @@
  * @description
  * # chapter
  * Factory in the statsdsuApp.
+ * Class > Course > Chapter
  */
 angular.module('statsdsuApp')
   .factory('Chapter', function (FBURL, $firebaseArray) {
 
     var ref = new Firebase(FBURL);
     var chapterRef = ref.child('chapters');
+    var materialRef = ref.child('materials');
     var onComplete = function(error) {
       if (error) {
         console.log('Remove Data failed');
@@ -31,5 +33,13 @@ angular.module('statsdsuApp')
       list: function(){
         return $firebaseArray(classRef);
       },
+        addMaterial: function(materialObj){
+            var newMaterial = materialRef.push();
+            newMaterial.set(materialObj);
+        },
+        removeMaterial: function(materialId, courseId){
+            //var newMaterial = chapterRef.child(courseId).child('materials').push();
+            //newMaterial.set(materialObj);
+        }
     };
   });

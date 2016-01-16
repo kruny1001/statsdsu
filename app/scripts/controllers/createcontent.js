@@ -60,16 +60,36 @@ angular.module('statsdsuApp')
     }
 
     //Chapter
+      $scope.loadClassesForChapter = function(){
+          var classRef = new Firebase(FBURL).child('classes')
+              .orderByChild('title');
+          $scope.classesForChapter = $firebaseArray(classRef);
+      }
+      $scope.loadCourseForChapter = function(targetClassId){
+          var courseRef = new Firebase(FBURL).child('courses')
+              .orderByChild('parentClass/id').equalTo(targetClassId);
+          $scope.coursesForChapter = $firebaseArray(courseRef);
+      }
+
     $scope.createChapter = function(){
-      var parentCourseId = $scope.parentCourse.$id;
-      var parentCourseTitle = $scope.parentCourse.title;
-      $scope.chapter.instructor={uid: user.uid, provider: user.provider};
-      $scope.chapter.parentClass = {id:parentCourseId, title:parentCourseTitle};
-      Chapter.create($scope.chapter);
+        var parentClassId = $scope.parentClass.$id;
+        var parentCourseId = $scope.parentCourse.$id;
+        $scope.chapter.parentClassId = parentClassId;
+        $scope.chapter.parentCourseId = parentCourseId;
+        $scope.chapter.instructor={uid: user.uid, provider: user.provider};
+        Chapter.create($scope.chapter);
     }
 
     //Material
-    $scope.createMaterial = function(){}
+      $scope.loadChapterForCourser = function(targetCourseId){
+          var chapterRef = new Firebase(FBURL).child('chapters')
+              .orderByChild('parentCourseId').equalTo(targetCourseId);
+          $scope.chapterForCourse = $firebaseArray(chapterRef);
+      }
+    $scope.createMaterial = function(){
+        $scope.material.parentChapterId = $scope.parentCourse.$id;
+        Chapter.addMaterial($scope.material);
+    }
 
     //Challenge
     $scope.createChallenge = function(){}
