@@ -87,18 +87,19 @@ angular.module('statsdsuApp')
           $scope.chapterForCourse = $firebaseArray(chapterRef);
       }
     $scope.createMaterial = function(){
-        $scope.material.parentChapterId = $scope.parentCourse.$id;
+        $scope.material.parentChapterId = $scope.parentChapter.$id;
+        $scope.material.parentCourseId = $scope.parentCourse.$id;
+        $scope.material.parentClassId = $scope.parentClass.$id;
         Chapter.addMaterial($scope.material);
     }
 
     //Challenge
-    $scope.createChallenge = function(){}
+    $scope.createChallenge = function(){
+        $scope.challenge.parentChapterId = $scope.parentCourse.$id;
+        $scope.challenge.parentClassId = $scope.parentClass.$id;
+        Chapter.addChallenge($scope.challenge);
+    }
 
-    //create course
-    //create chapter
-    //create material
-    //create challenge
-
-
-
+      //Test List Materials
+      $scope.listMaterials = Chapter.listMaterials("-K89qh0lojthsPkGiLmU");
   });

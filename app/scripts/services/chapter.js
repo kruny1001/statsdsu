@@ -14,6 +14,7 @@ angular.module('statsdsuApp')
     var ref = new Firebase(FBURL);
     var chapterRef = ref.child('chapters');
     var materialRef = ref.child('materials');
+      var challengeRef = ref.child('challenges');
     var onComplete = function(error) {
       if (error) {
         console.log('Remove Data failed');
@@ -33,13 +34,34 @@ angular.module('statsdsuApp')
       list: function(){
         return $firebaseArray(classRef);
       },
+        listByCourseId:function(courseId){
+            var listChapterRef = new Firebase(FBURL).child('chapters')
+                .orderByChild('parentCourseId').equalTo(courseId);
+            return $firebaseArray(listChapterRef);
+        },
         addMaterial: function(materialObj){
             var newMaterial = materialRef.push();
             newMaterial.set(materialObj);
         },
+        listMaterials: function(chapterId){
+            var listMaterialRef = new Firebase(FBURL).child('materials')
+                .orderByChild('parentChapterId').equalTo(chapterId);
+            return $firebaseArray(listMaterialRef);
+        },
         removeMaterial: function(materialId, courseId){
             //var newMaterial = chapterRef.child(courseId).child('materials').push();
             //newMaterial.set(materialObj);
+        },
+        addChallenge: function(challengeObj){
+            var newChallenge = challengeRef.push();
+            newChallenge.set(challengeObj);
+        },
+        listChallenges: function(){
+
+        },
+        removeChallenge: function(challengeObj){
+
         }
+
     };
   });

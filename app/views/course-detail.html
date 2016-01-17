@@ -15,11 +15,21 @@
     background: #394264;
     border-radius: 5px;">
 
-    <md-content>
-      {{courseInfo}}
-      <div>{{courseInfo.title}}</div>
-      <div>{{courseInfo.description}}</div>
+    <md-content layout-padding>
+        <h3 class="md-title">Course Information</h3>
+        <div class="md-body-2">{{courseInfo.title}}</div>
+        <div class="md-body-1">{{courseInfo.description}}</div>
+    </md-content>
 
+    <md-content layout-padding>
+        <h3 class="md-title">Chapter List</h3>
+        <div ng-repeat="ch in chapterList">
+            <h4 class="md-body-2">{{ch.title}}</h4>
+            <h4 class="md-body-1">Material List</h4>
+            <ul>
+                <li class="md-caption" ng-repeat="mat in ch.materials"> {{mat.title}}</li>
+            </ul>
+        </div>
     </md-content>
   </div>
 </md-content>

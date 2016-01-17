@@ -18,3 +18,6 @@ optimization
 firebaseObject
 firebaseArray
 
+### 1-17
+Show Chapters and Materials under Course (course-detail view)
+
