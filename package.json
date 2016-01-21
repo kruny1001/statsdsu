@@ -2,7 +2,8 @@
   "name": "statsdsu",
   "version": "0.0.0",
   "dependencies": {
-    "firebase": "2.3.1"
+    "firebase": "2.3.1",
+    "jupyter-js-editor": "0.1.10"
   },
   "repository": {},
   "devDependencies": {

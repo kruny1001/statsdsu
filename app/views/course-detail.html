@@ -16,20 +16,59 @@
     border-radius: 5px;">
 
     <md-content layout-padding>
-        <h3 class="md-title">Course Information</h3>
-        <div class="md-body-2">{{courseInfo.title}}</div>
+        <div class="md-caption">Course Information</div>
+        <div class="md-display-2">{{courseInfo.title}}</div>
         <div class="md-body-1">{{courseInfo.description}}</div>
     </md-content>
 
     <md-content layout-padding>
-        <h3 class="md-title">Chapter List</h3>
-        <div ng-repeat="ch in chapterList">
-            <h4 class="md-body-2">{{ch.title}}</h4>
-            <h4 class="md-body-1">Material List</h4>
-            <ul>
-                <li class="md-caption" ng-repeat="mat in ch.materials"> {{mat.title}}</li>
-            </ul>
-        </div>
+
+
+        <md-grid-list
+                md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="3"
+                md-row-height-gt-md="1:1" md-row-height="2:2"
+                md-gutter="12px" md-gutter-gt-sm="8px" >
+
+            <md-grid-tile ng-repeat="ch in chapterList">
+                <md-card flex>
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img src="img/logo.svg"/>
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">Angular</span>
+                            <span class="md-subhead">Material</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline"> {{ch.title}} </span>
+                        </md-card-title-text>
+                    </md-card-title>
+
+                    <md-card-content>
+                        <p>
+                            {{ch.description}}
+                        </p>
+                        <md-button href="#/material-list/{{ch.$id}}"> Start </md-button>
+                    </md-card-content>
+                </md-card>
+                <!--<md-grid-tile-footer>-->
+                    <!--<h3>#1: (3r x 2c)</h3>-->
+                <!--</md-grid-tile-footer>-->
+            </md-grid-tile>
+        </md-grid-list>
+
+        <!---->
+        <!--<h3 class="md-title">Chapter List</h3>-->
+        <!--<div ng-repeat="ch in chapterList">-->
+            <!--<h4 class="md-body-2">{{ch.title}}</h4>-->
+            <!--<h4 class="md-body-1">Material List</h4>-->
+            <!--<ul>-->
+                <!--<li class="md-caption" ng-repeat="mat in ch.materials"> {{mat.title}} </li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
     </md-content>
   </div>
 </md-content>

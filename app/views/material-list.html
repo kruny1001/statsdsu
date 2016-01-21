@@ -1,0 +1,34 @@
+
+
+<md-progress-linear md-mode="determinate" value="{{progressValue}}"></md-progress-linear>
+<md-content layout="row">
+    <div flex="20">
+        <md-list ng-cloak>
+            <md-list-item
+                    class="secondary-button-padding" ng-click="targetMat = null">
+                <div> {{0}}: Chapter Information</div>
+            </md-list-item>
+            <md-list-item
+                    ng-repeat="mat in materialList"
+                    class="secondary-button-padding" ng-click="setTargetMaterial($index)">
+                <div> {{$index+1}}: {{mat.title}}</div>
+            </md-list-item>
+        </md-list>
+    </div>
+    <div flex>
+        <div ng-show="targetMat === null" layout-padding>
+            <h3 class="md-display-2">{{chapterInfo.title}}</h3>
+            <div class="md-title">{{chapterInfo.description}}</div>
+        </div>
+        <div ng-show="targetMat !== null" layout-padding>
+            <h3 class="md-display-2">{{targetMat.title}}</h3>
+            <div class="md-title">{{targetMat.description}}</div>
+            <code-terminal></code-terminal>
+
+            <code-terminal></code-terminal>
+
+            <code-terminal></code-terminal>
+
+        </div>
+    </div>
+</md-content>

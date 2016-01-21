@@ -7,6 +7,24 @@
             <profile-header></profile-header>
         </div>
     </div>
+
+    <div ng-show-auth style="    margin-bottom: 25px;
+        margin: 0 auto;
+        color:white;
+        padding:8px;
+        max-width:950px;
+    border-radius: 5px;
+    background: #394264;
+    border-radius: 5px;">
+        Admin Tool
+        <div  layout-gt-sm="row">
+            <md-button class="md-raised">Edit</md-button>
+            <md-button class="md-raised">Delete</md-button>
+            <md-button class="md-raised">Publish</md-button>
+            <md-button class="md-raised">Unpublish</md-button>
+        </div>
+    </div>
+    <br/>
     <div style="    margin-bottom: 25px;
         margin: 0 auto;
         color:white;
@@ -16,12 +34,9 @@
     background: #394264;
     border-radius: 5px;">
 
-    <md-content>
-      {{classInfo}}
-      <div>{{classInfo.title}}</div>
-      <div>{{classInfo.description}}</div>
-    </md-content>
-
-  </div>
+        <div class="md-display-2"> {{classInfo.title}}</div>
+        <div class="md-body-1"> {{classInfo.description}}</div>
+        <div> {{classInfo.instructor}}</div>
+    </div>
 
 </md-content>

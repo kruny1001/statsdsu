@@ -175,6 +175,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/chapter-detail.html',
         controller: 'ChapterDetailCtrl'
       })
+      .when('/material-list/:chapterId', {
+        templateUrl: 'views/material-list.html',
+        controller: 'MaterialListCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

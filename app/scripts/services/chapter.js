@@ -9,7 +9,7 @@
  * Class > Course > Chapter
  */
 angular.module('statsdsuApp')
-  .factory('Chapter', function (FBURL, $firebaseArray) {
+  .factory('Chapter', function (FBURL, $firebaseArray, $firebaseObject) {
 
     var ref = new Firebase(FBURL);
     var chapterRef = ref.child('chapters');
@@ -30,6 +30,9 @@ angular.module('statsdsuApp')
         chapterObj.pubStatus = true;
         chapterObj.createdAt = Firebase.ServerValue.TIMESTAMP;
         newChapterRef.set(chapterObj);
+      },
+      getChapter: function(chapterId){
+        return $firebaseObject(chapterRef.child(chapterId));
       },
       list: function(){
         return $firebaseArray(classRef);
