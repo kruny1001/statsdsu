@@ -11,13 +11,14 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
-## Plan 
+## Plan
 
 ###10/12
-optimization 
+optimization
 firebaseObject
 firebaseArray
 
 ### 1-17
 Show Chapters and Materials under Course (course-detail view)
 
+docker run -d -P --name rstatsdsu -v /opt/webapp:ro kruny1001/rstatsdsu

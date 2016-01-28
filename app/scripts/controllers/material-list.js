@@ -26,4 +26,9 @@ angular.module('statsdsuApp')
       //console.log(index, $scope.materialList.length)
     }
 
+    $scope.runSrc = function(){
+      var code='';
+
+    }
+
   });

@@ -16,7 +16,6 @@
     border-radius: 5px;">
 
     <md-content layout-padding>
-        <div class="md-caption">Course Information</div>
         <div class="md-display-2">{{courseInfo.title}}</div>
         <div class="md-body-1">{{courseInfo.description}}</div>
     </md-content>
@@ -33,22 +32,22 @@
                 <md-card flex>
                     <md-card-header>
                         <md-card-avatar>
-                            <img src="img/logo.svg"/>
+                            <img src="dImages/Rlogo.png"/>
                         </md-card-avatar>
                         <md-card-header-text>
-                            <span class="md-title">Angular</span>
-                            <span class="md-subhead">Material</span>
+                            <span class="md-title">{{courseInfo.title}}</span>
+                            <span class="md-subhead">{{ch.createdAt | date}}</span>
                         </md-card-header-text>
                     </md-card-header>
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline"> {{ch.title}} </span>
+                            <span class="md-headline"> {{ch.title | short:true:18:' ...'}} </span>
                         </md-card-title-text>
                     </md-card-title>
 
                     <md-card-content>
-                        <p>
-                            {{ch.description}}
+                        <p style="height:48px;">
+                            {{ch.description | short:true:60:' ...'}}
                         </p>
                         <md-button href="#/material-list/{{ch.$id}}"> Start </md-button>
                     </md-card-content>
