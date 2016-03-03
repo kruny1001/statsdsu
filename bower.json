@@ -24,7 +24,9 @@
     "typed.js": "~1.1.1",
     "medium-editor": "master",
     "rangy": "~1.3.0",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "pdfjs-bower": "~1.0.233",
+    "jspdf": "~1.1.135"
   },
   "devDependencies": {
     "mockfirebase": "0.11.0",

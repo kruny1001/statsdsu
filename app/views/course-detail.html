@@ -49,7 +49,7 @@
                         <p style="height:48px;">
                             {{ch.description | short:true:60:' ...'}}
                         </p>
-                        <md-button href="#/material-list/{{ch.$id}}"> Start </md-button>
+                        <md-button ng-click="updateProgress(ch.$id)"> Start </md-button>
                     </md-card-content>
                 </md-card>
                 <!--<md-grid-tile-footer>-->

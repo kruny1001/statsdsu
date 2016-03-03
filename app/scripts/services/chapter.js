@@ -9,7 +9,7 @@
  * Class > Course > Chapter
  */
 angular.module('statsdsuApp')
-  .factory('Chapter', function (FBURL, $firebaseArray, $firebaseObject) {
+  .factory('Chapter', function ($q, FBURL, $firebaseArray, $firebaseObject) {
 
     var ref = new Firebase(FBURL);
     var chapterRef = ref.child('chapters');
@@ -43,8 +43,15 @@ angular.module('statsdsuApp')
             return $firebaseArray(listChapterRef);
         },
         addMaterial: function(materialObj){
-            var newMaterial = materialRef.push();
-            newMaterial.set(materialObj);
+            return $q(function(resolve, resect){
+              var newMaterial = materialRef.push();
+              newMaterial.set(materialObj, function(error){
+                if(error)
+                  reject('Error: '+ error);
+                else
+                  resolve('Success');
+              });
+            })
         },
         listMaterials: function(chapterId){
             var listMaterialRef = new Firebase(FBURL).child('materials')
@@ -56,8 +63,15 @@ angular.module('statsdsuApp')
             //newMaterial.set(materialObj);
         },
         addChallenge: function(challengeObj){
+          return $q(function(resolve, resect){
             var newChallenge = challengeRef.push();
-            newChallenge.set(challengeObj);
+            newChallenge.set(challengeObj, function(error){
+              if(error)
+                reject('Error: '+ error);
+              else
+                resolve('Success');
+            });
+          })
         },
         listChallenges: function(){
 

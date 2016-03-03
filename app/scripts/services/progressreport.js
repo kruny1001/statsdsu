@@ -13,7 +13,8 @@ angular.module('statsdsuApp')
 
     var userAuth = Auth.$getAuth();
     var ref = new Firebase(FBURL);
-    var progressRef = ref.child('progress').child(userAuth);
+    console.log(userAuth);
+    var progressRef = ref.child('progress').child(userAuth.uid);
 
     // Public API here
     return {
@@ -35,6 +36,15 @@ angular.module('statsdsuApp')
         var refCourse = ref.child(courseType);
         var courses = $firebaseArray(refCourse);
         courses.$save(cnt);
+      },
+      updateSubscriptChpater: function(chapterId){
+        //get Chapter Name
+        var chapterRef = new Firebase(FBURL+'/chapters/'+chapterId);
+        var chapterObj = $firebaseObject(chapterRef);
+        console.log(chapterObj);
+        //progressRef.child('').child('')
+        var classObj = 0;
+        var courseObj = 0;
       }
     };
   });

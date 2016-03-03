@@ -179,6 +179,18 @@ angular.module('statsdsuApp')
         templateUrl: 'views/material-list.html',
         controller: 'MaterialListCtrl'
       })
+      .when('/quizTest', {
+        templateUrl: 'views/quiztest.html',
+        controller: 'QuiztestCtrl'
+      })
+      .when('/editContents/:type/:id', {
+        templateUrl: 'views/editcontents.html',
+        controller: 'EditcontentsCtrl'
+      })
+      .when('/registerForm', {
+        templateUrl: 'views/registerform.html',
+        controller: 'RegisterformCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

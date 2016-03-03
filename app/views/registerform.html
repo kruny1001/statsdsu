@@ -1,0 +1,146 @@
+<div style="
+z-index: 8;
+width:100%;
+height:100%;
+position: fixed;
+background-image: url('dImages/sdstate/sdstate.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+opacity:0.7; "></div>
+
+
+<div class="main-container">
+    <div class="profile-container" style="    z-index: 19;
+    position: absolute;
+    width: 100%;
+    opacity: 0.85;
+">
+        <div class="main-container">
+            <profile-header></profile-header>
+        </div>
+    </div>
+</div>
+
+<md-content layout="column" layout-align="center center" style="z-index:9; opacity:0.85;
+    background-color: inherit;" >
+    <div layout="column" layout-align="center center" style="padding:20px; margin-top:30px; max-width:950px;">
+        <div layout="column" layout-align="center center" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <h1 class="md-display-2"> Registration Form </h1>
+        </div>
+
+        <div layout="column" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <div>
+                <p>
+                    Please do not write your name on this form.  It will be stored separately from any other
+                    information that you complete during this study and will not be linked with your
+                    responses in any way.  The information will allow us to provide an accurate description
+                    of the sample.
+                </p>
+                <p>
+                    For the following items, please select the one response that is most descriptive of you or
+                    fill in the blank as appropriate.
+                </p>
+            </div>
+
+        </div>
+
+        <!--Gender-->
+        <div layout="column" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <div>
+                <legend> Gender </legend>
+                <div layout="column" layout-wrap layout-gt-sm="row" >
+                    <md-radio-group layout="row" ng-model="data.gender">
+                        <md-radio-button value="m" class="md-primary">
+                            Male</md-radio-button>
+                        <md-radio-button value="f"> Female </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+        </div>
+
+        <!--Information-->
+        <div layout="column" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+
+            <fieldset class="standard">
+                <legend> Information </legend>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Age</label>
+                        <input type="number" ng-model="data.age">
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row" flex>
+                        <div layout-gt-sm="row" flex>
+                            <md-input-container flex="50" class="md-block" flex-gt-sm>
+                                <label>Major(s)</label>
+                                <input ng-model="data.majors">
+                            </md-input-container>
+                            <md-input-container flex="50" class="md-block" flex-gt-sm>
+                                <label>Minor(s)</label>
+                                <input ng-model="data.minors">
+                            </md-input-container>
+                        </div>
+                </div>
+            </fieldset>
+
+        </div>
+
+        <div layout="column" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <fieldset class="standard">
+                <legend> Ethnicity </legend>
+                <div layout="column" layout-wrap layout-gt-sm="row" >
+
+                    <md-radio-group layout="column" ng-model="data.ethnicity" style="width:100%;">
+                        <div flex layout='row' layout-padding layout-align="start center" >
+                            <div><md-radio-button value="e1" class="md-primary">Asian or Pacific Islander</md-radio-button></div>
+                            <div><md-radio-button value="e2" class="md-primary">Asian Indian</md-radio-button></div>
+                        </div>
+                        <div flex layout='row' layout-padding layout-align="start center" >
+                            <div><md-radio-button value="e3" class="md-primary">Black/African American (non-Hispanic)</md-radio-button></div>
+                            <div><md-radio-button value="e4" class="md-primary">Caucasian/White</md-radio-button></div>
+                        </div>
+                        <div flex layout='row' layout-padding layout-align="start center" >
+                            <div><md-radio-button value="e5" class="md-primary">Native American</md-radio-button></div>
+                            <div><md-radio-button value="e6" class="md-primary">Latino/Hispanic</md-radio-button></div>
+                            <div><md-radio-button value="e7" class="md-primary">Puerto Rican</md-radio-button></div>
+                        </div>
+                        <div flex layout='row' layout-padding layout-align="start center" style="height:69px;" >
+                            <div><md-radio-button value="e8" class="md-primary">More than one race(specify)</md-radio-button></div>
+                            <div ng-if="data.ethnicity === 'e8'"><md-input-container class="md-block" flex-gt-sm>
+                                <label>Specifies</label>
+                                <input ng-model="data.ethnicity.extraEthnicity">
+                            </md-input-container></div>
+                        </div>
+                    </md-radio-group>
+                </div>
+            </fieldset>
+        </div>
+
+        <div layout="column" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <p>
+                Additional categories - Refer to RPE application for instructions on when additional
+                demographic variables are acceptable.
+            </p>
+        </div>
+
+        <div layout="row" layout-align="center stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <md-button class="md-warn"> Cancel </md-button>
+            <span flex="5"></span>
+            <md-button class="md-primary"> Submit </md-button>
+        </div>
+
+        <div layout="row" layout-align="start stretch" layout-padding layout-margin
+             style="width: 100%; background-color: white;">
+            <h4> South Dakota State University </h4><span> Statistics</span>
+        </div>
+    </div>
+
+</md-content>

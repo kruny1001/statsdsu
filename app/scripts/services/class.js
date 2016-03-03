@@ -11,6 +11,7 @@ angular.module('statsdsuApp')
   .factory('Class', function (FBURL, $firebaseObject, $firebaseArray) {
 
     var ref = new Firebase(FBURL);
+    var courseRef = ref.child('course');
     var classRef = ref.child('classes');
 
     // Public API here
@@ -51,6 +52,8 @@ angular.module('statsdsuApp')
       },
       getInfo: function(id){
         return $firebaseObject(classRef.child(id));
-      }
+      },
+      getChildCourse: function(){}
+
     };
   });

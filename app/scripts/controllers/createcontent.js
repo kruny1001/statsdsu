@@ -90,14 +90,20 @@ angular.module('statsdsuApp')
         $scope.material.parentChapterId = $scope.parentChapter.$id;
         $scope.material.parentCourseId = $scope.parentCourse.$id;
         $scope.material.parentClassId = $scope.parentClass.$id;
-        Chapter.addMaterial($scope.material);
+        var promise = Chapter.addMaterial($scope.material);
+        promise.then(
+          function(result){alert(result); $scope.material.title = ""; $scope.material.description="";}
+          , function(reason){alert(reason)})
     }
 
     //Challenge
     $scope.createChallenge = function(){
         $scope.challenge.parentChapterId = $scope.parentCourse.$id;
         $scope.challenge.parentClassId = $scope.parentClass.$id;
-        Chapter.addChallenge($scope.challenge);
+        var promise =  Chapter.addChallenge($scope.challenge);
+        promise.then(
+          function(result){alert(result); $scope.material.title = ""; $scope.material.description="";}
+          , function(reason){alert(reason)})
     }
 
       //Test List Materials

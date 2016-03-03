@@ -31,6 +31,10 @@ angular.module('statsdsuApp')
       list: function(){
         return $firebaseArray(courseRef);
       },
+      listQuery: function(classId){
+        var query = courseRef.orderByChild('parentClass/id').equalTo(classId);
+        return $firebaseArray(query);
+      },
       getInfo: function(id){
         return $firebaseObject(courseRef.child(id));
       },

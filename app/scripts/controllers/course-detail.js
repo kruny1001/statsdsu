@@ -8,8 +8,8 @@
  * Controller of the statsdsuApp
  */
 angular.module('statsdsuApp')
-  .controller('CourseDetailCtrl', function ($scope, $routeParams,
-    Course, Chapter
+  .controller('CourseDetailCtrl', function ($scope, $routeParams,$location,
+    Course, Chapter, progressReport
   ) {
     console.log('d');
     var courseId = $routeParams.id;
@@ -27,4 +27,10 @@ angular.module('statsdsuApp')
       })
     $scope.courseInfo = Course.getInfo(courseId);
     $scope.courseInfo.$loaded().then(function(data){console.log(data)})
+    $scope.updateProgress = function(chapterId){
+      //href="#/material-list/{{ch.$id}}"
+      progressReport.updateSubscriptChpater(chapterId);
+      $location.path('material-list/'+chapterId);
+
+    }
   });

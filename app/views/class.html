@@ -1,21 +1,12 @@
 
-<md-content layout-padding class="main-container"
-                             style="overflow-x: hidden; height: 100%;
-            padding: 24px; background-color: #1f253d; color: #203e54;">
+<md-content layout-padding class="main-container top-level-classView">
     <div class="profile-container">
         <div class="main-container">
             <profile-header></profile-header>
         </div>
     </div>
 
-    <div ng-show-auth style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
+    <div ng-show-auth class="sub-cnt-classView">
         Admin Tool
         <div  layout-gt-sm="row">
             <md-button class="md-raised">Edit</md-button>
@@ -25,18 +16,16 @@
         </div>
     </div>
     <br/>
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
-
+    <div class="sub-cnt-classView">
         <div class="md-display-2"> {{classInfo.title}}</div>
         <div class="md-body-1"> {{classInfo.description}}</div>
-        <div> {{classInfo.instructor}}</div>
+    </div>
+
+    <div class="sub-cnt-classView">
+        <div ng-repeat="course in childCourses" style="padding:20px;">
+            <a style="text-decoration: none; color:white;" class="md-display-1" href="#/course-detail/{{course.$id}}"> {{course.title}}</a>
+            <div class="md-body-1"> {{course.description}}</div>
+        </div>
     </div>
 
 </md-content>

@@ -1,0 +1,28 @@
+<style>
+    .md-checked {
+        background-color: #ECFAFB;
+        border-radius: 2px; }
+</style>
+<md-content id="printArea">
+    <div>{{quizObj.description}}</div>
+    <div ng-repeat="option in quizObj.options">{{option}}</div>
+
+    <p>Selected Value: <span class="radioValue">{{ data.group2 }}</span></p>
+    <md-radio-group ng-model="data.group2" class="md-primary">
+        <md-radio-button ng-repeat="d in quizObj.options track by $index"
+                         ng-value="$index"
+                         ng-class="{'md-align-top-left': $index==1}" >
+            {{ d }}<br/>
+            <span class="ipsum" ng-if="$index == 1">
+            Duis placerat lectus et justo mollis, nec sodales orci congue. Vestibulum semper non urna ac suscipit.
+            Vestibulum tempor, ligula id laoreet hendrerit, massa augue iaculis magna,
+            sit amet dapibus tortor ligula non nibh.
+          </span>
+        </md-radio-button>
+    </md-radio-group>
+    <div layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click="printIt()"> Submit </md-button>
+        <md-button class="md-raised md-warn"> Next </md-button>
+    </div>
+
+</md-content>

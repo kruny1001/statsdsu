@@ -22,11 +22,18 @@
         </div>
         <div flex>
             <div ng-show="targetMat === null" layout-padding>
-                <h3 class="md-display-2">{{chapterInfo.title}}</h3>
+                <div layout="row">
+                    <h3 class="md-display-2">{{chapterInfo.title}}</h3>
+                    <a class="md-body-1" href="#/editContents/chapters/{{chapterInfo.$id}}"> Edit </a>
+                </div>
+
                 <div class="md-body-1 antial">{{chapterInfo.description}}</div>
             </div>
             <div ng-show="targetMat !== null" layout-padding>
-                <h3 class="md-display-2">{{targetMat.title}}</h3>
+                <div layout="row">
+                    <h3 class="md-display-2">{{targetMat.title}}</h3>
+                    <a class="md-body-1" href="#/editContents/materials/{{targetMat.$id}}"> Edit </a>
+                </div>
                 <div class="md-body-1 antial">{{targetMat.description}}</div>
                 <code-terminal></code-terminal>
             </div>

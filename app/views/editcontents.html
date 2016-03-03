@@ -1,0 +1,50 @@
+<div>
+    <md-content layout-padding>
+        <form name="userForm">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+                <div flex-gt-sm="80">
+                    <p>
+                        <code>Material</code> is a content for each chapter. It can be multiple matierials within a chapter
+                    </p>
+                </div>
+                <md-input-container>
+                    <md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Name</label>
+                    <input md-maxlength="30" required name="name" ng-model="cnt.title" />
+                    <div class="hint" ng-if="showHints"> Write content's title </div>
+                    <!--<div ng-messages="userForm.name.$error" ng-if="!showHints">-->
+                        <!--<div ng-message="required">Name is required.</div>-->
+                        <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
+                    <!--</div>-->
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label> Description </label>
+                    <input name="email" ng-model="cnt.description"
+                           required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    <div class="hint" ng-show="showHints"> Explain about the content </div>
+                    <div ng-messages="userForm.email.$error" ng-hide="showHints">
+                        <!--<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">-->
+                            <!--Your email must be between 10 and 100 characters long and look like an e-mail address.-->
+                        <!--</div>-->
+                    </div>
+                </md-input-container>
+                <style>
+                    /*
+                     * The Material demos system does not currently allow targeting the body element, so this
+                     * must go here in the HTML.
+                     */
+                    body[dir=rtl] .hint {
+                        right: 2px;
+                        left: auto;
+                    }
+                </style>
+            </div>
+        </form>
+    </md-content>
+</div>

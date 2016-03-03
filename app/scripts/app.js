@@ -20,7 +20,7 @@ angular.module('statsdsuApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
+    //'ngTouch',
     'firebase',
     'firebase.ref',
     'firebase.auth',
