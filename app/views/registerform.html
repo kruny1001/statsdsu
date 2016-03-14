@@ -34,10 +34,7 @@ opacity:0.7; "></div>
              style="width: 100%; background-color: white;">
             <div>
                 <p>
-                    Please do not write your name on this form.  It will be stored separately from any other
-                    information that you complete during this study and will not be linked with your
-                    responses in any way.  The information will allow us to provide an accurate description
-                    of the sample.
+
                 </p>
                 <p>
                     For the following items, please select the one response that is most descriptive of you or
@@ -65,31 +62,74 @@ opacity:0.7; "></div>
         <!--Information-->
         <div layout="column" layout-align="center stretch" layout-padding layout-margin
              style="width: 100%; background-color: white;">
-
             <fieldset class="standard">
+
                 <legend> Information </legend>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                    <label>Email</label>
+                    <input required type="email" name="clientEmail" ng-model="project.clientEmail"
+                           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                    <div ng-messages="projectForm.clientEmail.$error" role="alert">
+                        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                            Your email must be between 10 and 100 characters long and look like an e-mail address.
+                        </div>
+                    </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First name</label>
+                        <input md-maxlength="30" required name="name" ng-model="user.fName" />
+                        <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last name</label>
+                        <input md-maxlength="30" required name="name" ng-model="user.lName" />
+                        <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Age</label>
                         <input type="number" ng-model="data.age">
                     </md-input-container>
                 </div>
-                <div layout-gt-sm="row" flex>
-                        <div layout-gt-sm="row" flex>
-                            <md-input-container flex="50" class="md-block" flex-gt-sm>
-                                <label>Major(s)</label>
-                                <input ng-model="data.majors">
-                            </md-input-container>
-                            <md-input-container flex="50" class="md-block" flex-gt-sm>
-                                <label>Minor(s)</label>
-                                <input ng-model="data.minors">
-                            </md-input-container>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>School name</label>
+                        <input md-maxlength="30" required name="name" ng-model="user.fName" />
+                        <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+                        <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                            <div ng-message="required">Name is required.</div>
+                            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
                         </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Grade in High school</label>
+                        <md-select name="myModel" ng-model="myModel" required>
+                            <md-option value="9">Grade 9</md-option>
+                            <md-option value="10">Grade 10</md-option>
+                            <md-option value="11">Grade 11</md-option>
+                            <md-option value="12">Grade 12</md-option>
+                        </md-select>
+                        <div class="errors" ng-messages="myForm.myModel.$error" ng-if="myForm.$dirty">
+                            <div ng-message="required">Required</div>
+                        </div>
+                    </md-input-container>
                 </div>
             </fieldset>
-
         </div>
-
         <div layout="column" layout-align="center stretch" layout-padding layout-margin
              style="width: 100%; background-color: white;">
             <fieldset class="standard">
