@@ -191,6 +191,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/registerform.html',
         controller: 'RegisterformCtrl'
       })
+      .when('/user-list', {
+        templateUrl: 'views/user-list.html',
+        controller: 'UserListCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

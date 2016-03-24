@@ -1,0 +1,19 @@
+<md-content style="background-color:white">
+    <md-list>
+        <md-subheader class="md-no-sticky">New Register User</md-subheader>
+        <md-list-item ng-repeat="user in users" ng-click="" class="md-3-line">
+
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ user.fName }} {{user.lName}}</h3>
+                <h3>{{ user.phone }}</h3>
+                <h4>{{ user.userEmail }}</h4>
+                <p>{{ user.school }} - grade: {{user.grade}}</p>
+            </div>
+            <md-checkbox class="md-secondary" ng-model="user.selected"></md-checkbox>
+            <md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
+            <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>
+        </md-list-item>
+    </md-list>
+
+    <md-button class="md-raised" ng-click="sendEmail()">Send Invitation Email</md-button>
+</md-content>

@@ -58,32 +58,32 @@
 	}); </script>
 
   </head>
-  <body ng-app="statsdsuApp">
-  <!--<script>-->
-      <!--window.fbAsyncInit = function() {-->
-          <!--FB.init({-->
-              <!--appId      : '153541338330247',-->
-              <!--xfbml      : true,-->
-              <!--version    : 'v2.5'-->
-          <!--});-->
-      <!--};-->
+  <body ng-app="statsdsuApp" style="background: #454954;">
+  <script>
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId      : '153541338330247',
+              xfbml      : true,
+              version    : 'v2.5'
+          });
+      };
 
-      <!--(function(d, s, id){-->
-          <!--var js, fjs = d.getElementsByTagName(s)[0];-->
-          <!--if (d.getElementById(id)) {return;}-->
-          <!--js = d.createElement(s); js.id = id;-->
-          <!--js.src = "//connect.facebook.net/en_US/sdk.js";-->
-          <!--fjs.parentNode.insertBefore(js, fjs);-->
-      <!--}(document, 'script', 'facebook-jssdk'));-->
-  <!--</script>-->
-  <!--<div id="fb-root"></div>-->
-  <!--<script>(function(d, s, id) {-->
-      <!--var js, fjs = d.getElementsByTagName(s)[0];-->
-      <!--if (d.getElementById(id)) return;-->
-      <!--js = d.createElement(s); js.id = id;-->
-      <!--js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=153541338330247";-->
-      <!--fjs.parentNode.insertBefore(js, fjs);-->
-  <!--}(document, 'script', 'facebook-jssdk'));</script>-->
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=153541338330247";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -215,6 +215,7 @@
         <script src="scripts/controllers/editcontents.js"></script>
         <script src="scripts/controllers/registerform.js"></script>
         <script src="scripts/services/researchformservice.js"></script>
+        <script src="scripts/controllers/user-list.js"></script>
         <!-- endbuild -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>

@@ -20,6 +20,9 @@ angular.module('statsdsuApp')
       ref = new Firebase(FBURL).child('chapters').child(id);
     }
 
+    $scope.update = function(cnt){
+      $scope.cnt.$save();
+    }
     $scope.cnt = $firebaseObject(ref)
     console.log($scope.type + ': ' +  $scope.id)
   });

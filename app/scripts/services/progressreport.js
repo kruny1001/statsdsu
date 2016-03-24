@@ -14,7 +14,8 @@ angular.module('statsdsuApp')
     var userAuth = Auth.$getAuth();
     var ref = new Firebase(FBURL);
     console.log(userAuth);
-    var progressRef = ref.child('progress').child(userAuth.uid);
+    if(userAuth !== null)
+      var progressRef = ref.child('progress').child(userAuth.uid);
 
     // Public API here
     return {
