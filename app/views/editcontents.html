@@ -47,5 +47,10 @@
             </div>
             <md-button type="submit" ng-click="update(cnt)">Update Content</md-button>
         </form>
+
+
+        <text-angular ng-model="cnt.htmlVariable"></text-angular>
+        <h1>Bound with ng-bind-html</h1>
+        <div ng-bind-html="cnt.htmlVariable"></div>
     </md-content>
 </div>

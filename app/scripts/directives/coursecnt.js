@@ -13,15 +13,6 @@ angular.module('statsdsuApp')
       scope:{target:'=', name:'=', type:'='},
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=153541338330247";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
         var materials = [];
         var challenge = [];
         var initialMatLength, initialChalLength = 0;
@@ -52,8 +43,6 @@ angular.module('statsdsuApp')
             alert("Done!");
             activityScore.completeCnt(scope.target.$id, scope.target.topic)
             //Update Activity
-
-
           }
           scope.$digest();
         }
@@ -131,8 +120,13 @@ angular.module('statsdsuApp')
           return list.indexOf(item) > -1;
         };
 
-
-
+        (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=153541338330247";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
       }
     };
   });

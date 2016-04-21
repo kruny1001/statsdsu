@@ -1,4 +1,4 @@
-<md-content style="background-color: white;" layout-fill>
+<md-content layout="column" style="background-color: white;" layout-fill>
     <div class="profile-container">
         <div class="main-container">
             <profile-header></profile-header>
@@ -11,7 +11,7 @@
             <md-list ng-cloak>
                 <md-list-item
                         class="secondary-button-padding" ng-click="targetMat = null">
-                    <div> {{0}}: Chapter Information</div>
+                    <div class="md-caption"> {{0}}: Chapter Information</div>
                 </md-list-item>
                 <md-list-item
                         ng-repeat="mat in materialList"

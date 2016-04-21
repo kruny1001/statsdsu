@@ -20,11 +20,11 @@ angular.module('statsdsuApp', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    //'ngTouch',
     'firebase',
     'firebase.ref',
     'firebase.auth',
     'ngMaterial',
     'nvd3',
-  'ui.ace'
+    'ui.ace',
+    'textAngular'
   ]);

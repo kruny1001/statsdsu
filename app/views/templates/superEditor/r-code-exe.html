@@ -1,0 +1,38 @@
+<md-content style="padding:10px" class="md-whiteframe-3dp">
+    <div ng-show="tool">
+        <md-button ng-click="editor = !editor">Edit</md-button>
+        <md-button ng-click="deleteElement()">Delete</md-button>
+        <div>
+            <md-checkbox ng-model="code">
+                Code Only
+            </md-checkbox>
+            <md-checkbox ng-model="cmdCode">
+                CMD Code
+            </md-checkbox>
+            <md-checkbox ng-model="visualCode">
+                Visual Code
+            </md-checkbox>
+        </div>
+    </div>
+    <h2 ng-show="false" contenteditable class="md-display-1" ng-model="SEC.title"></h2>
+    <div>
+        <div ng-show="false" contenteditable class="md-body-1" ng-model="SEC.desc"></div>
+        <div layout="row" layout-margin layout-sm="column">
+            <div flex style="height:150px;" class="course-ui-ace"
+                 ui-ace="aceOption" ng-model="SEC.code"></div>
+        </div>
+        <md-button ng-show="cmdCode" class="md-raised" ng-click="runOpenCpu(SEC)">Run the Code 1</md-button>
+        <md-button ng-show="visualCode" class="md-raised" ng-click="exePlot(SEC)">Visual Code</md-button>
+
+        <div layout-gt-xs="row" layout-margin layout-xs="column">
+            <md-virtual-repeat-container flex ng-show="cmdCode" style="margin: 8px; height: 120px; width: 400px; background-color:aliceblue;" id="vertical-container">
+                <div ng-if="SEC.result > 1" md-virtual-repeat="item in SEC.result"
+                     class="repeated-item" flex>
+                    {{item}}
+                </div>
+                <div class="repeated-item" flex> {{SEC.result}} </div>
+            </md-virtual-repeat-container>
+            <div ng-show="visualCode" flex id="plotdiv" style="padding: 10px; height: 292px;" class="md-whiteframe-3dp"></div>
+        </div>
+    </div>
+</md-content>

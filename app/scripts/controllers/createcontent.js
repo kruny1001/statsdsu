@@ -16,16 +16,9 @@ angular.module('statsdsuApp')
     $scope.userInfo = user;
     //$scope.class.instructor = $scope.userInfo.displayName;
     var classes = Class.list();
-    classes.$loaded().then(function(data){
-      console.log(data);
-      $scope.classes = data;
-    });
-
+    classes.$loaded().then(function(data){$scope.classes = data;});
     var courses = Course.list();
-    courses.$loaded().then(function(data){
-      console.log(data);
-      $scope.courses = data;
-    });
+    courses.$loaded().then(function(data){$scope.courses = data;});
 
     //Class
     $scope.createClass = function(){
@@ -35,10 +28,23 @@ angular.module('statsdsuApp')
     };
 
     $scope.loadClasses = function() {
-      var classRef = new Firebase(FBURL).child('classes');
+      console.log('load classes')
+      var classes = Class.list();
+      classes.$loaded().then(function(data){
+        console.log(data);
+        $scope.classes = data;
+      });
+    };
 
-      $scope.classes = $firebaseArray(classRef);
-      };
+
+    $scope.loadClassesForCourse = function() {
+      console.log('load classes')
+      var classes = Class.list();
+      classes.$loaded().then(function(data){
+        console.log(data);
+        $scope.classesForCourse = data;
+      });
+    };
 
     $scope.updateClass= function(){
       var id = $scope.targetClass.$id

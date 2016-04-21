@@ -1,6 +1,7 @@
 <div layout-padding class="main-container"
             style="overflow-x: hidden; height: 100%;
-          background-color: #1f253d; color: #203e54;">
+          background-color: #1f253d;
+          color: #fff;">
     <div class="profile-container">
         <div class="main-container">
             <profile-header></profile-header>
@@ -18,7 +19,7 @@
     border-radius: 5px;">
         <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Class">
-                <md-content class="md-padding">
+                <md-content class="md-padding" style="color:white;">
                     <div class="md-title">Create Class</div>
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
@@ -44,7 +45,8 @@
 
                     <div class="md-title">Update Class</div>
                     <div layout="column" layout-align="center center" style="height: 100px;">
-                        <md-select placeholder="Select Class" ng-model="targetClass" md-on-open="loadClasses()" style="min-width: 200px;">
+                        <md-select placeholder="Select Class" ng-model="targetClass"
+                                   md-on-open="loadClasses()" style="min-width: 200px;">
                             <md-option ng-value="classItem" ng-repeat="classItem in classes">
                                 {{classItem.title}}
                             </md-option>
@@ -96,26 +98,26 @@
                             </md-content>
                         </div>
                     </section>
-
-
-
                 </md-content>
             </md-tab>
             <md-tab label="Course">
                 <md-content class="md-padding">
+                    <pre>{{classes}}</pre>
                     <div class="md-title">Create Course</div>
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
                             <form name="courseForm"  ng-submit="createCourse()">
                                 <md-input-container class="md-block">
-                                    <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
-                                               md-on-open="loadClasses()" style="min-width: 200px;">
+                                    <md-select required name="parentClass"
+                                               placeholder="Select Parent Class" ng-model="parentClass"
+
+                                               style="min-width: 200px;">
                                         <md-option ng-value="classItem" ng-repeat="classItem in classes">
                                             {{classItem.title}}
                                         </md-option>
                                     </md-select>
                                     <div ng-messages="courseForm.parentClass.$error">
-                                        <div ng-message="required">This is required.</div>
+                                        <div ng-message="required">This is required. !!</div>
                                     </div>
                                 </md-input-container>
 

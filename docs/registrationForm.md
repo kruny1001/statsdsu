@@ -1,3 +1,6 @@
+Privacy Term 
+information will be used only for survery regarding to this summer camp 
+
 Data Analytics Camp for High School Students
 
 It is FREE. Food and lodging provided. 

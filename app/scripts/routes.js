@@ -163,7 +163,7 @@ angular.module('statsdsuApp')
         templateUrl: 'views/createcontent.html',
         controller: 'CreatecontentCtrl'
       })
-      .when('/class/:id', {
+      .whenAuthenticated('/class/:id', {
         templateUrl: 'views/class.html',
         controller: 'ClassCtrl'
       })
@@ -194,6 +194,38 @@ angular.module('statsdsuApp')
       .when('/user-list', {
         templateUrl: 'views/user-list.html',
         controller: 'UserListCtrl'
+      })
+      .when('/menu-test', {
+        templateUrl: 'views/menu-test.html',
+        controller: 'MenuTestCtrl'
+      })
+      .when('/edit-registerForm/:registerId', {
+        templateUrl: 'views/edit-registerform.html',
+        controller: 'EditRegisterformCtrl'
+      })
+      .when('/create-material', {
+        templateUrl: 'views/create-material.html',
+        controller: 'CreateMaterialCtrl'
+      })
+      .when('/super-editor-test', {
+        templateUrl: 'views/super-editor-test.html',
+        controller: 'SuperEditorTestCtrl'
+      })
+      .when('/test-class', {
+        templateUrl: 'views/test-class.html',
+        controller: 'TestClassCtrl'
+      })
+      .when('/super-blog-list', {
+        templateUrl: 'views/super-blog-list.html',
+        controller: 'SuperBlogListCtrl'
+      })
+      .when('/super-blog-detail/:id', {
+        templateUrl: 'views/super-blog-detail.html',
+        controller: 'SuperBlogDetailCtrl'
+      })
+      .when('/widgets', {
+        templateUrl: 'views/widgets.html',
+        controller: 'WidgetsCtrl'
       })
       .otherwise({redirectTo: '/'});
   }])

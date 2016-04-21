@@ -51,7 +51,9 @@ module.exports = function(config) {
       'bower_components/rangy/rangy-selectionsaverestore.js',
       'bower_components/rangy/rangy-serializer.js',
       'bower_components/rangy/rangy-textrange.js',
-      'bower_components/jspdf/dist/jspdf.min.js',
+      'bower_components/textAngular/dist/textAngular.js',
+      'bower_components/textAngular/dist/textAngular-sanitize.js',
+      'bower_components/textAngular/dist/textAngularSetup.js',
       'bower_components/mockfirebase/browser/mockfirebase.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower

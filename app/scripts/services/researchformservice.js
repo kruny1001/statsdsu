@@ -10,26 +10,26 @@
 angular.module('statsdsuApp')
   .factory('ResearchFormService', function ($q, FBURL, $firebaseObject, $firebaseArray) {
     var ref = new Firebase(FBURL)
-    var researchRef = ref.child('researches');
-
+    var researchRef = ref.child('newUsers');
     // Public API here
     return {
       addNewResearch: function(newObj){
         var deferred = $q.defer();
-
-        //Check User Already Done this research
-
-        var newResearch = researchRef.push()
+        var newResearch = researchRef.child(newObj.phone)
         newResearch.set(newObj, function(error) {
             if (error) {
               deferred.reject(error);
             } else {
-              deferred.resolve('Thank you!')
+              deferred.resolve(newObj)
             }
         })
+        return deferred.promise;
       },
       listResearches: function(){
         return $firebaseArray(researchRef);
+      },
+      findRegister: function(registerId){
+        return $firebaseObject(researchRef.child(registerId))
       },
       setStatus: function(){
         //Get User Id

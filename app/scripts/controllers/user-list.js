@@ -10,10 +10,9 @@
 angular.module('statsdsuApp')
   .controller('UserListCtrl', function ($scope, $firebaseArray, FBURL) {
     var usersRef = new Firebase(FBURL).child('newUsers');
-    $scope.users = $firebaseArray(usersRef);
+    var query = usersRef.orderByChild('createAt');
+    $scope.users = $firebaseArray(query);
 
     $scope.sendEmail = function(){
-      //send email
-
     }
   });

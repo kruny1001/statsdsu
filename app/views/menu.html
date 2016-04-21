@@ -3,6 +3,10 @@
         width: 100%;
         height: 350px;
     }
+    .boardSvg-xs{
+        width: 100%;
+        height: 200px;
+    }
 </style>
 <md-content layout-padding class="main-container"
                              style="overflow-x: hidden; height: 100%;
@@ -12,37 +16,21 @@
             <profile-header></profile-header>
         </div>
     </div>
-
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:black;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #ffd22e;
-    border-radius: 5px;">
+    <div class='menu-box' style="color:black; background: #ffd22e;">
         <div layout="column" layout-align="center center" layout-padding>
-            <div class="md-display-3">Data Analytics Camp</div>
-            <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">for High School Students</div>
+            <div ng-class="{'md-display-1':xsScreen, 'md-display-3':!xsScreen, }">Data Analytics Camp</div>
+            <div ng-class="{'md-title':xsScreen, 'md-display-1':!xsScreen, }" style="    padding-top: 0px;padding-left: 8px;">for High School Students</div>
         </div>
 
-        <md-icon md-svg-src="dImages/board.svg" class="boardSvg"></md-icon>
+        <md-icon md-svg-src="dImages/board.svg" ng-class="{'boardSvg': !xsScreen, 'boardSvg-xs': xsScreen}"></md-icon>
 
         <div layout="row" layout-align="center center">
             <div style="max-width: 600px;">
-                Let's learn all about data analysis.
-                We provide basic statistics and math topics.<br/>
-
-                It is a <b>FREE</b> 4 days summer camp (Food and lodging provided)
-
+                It is a FREE 4-day summer camp. Food and lodging provided.
+                You will learn some basic statistics and math topics. Have fun analyzing and visualizing data. Learn how to write computer programs through examples.
+                Led by SDSU professors and graduate students, you will work in a computer lab at SDSU.
+                Spaces are limited. So act fast.
                 <br/>
-
-                Have fun with <b>analyzing and visualizing data.</b>
-                Learn how to write small computer programs (R-script) through examples.
-                <br/>
-                <br/>
-                This summer camp is Lead by SDSU professors and graduate students, students will work in a computer lab at SDSU.
-                <b>Act fast, spaces are limited.</b>
             </div>
         </div>
 
@@ -62,175 +50,40 @@
                     <div> <b>Phone: (605) 688-6196</b></div>
                 </div>
             </div>
-            <div style="font-weight: bold">Sponsered by EPSCor, SDSU, NSF</div>
-            <div>
-                <img style="max-width:130px;" src="dImages/logo/epscor.png">
-                <img style="max-width:130px;" src="dImages/logo/sdsu.png">
-                <img style="max-width:130px;" src="dImages/logo/nsf.png">
+            <br/>
+            <br/>
+            <div style="max-width: 600px;font-weight: bold">This is supported by National Sciene Foundation through SD EPSCoR program, and also by SDSU Department of Mathmatics and Statistics</div>
+            <div layout="column" layout-gt-xs="row" layout-margin>
+                <img style="height:35px;" src="dImages/logo/epscor.png">
+                <img style="height:35px;" src="dImages/logo/sdsu.png">
+                <img style="height:35px;" src="dImages/logo/nsf.png">
             </div>
-
         </div>
-
     </div>
-
     <br>
 
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #4ea4eb;
-    border-radius: 5px;">
+    <div class='menu-box' style="background: #4ea4eb;">
         <div layout="column" layout-align="center center" layout-padding>
-            <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">Day 1</div>
+            <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">
+                <a href="#/class/-KAqMQ4NHiq9wQYUD43a">Day 1</a>
+            </div>
         </div>
     </div>
     <br>
 
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #e394eb;
-    border-radius: 5px;">
+    <div class='menu-box' style="background: #e394eb;">
         <div layout="column" layout-align="center center" layout-padding>
-            <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">Day 2</div>
+            <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">
+                Day 2
+            </div>
         </div>
     </div>
     <br>
 
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #d32972;
-    border-radius: 5px;">
+    <div class='menu-box' style="background: #d32972;">
         <div layout="column" layout-align="center center" layout-padding>
             <div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">Day 3</div>
         </div>
     </div>
     <br>
-    <div style="    margin-bottom: 25px;
-    margin-top: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
-        <h3 class="md-title"> Contents </h3>
-        <div class="menu-container" layout="row" style="margin:0px;"
-        layout-xs="column" layout-margin="20" layout-align="center stretch">
-
-            <div layout="column" style="background-color:white; padding: 5px; border-radius: 5px; color:black;" flex>
-                <div class="md-title"> Classes </div>
-                <hr style="margin:5px"/>
-                <a ng-repeat="class in classes" href="#/class/{{class.$id}}">{{class.title}}</a>
-            </div>
-
-            <div layout="column" style="background-color:white; padding: 5px; border-radius: 5px; color:black;" flex>
-                <div class="md-title"> Courses </div>
-                <hr style="margin:5px"/>
-                <a ng-repeat="course in courses" href="#/course-detail/{{course.$id}}">{{course.title}}</a>
-                <div class="md-title"> Information </div>
-                <hr style="margin:5px"/>
-                <a href="#/resources"> Resource </a>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <div style="    margin-bottom: 25px;
-    margin-top: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
-        <h3 class="md-title"> User UI </h3>
-        <div class="menu-container" layout="row" layout-xs="column" layout-margin="20" layout-align="center start">
-
-            <div layout="column" >
-                <div class="md-title"> Courses </div>
-                <md-button class="menu-btn1" ng-click="goto('/course')">
-                    <div class="md-body-1">Descriptive Statistics</div></md-button>
-                <md-button class="menu-btn1" ng-click="goto('/course/r-intro')">
-                    <div class="md-body-1">R Intro </div></md-button>
-                <md-button class="menu-btn1" ng-click="goto('/course/r-vis')">
-                    <div class="md-body-1">R Visualization</div></md-button>
-            </div>
-            <div layout="column">
-                <div class="md-title"> Information </div>
-                <md-button class="menu-btn1" href="#/resources"> <div class="md-body-1">Resource</div></md-button>
-            </div>
-        </div>
-    </div>
-
-    <br>
-
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
-
-        <div class="menu-container"
-             layout="row" layout-xs="column"
-             layout-margin="20" layout-align="center start" >
-            <div layout="column" >
-                <div class="md-title"> Setting </div>
-                <md-button class="menu-btn1" href="#/login" ng-hide-auth> <div class="md-body-1">Login</div></md-button>
-                <md-button class="menu-btn1" href="#/account" ng-show-auth> <div class="md-body-1">Account</div></md-button>
-                <md-button class="menu-btn1" href="#/notification" ng-show-auth> <div class="md-body-1">Notification</div></md-button>
-                <md-button class="menu-btn1" href="#/test-progress" ng-show-auth> <div class="md-body-1">Progress</div></md-button>
-            </div>
-            <div layout="column" ng-show-auth>
-                <div class="md-title"> Admin  </div>
-                <md-button class="menu-btn1" href="#/createContent"> <div class="md-body-1">Create Content</div></md-button>
-                <md-button class="menu-btn1" href="#/admin"> <div class="md-body-1">Admin Page</div></md-button>
-                <md-button class="menu-btn1" href="#/write" > <div class="md-body-1"> Wrtie Blog </div></md-button>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <div style="    margin-bottom: 25px;
-        margin: 0 auto;
-        color:white;
-        padding:8px;
-        max-width:950px;
-    border-radius: 5px;
-    background: #394264;
-    border-radius: 5px;">
-        <div layout="row" layout-align="center center">
-            <div id="fb-comment-box" fb-comment
-                 class="fb-comments"
-                 page-href="https://statsdsu.firebaseapp.com"
-                 numposts="5"
-
-                 colorscheme="light">
-            </div>
-        </div>
-    </div>
-
-    <!--<div class="fb-comments" data-href="https://statsdsu.firebaseapp.com" data-mobile data-numposts="5"></div>-->
-    <!--<div-->
-            <!--class="fb-like"-->
-            <!--data-share="true"-->
-            <!--data-width="450"-->
-            <!--data-show-faces="true">-->
-    <!--</div>-->
 </md-content>
