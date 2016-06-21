@@ -32,7 +32,7 @@ angular.module('statsdsuApp')
             mode: 'r',
             useWrapMode : true
           };
-          ocpu.seturl("//kruny1001.ocpu.io/pbshop/R");
+          ocpu.seturl("//kruny1001.ocpu.io/rRemoteSDSU/R");
 
           scope.makeChart = function(example){
             var req = ocpu.call("make_chart", {

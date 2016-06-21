@@ -23,7 +23,7 @@ angular.module('statsdsuApp')
           }, 0);
         }
 
-        Auth.$onAuth(update);
+        Auth.$onAuthStateChanged(update);
         update();
       }
     };

@@ -9,7 +9,7 @@
  */
 angular.module('statsdsuApp')
   .controller('ResourcesCtrl', function ($scope, notification, Ref, Auth, FBURL, $firebaseArray) {
-    var blogRef = new Firebase(FBURL +'/write');//.child('title');
+    var blogRef = firebase.database().ref().child('write');//.child('title');
     blogRef = blogRef.limit(7);
     $scope.blogs = $firebaseArray(blogRef);
   });

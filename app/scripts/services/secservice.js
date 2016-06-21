@@ -9,34 +9,78 @@
  */
 
 angular.module('statsdsuApp')
-  .factory('SECArray', function(){
+  .factory('SECArray', function($firebaseObject){
+    var content = {cnt:[]};
     var cnts = [];
+    var readContent = function(contents){
+      var cnts = [];
+      cnts = contents;
+    }
     var addCnt = function(obj){
-      var index = cnts.push(obj)
+      //var index = cnts.push(obj)
+      var index = content.cnt.push(obj)
       return index-1;
     }
 
+    var updateCnt = function(arr){
+      content.cnt = arr;
+    }
+
     var getCnt = function(){
-      return cnts;
+      if(content.cnt === undefined )
+        content.cnt = [];
+      return content.cnt;
     }
 
     var getElement = function(index){
-      return cnts[index];
+      return content.cnt[index];
     }
 
-    var removeElement = function(index){
-      cnts.splice(index, 1);
+    var removeElement = function(uid){
+      var index = _.findIndex(content.cnt, function(o) { return o.uid == uid; });
+      console.log("remove: "+index)
+      content.cnt.splice(index, 1);
     }
 
     var reset = function(){
-      cnts = [];
+      content.cnt = [];
     }
+
+    var readContentFromFirebase = function(materialId){
+      var ref = firebase.database().ref().child('materials').child(materialId);
+      content = $firebaseObject(ref);
+      content.$loaded().then(function(){
+        cnts = content.cnt;
+      })
+      return content;
+    }
+
+    var addUID = function(){
+      content.cnt.forEach(function(val){
+        val.uid = _guid();
+      })
+    }
+
+    function _guid() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+    }
+
     return {
       addCnt: addCnt,
+      addUID: addUID,
+      updateCnt: updateCnt,
+      readContentreadContent: readContent,
       getCnt: getCnt,
       getElement: getElement,
       removeElement:removeElement,
-      reset: reset
+      reset: reset,
+      readContentFromFirebase: readContentFromFirebase
     };
   })
   .factory('RCodeExeService', function(){

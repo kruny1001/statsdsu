@@ -9,6 +9,43 @@
  */
 angular.module('statsdsuApp')
   .controller('TestProgressCtrl', function ($scope) {
+
+    $scope.code = "abc\nabc"
+    $scope.aceOption = {
+      require: ['ace/ext/language_tools'],
+      useWrapMode: true,
+      showGutter: true,
+      theme: 'twilight',
+      maxLines: Infinity,
+      mode: 'r',
+      onLoad: function (_ace) {
+        console.log(_ace);
+        _ace.$blockScrolling =Infinity;
+        if(_ace.getSession().getScreenLength() == 0){
+          var newHeight =
+            1 * _ace.renderer.lineHeight + _ace.renderer.scrollBar.getWidth();
+          $('.course-ui-ace ').height(newHeight.toString() + "px");
+          _ace.resize();
+        }else{
+          var newHeight =
+            _ace.getSession().getScreenLength()
+            * _ace.renderer.lineHeight
+            + _ace.renderer.scrollBar.getWidth();
+          $('.course-ui-ace ').height(newHeight.toString() + "px");
+          _ace.resize();
+        }
+      },
+      onChange: function(_ace) {
+        var newHeight =
+          _ace[1].getSession().getScreenLength()
+          * _ace[1].renderer.lineHeight
+          + _ace[1].renderer.scrollBar.getWidth();
+        $('.course-ui-ace ').height(newHeight.toString() + "px");
+        _ace[1].resize();
+      }
+    }
+
+
     //google.charts.load('41', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawChart);
     var material;

@@ -13,7 +13,7 @@ angular.module('statsdsuApp')
       link: function postLink(scope, element, attrs) {
         scope.$watch(function() { return $mdMedia('xs'); }, function(xs) {
           $rootScope.xsScreen = xs;
-          console.log('xs');
+          //console.log('xs');
         });
         scope.screenIsSmall = $mdMedia('sm');
         scope.customQuery = $mdMedia('(min-width: 1234px)');

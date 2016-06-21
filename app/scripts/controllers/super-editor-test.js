@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .controller('SuperEditorTestCtrl', function ($scope, FBURL, $compile, SECArray, SECService) {
 
-    var ref = new Firebase(FBURL).child('materials-test');
+    var ref = firebase.database().ref().child('materials-test');
     var newMateial = ref.push();
 
     var SEAs  = SECArray;

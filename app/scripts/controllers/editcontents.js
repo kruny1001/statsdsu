@@ -8,23 +8,88 @@
  * Controller of the statsdsuApp
  */
 angular.module('statsdsuApp')
-  .controller('EditcontentsCtrl', function ($scope, $routeParams, $firebaseObject, FBURL) {
+  .controller('EditcontentsCtrl', function ($scope, $compile, $routeParams,$window, $firebaseObject, FBURL, dragulaService, SECArray) {
     $scope.showHints = true;
+    $scope.back = function(){
+      $window.history.back();
+    }
     var type = $routeParams.type;
     var id = $routeParams.id;
     var ref;
+    $scope.isChapter = false;
     if(type === 'materials'){
-      ref = new Firebase(FBURL).child('materials').child(id);
+      ref = firebase.database().ref().child('materials').child(id);
     }
     else if(type ==='chapters'){
-      ref = new Firebase(FBURL).child('chapters').child(id);
+      ref = firebase.database().ref().child('chapters').child(id);
+      $scope.isChapter = true;
     }
-
     $scope.update = function(cnt){
-      $scope.cnt.$save();
+      $scope.cnt.$save().then(function(){
+        $window.history.back();
+      });
     }
     $scope.cnt = $firebaseObject(ref)
-    console.log($scope.type + ': ' +  $scope.id)
+    $scope.cnt.$loaded().then(function(){
+      $scope.setTargetMaterial();
+      //SECArray.readContent($scope.cnt);
+    })
+
+    //bind content onto main view
+    $scope.setTargetMaterial = function(){
+      angular.element('.content').html("");
+      bindHtml($scope.cnt.cnt)
+    }
+
+    $scope.delete = function(index){
+      alert(index);
+      _.pullAt($scope.cnt.cnt, index);
+    }
+
+    function bindHtml(cnt) {
+      //target Content HTML
+      var content = angular.element('.content')
+      cnt.forEach(function(val, index){
+        var deleteBtn = angular.element(document.createElement('md-button'));
+        deleteBtn.text('delete');
+        deleteBtn.attr('ng-click','delete('+index +')');
+        deleteBtn.attr('class', 'md-warn');
+        content.append(deleteBtn);
+
+        if(val.type === 'editor-text'){
+          content.append("<md-content dragula='test-bag'><editor-text-view ng-cloack mode='edit' target='cnt.cnt["+index+"]'></editor-text-view></md-content>")
+        } else if(val.type ==='graph'){
+          content.append("<md-content dragula='test-bag'><birds></birds></md-content>")
+        } else if(val.type === 'code-terminal'){
+          content.append("<md-content dragula='test-bag'><code-terminal></code-terminal></md-content>")
+        } else if(val.type === 'slide-course'){
+          content.append("<md-content dragula='test-bag'><slide-course></slide-course></md-content>")
+        }
+        else if(val.type === 'r-code-exe'){
+          var courseCnt = angular.element(document.createElement('r-code-exe'));
+          courseCnt.attr('cnt', 'cnt.cnt['+index+']');
+          courseCnt.attr('mode', 'edit');
+          courseCnt.attr('dragular','test-bag');
+          content.append(courseCnt)
+        }else{
+          content.append("<md-content dragula='test-bag'>Wrong Content </md-content>")
+        }
+
+        var hr = angular.element(document.createElement('hr'));
+        content.append(hr);
+      })
+      $compile(content)($scope);
+    }
+
+    $scope.dragulaModel = [];
+    $scope.dragulaModel = $scope.cnt.cnt;
+
+    $scope.$on('test-bag.drag', function (container, el, target, source) {
+      TweenLite.to('.content', 0.6, {scale:0.8});
+    })
+    $scope.$on('test-bag.drop', function (e, el) {
+      TweenLite.to('.content', 0.5, {scale:1});
+    });
 
   })
   .config(function($provide){
@@ -42,7 +107,7 @@ angular.module('statsdsuApp')
         action: function(){
 
           this.$editor().wrapSelection('forecolor', 'blue');
-          console.log('dd');
+          //console.log('dd');
         }
       });
       taRegisterTool('insertHeader', {

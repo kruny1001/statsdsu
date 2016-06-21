@@ -13,8 +13,6 @@ angular.module('statsdsuApp')
       scope:{quizObj: '='},
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        
-        element.css('')
       }
     }
   });

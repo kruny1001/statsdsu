@@ -8,9 +8,14 @@
  */
 angular.module('statsdsuApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $q, Ref, $timeout) {
+
+    $scope.facobookProvider = new firebase.auth.FacebookAuthProvider();
+    $scope.facobookProvider.addScope('email');
+    $scope.facobookProvider.addScope('user_friends');
+
     $scope.oauthLogin = function(provider) {
       $scope.err = null;
-      Auth.$authWithOAuthPopup(provider, {rememberMe: true}).then(redirect, showError);
+      Auth.$signInWithPopup(provider).then(redirect, showError);
     };
 
     $scope.anonymousLogin = function() {

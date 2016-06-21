@@ -1,0 +1,22 @@
+{
+  "version": "0.0.1",
+  "name": "STATSDSU",
+  "launch_path": "/index.html",
+  "description": "CMS for Statistics",
+  "developer": {
+    "name": "Kevin Son",
+    "url": ""
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "STATSDSU",
+      "description": "CMS for Statistics"
+    }
+  }
+}

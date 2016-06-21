@@ -9,7 +9,7 @@
  */
 angular.module('statsdsuApp')
   .factory('ResearchFormService', function ($q, FBURL, $firebaseObject, $firebaseArray) {
-    var ref = new Firebase(FBURL)
+    var ref = firebase.database().ref()
     var researchRef = ref.child('newUsers');
     // Public API here
     return {

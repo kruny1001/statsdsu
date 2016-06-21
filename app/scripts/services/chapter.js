@@ -11,7 +11,7 @@
 angular.module('statsdsuApp')
   .factory('Chapter', function ($q, FBURL, $firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
     var chapterRef = ref.child('chapters');
     var materialRef = ref.child('materials');
       var challengeRef = ref.child('challenges');
@@ -27,9 +27,11 @@ angular.module('statsdsuApp')
     return {
       create: function(chapterObj){
         var newChapterRef = chapterRef.push();
+        console.log(chapterRef)
         chapterObj.pubStatus = true;
-        chapterObj.createdAt = Firebase.ServerValue.TIMESTAMP;
+        chapterObj.createdAt = firebase.database.ServerValue.TIMESTAMP
         newChapterRef.set(chapterObj);
+
       },
       getChapter: function(chapterId){
         return $firebaseObject(chapterRef.child(chapterId));
@@ -38,7 +40,7 @@ angular.module('statsdsuApp')
         return $firebaseArray(classRef);
       },
         listByCourseId:function(courseId){
-            var listChapterRef = new Firebase(FBURL).child('chapters')
+            var listChapterRef = firebase.database().ref().child('chapters')
                 .orderByChild('parentCourseId').equalTo(courseId);
             return $firebaseArray(listChapterRef);
         },
@@ -46,15 +48,18 @@ angular.module('statsdsuApp')
             return $q(function(resolve, resect){
               var newMaterial = materialRef.push();
               newMaterial.set(materialObj, function(error){
-                if(error)
+                if(error){
+                  console.log(error)
                   reject('Error: '+ error);
+                }
+
                 else
                   resolve('Success');
               });
             })
         },
         listMaterials: function(chapterId){
-            var listMaterialRef = new Firebase(FBURL).child('materials')
+            var listMaterialRef = firebase.database().ref().child('materials')
                 .orderByChild('parentChapterId').equalTo(chapterId);
             return $firebaseArray(listMaterialRef);
         },

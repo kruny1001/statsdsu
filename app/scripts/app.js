@@ -26,5 +26,10 @@ angular.module('statsdsuApp', [
     'ngMaterial',
     'nvd3',
     'ui.ace',
-    'textAngular'
+    'textAngular',
+    'file-model',
+    angularDragula(angular),
+    'cloudinary',
+    'ngFileUpload',
+    'hmTouchEvents'
   ]);

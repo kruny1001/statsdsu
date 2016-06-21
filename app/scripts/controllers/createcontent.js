@@ -9,9 +9,10 @@
  */
 angular.module('statsdsuApp')
   .controller('CreatecontentCtrl',
-  function ($scope, user, FBURL, $firebaseObject, $firebaseArray,
-    Class, Course, Chapter
+  function ($scope, user, $firebaseObject, $firebaseArray,
+    Class, Course, Chapter, $location, $routeParams
   ) {
+
     $scope.targetClass = null;
     $scope.userInfo = user;
     //$scope.class.instructor = $scope.userInfo.displayName;
@@ -35,7 +36,6 @@ angular.module('statsdsuApp')
         $scope.classes = data;
       });
     };
-
 
     $scope.loadClassesForCourse = function() {
       console.log('load classes')
@@ -61,18 +61,23 @@ angular.module('statsdsuApp')
     }
 
     $scope.loadCourses = function(){
-      var courseRef = new Firebase(FBURL).child('courses');
+      var courseRef = firebase.database().ref().child('courses');
       $scope.courses = $firebaseArray(courseRef);
     }
 
     //Chapter
       $scope.loadClassesForChapter = function(){
-          var classRef = new Firebase(FBURL).child('classes')
+          var classRef = firebase.database().ref().child('classes')
               .orderByChild('title');
           $scope.classesForChapter = $firebaseArray(classRef);
+        $scope.classesForChapter.$loaded().then(function(v){
+          console.log(v)
+        })
+        console.log($scope.classesForChapter);
       }
+
       $scope.loadCourseForChapter = function(targetClassId){
-          var courseRef = new Firebase(FBURL).child('courses')
+          var courseRef = firebase.database().ref().child('courses')
               .orderByChild('parentClass/id').equalTo(targetClassId);
           $scope.coursesForChapter = $firebaseArray(courseRef);
       }
@@ -82,13 +87,13 @@ angular.module('statsdsuApp')
         var parentCourseId = $scope.parentCourse.$id;
         $scope.chapter.parentClassId = parentClassId;
         $scope.chapter.parentCourseId = parentCourseId;
-        $scope.chapter.instructor={uid: user.uid, provider: user.provider};
+        $scope.chapter.instructor={uid: user.uid};
         Chapter.create($scope.chapter);
     }
 
     //Material
       $scope.loadChapterForCourser = function(targetCourseId){
-          var chapterRef = new Firebase(FBURL).child('chapters')
+          var chapterRef = firebase.database().ref().child('chapters')
               .orderByChild('parentCourseId').equalTo(targetCourseId);
           $scope.chapterForCourse = $firebaseArray(chapterRef);
       }
@@ -100,6 +105,10 @@ angular.module('statsdsuApp')
         promise.then(
           function(result){alert(result); $scope.material.title = ""; $scope.material.description="";}
           , function(reason){alert(reason)})
+    }
+
+    $scope.openChapter = function(courseId){
+      $location.path('course-detail/'+ courseId);
     }
 
     //Challenge

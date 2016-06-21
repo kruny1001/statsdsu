@@ -9,6 +9,6 @@
  */
 angular.module('statsdsuApp')
   .controller('SuperBlogListCtrl', function ($scope, FBURL, $firebaseArray) {
-    var ref = new Firebase(FBURL).child('materials-test')
+    var ref = firebase.database().ref().child('materials-test')
     $scope.materials = $firebaseArray(ref);
   });

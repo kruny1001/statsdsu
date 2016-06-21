@@ -29,7 +29,7 @@ angular.module('statsdsuApp')
     var id = $routeParams.idClass.toString();
     var courseType = $routeParams.sectionId;
 
-    var courseRef = new Firebase(FBURL+'/'+courseType+'/'+id);
+    var courseRef = firebase.database().ref().child(courseType+'/'+id);
     $scope.item = $firebaseObject(courseRef)
     //  .$loaded().then(function(data){
     //})
@@ -84,7 +84,7 @@ angular.module('statsdsuApp')
 
 function DialogController($scope, $mdDialog, contentId, cntType,
                           FBURL, $firebaseObject, $firebaseArray) {
-  var ref = new Firebase(FBURL);
+  var ref = firebase.database().ref()
 
   $scope.hide = function() {
     $mdDialog.hide();

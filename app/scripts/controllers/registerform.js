@@ -17,7 +17,7 @@ angular.module('statsdsuApp')
     }
 
     $scope.addNewUser = function(){
-      $scope.userInfo.createAt = Firebase.ServerValue.TIMESTAMP;
+      $scope.userInfo.createAt = firebase.database.ServerValue.TIMESTAMP;
       var addWork = ResearchFormService.addNewResearch($scope.userInfo);
       addWork.then(function(result){
         $http({

@@ -1,5 +1,5 @@
 <!-- HEADER -->
-<div layout="row">
+<div layout="row" ng-cloak>
     <div style="margin-left:20px;">
         <a class="header-logo" href="#/" style="text-decoration: none">
             <sapn class="icon entypo-chart-line scnd-font-color"></sapn>
@@ -7,9 +7,28 @@
         </a>
     </div>
     <div flex></div>
-    <div style="margin-right:20px;">
-        <!--<a class="header-logo" style="text-decoration: none" href="#/profile"><span class="icon fontawesome-user scnd-font-color"></span>-->
-            <!--<span hide-xs> Account </span>-->
-        <!--</a>-->
+    <div ng-show-auth style="margin-right:20px;">
+        <a class="header-logo" style="text-decoration: none" href="#/course-detail/-KIMnC0W_09BA9RQrjmq">
+            <span class="icon fontawesome-user scnd-font-color"></span>
+            <span> Class 2016 </span>
+        </a>
+    </div>
+    <div ng-hide-auth style="margin-right:20px;">
+        <a class="header-logo" style="text-decoration: none" href="#/login">
+            <span class="icon fontawesome-user scnd-font-color"></span>
+            <span> Login </span>
+        </a>
+    </div>
+    <div ng-show-auth style="margin-right:20px;">
+        <a class="header-logo" style="text-decoration: none" href="#/account">
+            <span class="icon fontawesome-user scnd-font-color"></span>
+            <span> Account </span>
+        </a>
+    </div>
+    <div ng-show-auth style="margin-right:20px;">
+        <a class="header-logo" style="text-decoration: none" ng-click="logout()">
+            <span class="icon fontawesome-user scnd-font-color"></span>
+            <span> Logout </span>
+        </a>
     </div>
 </div>

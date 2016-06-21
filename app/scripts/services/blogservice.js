@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .factory('blogService', function ($location, FBURL, $firebaseObject, $firebaseArray) {
 
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
     var blogCntRef = ref.child('blogCnt');
     var commentsRef = ref.child('comments');
     var blogRef = ref.child('write');

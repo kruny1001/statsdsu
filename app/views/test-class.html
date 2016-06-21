@@ -1,21 +1,138 @@
-<md-content layout="column" style="background-color:white; height:100%;">
+<md-content layout="column" style="background-color:white; height:100%;" layout-padding>
+    <style>
+        iframe {
+            width: 100%;
+        }
+    </style>
 
-    <p>Version 0.1</p>
-    <md-button class="md-raised" href="#/course">course</md-button>
+    <challenge></challenge>
 
-    <p> User Profile prototype </p>
-    <md-button class="md-raised" href="#/profile">profile</md-button>
+    <!--<div data-datacamp-exercise data-lang="r">-->
+        <!--<code data-type="pre-exercise-code">-->
+            <!--# no pec-->
+        <!--</code>-->
+        <!--<code data-type="sample-code">-->
+            <!--# Create a variable a, equal to 5-->
+            <!--# Print out a-->
+        <!--</code>-->
+        <!--&lt;!&ndash;<code data-type="solution">&ndash;&gt;-->
+            <!--&lt;!&ndash;# Create a variable a, equal to 5&ndash;&gt;-->
+            <!--&lt;!&ndash;a <- 5&ndash;&gt;-->
+            <!--&lt;!&ndash;# Print out a&ndash;&gt;-->
+            <!--&lt;!&ndash;print(a)&ndash;&gt;-->
+        <!--&lt;!&ndash;</code>&ndash;&gt;-->
+        <!--<code data-type="sct">-->
+            <!--test_object("a")-->
+            <!--test_function("print")-->
+            <!--success_msg("Great job!")-->
+        <!--</code>-->
+        <!--&lt;!&ndash;<div data-type="hint">Use the assignment operator (<code><-</code>) to create the variable <code>a</code>.</div>&ndash;&gt;-->
+    <!--</div>-->
 
-    <p> Quiz Module Examples </p>
-    <md-button class="md-raised" href="#/quizTest">Quiz Example</md-button>
+    <!--<div data-datacamp-exercise data-lang="r">-->
+        <!--<code data-type="pre-exercise-code">-->
+            <!--{{problem.pre}}-->
+        <!--</code>-->
+        <!--<code data-type="sample-code">-->
+            <!--{{problem.sample}}-->
+        <!--</code>-->
+        <!--<code data-type="solution">-->
+            <!--{{problem.solution}}-->
+        <!--</code>-->
+        <!--<code data-type="sct">-->
+            <!--{{problem.sct}}-->
+        <!--</code>-->
+        <!--<div data-type="hint">Use the assignment operator (<code><-</code>) to create the variable <code>a</code>.</div>-->
+    <!--</div>-->
+    <!--<div remove-logo data-datacamp-exercise data-lang="r">-->
+        <!--<code data-type="pre-exercise-code">-->
+            <!--# Pre-load a package in the workspace-->
+            <!--library(MindOnStats)-->
 
-    <p> R visualization Example</p>
-    <md-button class="md-raised" href="#/course/r-vis">Visualization Example </md-button>
+            <!--# You can prepare the data before the student starts:-->
+            <!--data(Movies)-->
+            <!--movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"),c("Genre", "Rating", "Run")]-->
 
-    <p> Example of create plot image </p>
-    <birds></birds>
+            <!--# You can also clean up data so that it's not available in the student's workspace anymore:-->
+            <!--rm(Movies)-->
 
-    <p> Blog Style Content Editor</p>
-    <md-button class="md-raised" href="#/super-editor-test"> Editor Tool </md-button>
+        <!--</code>-->
+        <!--<code data-type="sample-code">-->
+            <!--# movie_selection is available in your workspace-->
+
+            <!--# Check out the structure of movie_selection-->
+
+
+            <!--# Select movies that have a rating of 5 or higher: good_movies-->
+
+
+            <!--# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre-->
+        <!--</code>-->
+        <!--<code data-type="solution">-->
+            <!--# movie_selection is available in your workspace-->
+
+            <!--# Check out the structure of movie_selection-->
+            <!--str(movie_selection)-->
+
+            <!--# Select movies that have a rating of 5 or higher: good_movies-->
+            <!--good_movies <- movie_selection[movie_selection$Rating >= 5, ]-->
+
+            <!--# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre-->
+            <!--plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)-->
+        <!--</code>-->
+        <!--<code data-type="sct">-->
+            <!--# The sct section defines the Submission Correctness Tests (SCTs) used to-->
+            <!--# evaluate the student's response. All functions used here are defined in the-->
+            <!--# testwhat R package. Documentation can also be found at github.com/datacamp/testwhat/wiki-->
+
+            <!--# Test whether the function str is called with the correct argument, object-->
+            <!--# If it is not called, print something informative-->
+            <!--# If it is called, but called incorrectly, print something else-->
+            <!--test_function("str", args = "object",-->
+            <!--not_called_msg = "You didn't call `str()`!",-->
+            <!--incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")-->
+
+            <!--# Test the object, good_movies-->
+            <!--# Notice that we didn't define any feedback here, this will cause automatically-->
+            <!--# generated feedback to be given to the student in case of an incorrect submission-->
+            <!--test_object("good_movies")-->
+
+            <!--# Test whether the student correctly used plot()-->
+            <!--# Again, we use the automatically generated feedback here-->
+            <!--test_function("plot", args = "x")-->
+            <!--test_function("plot", args = "y")-->
+            <!--test_function("plot", args = "col")-->
+
+            <!--# Alternativeley, you can use test_function() like this-->
+            <!--# test_function("plot", args = c("x", "y", "col"))-->
+
+            <!--# It's always smart to include the following line of code at the end of your SCTs-->
+            <!--# It will check whether executing the student's code resulted in an error,-->
+            <!--# and if so, will cause the exercise to fail-->
+            <!--test_error()-->
+
+            <!--# Final message the student will see upon completing the exercise-->
+            <!--success_msg("Good work!")-->
+        <!--</code>-->
+        <!--<div data-type="hint">Use the assignment operator (<code><-</code>) to create the variable <code>a</code>.</div>-->
+    <!--</div>-->
+
+    <!--<p>Version 0.1</p>-->
+    <!--<md-button class="md-raised" href="#/course">course</md-button>-->
+
+    <!--<p> User Profile prototype </p>-->
+    <!--<md-button class="md-raised" href="#/profile">profile</md-button>-->
+
+    <!--<p> Quiz Module Examples </p>-->
+    <!--<md-button class="md-raised" href="#/quizTest">Quiz Example</md-button>-->
+
+    <!--<p> R visualization Example</p>-->
+    <!--<md-button class="md-raised" href="#/course/r-vis">Visualization Example </md-button>-->
+
+    <!--<p> Example of create plot image </p>-->
+    <!--<birds></birds>-->
+
+    <!--<p> Blog Style Content Editor</p>-->
+    <!--<md-button class="md-raised" href="#/super-editor-test"> Editor Tool </md-button>-->
 
 </md-content>

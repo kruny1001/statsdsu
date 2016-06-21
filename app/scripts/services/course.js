@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .factory('Course', function (FBURL, $firebaseObject, $firebaseArray) {
 
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
     var courseRef = ref.child('courses');
     var onComplete = function(error) {
       if (error) {
@@ -25,7 +25,7 @@ angular.module('statsdsuApp')
       create: function(courseObj){
         var newCourseRef = courseRef.push();
         courseRef.pubStatus = true;
-        courseRef.createdAt = Firebase.ServerValue.TIMESTAMP;
+        courseRef.createdAt = firebase.database.ServerValue.TIMESTAMP;
         newCourseRef.set(courseObj);
       },
       list: function(){
@@ -39,17 +39,17 @@ angular.module('statsdsuApp')
         return $firebaseObject(courseRef.child(id));
       },
       addMaterial: function(material, courseId){
-        var newMaterialRef = new Firebase(FBURL).child('material');
+        var newMaterialRef = firebase.database().ref().child('material');
       },
       removeMaterial: function(materialId, courseId){
-        var materialRef = new Firebase(FBURL).child('material');
+        var materialRef = firebase.database().ref().child('material');
         materialRef.child(materialId).remove(onComplete);
       },
       addChallenge: function(challenge, courseId){
-        var newChallengeRef = new Firebase(FBURL).child('challenge');
+        var newChallengeRef = firebase.database().ref().child('challenge');
       },
       removeChallenge: function(ChallengeId, courseId){
-        var challengeRef = new Firebase(FBURL).child('challenge');
+        var challengeRef = firebase.database().ref().child('challenge');
         challengeRef.child(ChallengeId).remove(onComplete);
       },
     };

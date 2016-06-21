@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .factory('Class', function (FBURL, $firebaseObject, $firebaseArray) {
 
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
     var courseRef = ref.child('course');
     var classRef = ref.child('classes');
 
@@ -19,7 +19,7 @@ angular.module('statsdsuApp')
       create: function(classObj){
         var newClassRef = classRef.push();
         classObj.pubStatus = true;
-        classObj.createdAt = Firebase.ServerValue.TIMESTAMP;
+        classObj.createdAt = firebase.database.ServerValue.TIMESTAMP
         newClassRef.set(classObj);
       },
       update: function(id, classObj){
@@ -28,7 +28,7 @@ angular.module('statsdsuApp')
         delete classObj.$$mdSelectId;
         delete classObj.$priority;
         delete classObj.$id;
-        classObj.updatedAt = Firebase.ServerValue.TIMESTAMP;
+        classObj.updatedAt = firebase.database.ServerValue.TIMESTAMP
         classRef.child(id.toString()).update(classObj);
       },
       list: function(){

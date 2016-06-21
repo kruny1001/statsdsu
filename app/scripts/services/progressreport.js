@@ -12,8 +12,8 @@ angular.module('statsdsuApp')
   function (FBURL, $firebaseArray, $firebaseObject, Auth) {
 
     var userAuth = Auth.$getAuth();
-    var ref = new Firebase(FBURL);
-    console.log(userAuth);
+    var ref = firebase.database().ref();
+    //console.log(userAuth);
     if(userAuth !== null)
       var progressRef = ref.child('progress').child(userAuth.uid);
 
@@ -40,7 +40,7 @@ angular.module('statsdsuApp')
       },
       updateSubscriptChpater: function(chapterId){
         //get Chapter Name
-        var chapterRef = new Firebase(FBURL+'/chapters/'+chapterId);
+        var chapterRef = firebase.database().ref().child('chapters/'+chapterId);
         var chapterObj = $firebaseObject(chapterRef);
         console.log(chapterObj);
         //progressRef.child('').child('')

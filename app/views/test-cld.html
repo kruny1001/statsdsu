@@ -1,0 +1,49 @@
+<md-content>
+    <div class="photos">
+        <p ng-if="photos.length === 0 || !photos">No photos were added yet</p>
+        <div ng-repeat="photo in photos">
+            <a cl-href="{{photo.public_id}}" format="jpg" target="_blank">
+                <cl-image public-id="{{photo.public_id}}" width="300" height="300" crop="fit" quality="100" format="jpg"/>
+            </a>
+            <button class="btn btn-danger" ng-click="deleteImg(photo.public_id)">삭제</button>
+        </div>
+    </div>
+    <div class="md-title">이미지 업로드</div>
+    <form>
+        <div>
+            <label path="title">제목:</label>
+            <div>
+                <input type="text" class="form-control" placeholder="제목을 입력해주세요." ng-model="title" />
+            </div>
+        </div>
+        <div>
+            <label>이미지 삽입 (드래그 & 드랍 가능):</label>
+            <div>
+                <div>
+                    <div class="drop-box" ngf-drop="uploadFiles($files)" ngf-drag-over-class="dragover" ng-model="files" ngf-select="uploadFiles($files)" multiple="true" title="upload" resetOnClick="true" >
+                        이미지 삽입</div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="md-title">상태</div>
+
+    <div ng-repeat="file in files">
+        <h3>{{file.name}} {{f.$error}} {{f.$errorParam}}</h3>
+        <div class="status">{{file.status}}</div>
+        <div class="progress-bar">
+            <div class="progress" style="width: {{file.progress}}%" ng-init="progress=0"></div>
+        </div>
+        <div>
+            <img width="100" height="100" ngf-src="file.result.url || file">
+        </div>
+        <div>
+            <table>
+                <tr ng-repeat="(key, value) in file.result">
+                    <td> {{key}}  </td> <td> {{ value }} </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</md-content>

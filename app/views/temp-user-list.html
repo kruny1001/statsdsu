@@ -1,0 +1,17 @@
+
+<md-content style="background-color:white">
+    <md-list>
+        <md-subheader class="md-no-sticky">New Register User {{users.length}}</md-subheader>
+        <md-list-item ng-repeat="user in users" ng-click="" class="md-3-line">
+            <div class="md-list-item-text" layout="column">
+                <div class="md-caption">{{ user.fName }} {{user.lName}} {{ user.phone | phoneFilter }} Email: {{ user.userEmail }}</div>
+                <div class="md-caption">{{ user.school }} - grade: {{user.grade}}: {{user.createAt | date:'medium'}}</div>
+                <div class="md-caption">{{ user.gender | genderFilter}} - age: {{user.age}} - ethnicity: {{user.ethnicity | ethinicityFilter}}</div>
+            </div>
+            <!--<md-checkbox class="md-secondary" ng-model="user.selected"></md-checkbox>-->
+            <!--<md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>-->
+            <!--<md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>-->
+        </md-list-item>
+    </md-list>
+    <md-button class="md-raised" ng-click="sendEmail()">Send Invitation Email</md-button>
+</md-content>

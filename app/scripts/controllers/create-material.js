@@ -20,19 +20,19 @@ angular.module('statsdsuApp')
     }
 
     $scope.loadClassesForChapter = function(){
-      var classRef = new Firebase(FBURL).child('classes')
+      var classRef = firebase.database().ref().child('classes')
         .orderByChild('title');
       $scope.classesForChapter = $firebaseArray(classRef);
     }
     $scope.loadCourseForChapter = function(targetClassId){
-      var courseRef = new Firebase(FBURL).child('courses')
+      var courseRef = firebase.database().ref().child('courses')
         .orderByChild('parentClass/id').equalTo(targetClassId);
       $scope.coursesForChapter = $firebaseArray(courseRef);
     }
 
     //Material
     $scope.loadChapterForCourser = function(targetCourseId){
-      var chapterRef = new Firebase(FBURL).child('chapters')
+      var chapterRef = firebase.database().ref().child('chapters')
         .orderByChild('parentCourseId').equalTo(targetCourseId);
       $scope.chapterForCourse = $firebaseArray(chapterRef);
     }

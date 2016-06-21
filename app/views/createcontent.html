@@ -7,15 +7,14 @@
             <profile-header></profile-header>
         </div>
     </div>
-
     <div style="    margin-bottom: 25px;
     margin-top: 25px;
         margin: 0 auto;
         color:white;
-        padding:8px;
+        padding:0px;
         max-width:950px;
     border-radius: 5px;
-    background: #394264;
+    background: #d9d6de;
     border-radius: 5px;">
         <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Class">
@@ -102,15 +101,14 @@
             </md-tab>
             <md-tab label="Course">
                 <md-content class="md-padding">
-                    <pre>{{classes}}</pre>
+                    <!--<pre>{{classes}}</pre>-->
                     <div class="md-title">Create Course</div>
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
                             <form name="courseForm"  ng-submit="createCourse()">
                                 <md-input-container class="md-block">
-                                    <md-select required name="parentClass"
+                                    <md-select name="parentClass"
                                                placeholder="Select Parent Class" ng-model="parentClass"
-
                                                style="min-width: 200px;">
                                         <md-option ng-value="classItem" ng-repeat="classItem in classes">
                                             {{classItem.title}}
@@ -144,16 +142,16 @@
                     </div>
                 </md-content>
             </md-tab>
+
             <md-tab label="Chapter">
                 <md-content class="md-padding">
                     <div class="md-title">Create Chapter</div>
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
                             <form name="chapterForm"  ng-submit="createChapter()">
-
                                 <md-input-container class="md-block">
-                                    <p> Select Class </p>
-                                    <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+                                    <p> Select Class: <strong>{{parentClass.title}}</strong></p>
+                                    <md-select  name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
                                                md-on-open="loadClassesForChapter()" style="min-width: 200px;">
                                         <md-option ng-value="classItem" ng-repeat="classItem in classesForChapter">
                                             {{classItem.title}}
@@ -167,7 +165,7 @@
 
                                 <md-input-container ng-show="parentClass !== undefined" class="md-block">
                                     <p> Select Course </p>
-                                    <md-select required name="parentCourse" placeholder="Select Parent Course"
+                                    <md-select name="parentCourse" placeholder="Select Parent Course"
                                                ng-model="parentCourse" md-on-open="loadCourseForChapter(parentClass.$id)" style="min-width: 200px;">
                                         <md-option ng-value="courseItem" ng-repeat="courseItem in coursesForChapter">
                                             {{courseItem.title}}
@@ -200,15 +198,13 @@
             <md-tab label="Material">
                 <md-content class="md-padding">
                     <div class="md-title">Create Material</div>
-
-
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
                             <form name="materialForm"  ng-submit="createMaterial()">
 
                                 <md-input-container class="md-block">
                                     <p> Select Class </p>
-                                    <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+                                    <md-select name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
                                                md-on-open="loadClassesForChapter()" style="min-width: 200px;">
                                         <md-option ng-value="classItem" ng-repeat="classItem in classesForChapter">
                                             {{classItem.title}}
@@ -222,7 +218,7 @@
 
                                 <md-input-container ng-show="parentClass !== undefined" class="md-block">
                                     <p> Select Course </p>
-                                    <md-select required name="parentCourse" placeholder="Select Parent Course"
+                                    <md-select name="parentCourse" placeholder="Select Parent Course"
                                                ng-model="parentCourse" md-on-open="loadCourseForChapter(parentClass.$id)" style="min-width: 200px;">
                                         <md-option ng-value="courseItem" ng-repeat="courseItem in coursesForChapter">
                                             {{courseItem.title}}
@@ -235,7 +231,7 @@
 
                                 <md-input-container ng-show="parentClass !== undefined" class="md-block">
                                     <p> Select Chapter </p>
-                                    <md-select required name="parentChapter" placeholder="Select Parent Chapter"
+                                    <md-select name="parentChapter" placeholder="Select Parent Chapter"
                                                ng-model="parentChapter" md-on-open="loadChapterForCourser(parentCourse.$id)" style="min-width: 200px;">
                                         <md-option ng-value="chapterItem" ng-repeat="chapterItem in chapterForCourse">
                                             {{chapterItem.title}}
@@ -257,19 +253,21 @@
                                     <textarea ng-model="material.description" columns="1" md-maxlength="400" rows="5"></textarea>
                                 </md-input-container>
                                 <md-button type="submit">Create Material</md-button>
-
+                                <md-button type="button" ng-click="openChapter(parentCourse.$id)"> Go to Chapter</md-button>
                             </form>
                         </md-content>
                     </div>
-
-
+                    </md-content>
+            </md-tab>
+            <md-tab label="Challenge">
+                <md-content class="md-padding">
                     <div class="md-title">Create Challenge</div>
                     <div layout="column" ng-cloak class="md-inline-form" style="padding:8px">
                         <md-content layout-padding style="overfolw:hidden">
                             <form name="challengeForm"  ng-submit="createChallenge()">
                                 <md-input-container class="md-block">
                                     <p> Select Class </p>
-                                    <md-select required name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
+                                    <md-select  name="parentClass" placeholder="Select Parent Class" ng-model="parentClass"
                                                md-on-open="loadClassesForChapter()" style="min-width: 200px;">
                                         <md-option ng-value="classItem" ng-repeat="classItem in classesForChapter">
                                             {{classItem.title}}
@@ -282,7 +280,7 @@
 
                                 <md-input-container ng-show="parentClass !== undefined" class="md-block">
                                     <p> Select Course </p>
-                                    <md-select required name="parentCourse" placeholder="Select Parent Course"
+                                    <md-select name="parentCourse" placeholder="Select Parent Course"
                                                ng-model="parentCourse" md-on-open="loadCourseForChapter(parentClass.$id)" style="min-width: 200px;">
                                         <md-option ng-value="courseItem" ng-repeat="courseItem in coursesForChapter">
                                             {{courseItem.title}}
@@ -295,7 +293,7 @@
 
                                 <md-input-container ng-show="parentClass !== undefined" class="md-block">
                                     <p> Select Chapter </p>
-                                    <md-select required name="parentChapter" placeholder="Select Parent Chapter"
+                                    <md-select name="parentChapter" placeholder="Select Parent Chapter"
                                                ng-model="parentChapter" md-on-open="loadChapterForCourser(parentCourse.$id)" style="min-width: 200px;">
                                         <md-option ng-value="chapterItem" ng-repeat="chapterItem in chapterForCourse">
                                             {{chapterItem.title}}

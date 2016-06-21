@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .factory('activityScore', function (FBURL, $firebaseObject, Auth) {
     var userAuth = Auth.$getAuth();
-    var ref = new Firebase(FBURL).child('actScore');
+    var ref = firebase.database().ref().child('actScore');
 
     // Public API here
     return {

@@ -28,9 +28,9 @@ angular.module('statsdsuApp')
   .controller('EditCtrl', function ($scope, $sce, user, $location, blogService, FBURL, $routeParams, $firebaseObject){
 
     var id = $routeParams.id
-    var postInfo = new Firebase(FBURL + '/write/'+ id);
-    var postRef = new Firebase(FBURL + '/blogCnt/'+ id);
-    var baseRef = new Firebase(FBURL);
+    var postInfo = firebase.database().ref().child('write/'+ id);
+    var postRef = firebase.database().ref().child('blogCnt/'+ id);
+    var baseRef = firebase.database().ref()
     var authorName = $firebaseObject(baseRef.child('users/'+user.uid+'/name'));
     $scope.postInfo = $firebaseObject(postInfo);
     $scope.post = $firebaseObject(postRef);
@@ -41,7 +41,7 @@ angular.module('statsdsuApp')
     $scope.updateCnt = function(){
       var cnt = $('.editable').html();
       $scope.postInfo.$save();
-      blogService.updateItem(id, {cnt:cnt, updated:Firebase.ServerValue.TIMESTAMP});
+      blogService.updateItem(id, {cnt:cnt, updated:firebase.database.ServerValue.TIMESTAMP});
 
     }
 

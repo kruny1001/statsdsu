@@ -10,8 +10,8 @@
 angular.module('statsdsuApp')
   .factory('intro', function (FBURL, $firebaseArray) {
 
-    var introRef = new Firebase(FBURL+'/introProblem');
-    var visRef = new Firebase(FBURL+'/visProblem');
+    var introRef = firebase.database().ref().child('introProblem');
+    var visRef = firebase.database().ref().child('visProblem');
     // Service logic
     // ...
 

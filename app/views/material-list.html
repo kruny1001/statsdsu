@@ -1,43 +1,156 @@
-<md-content layout="column" style="background-color: white;" layout-fill>
+<div layout="column" style="overflow: hidden; position:relative; background-color: white;" flex layout-fill>
     <div class="profile-container">
-        <div class="main-container">
-            <profile-header></profile-header>
-        </div>
+        <profile-header></profile-header>
     </div>
-
     <md-progress-linear md-mode="determinate" value="{{progressValue}}"></md-progress-linear>
-    <md-content layout="row">
-        <div flex="20">
-            <md-list ng-cloak>
+    <md-content class="material-list-cnt" layout="row" style="overflow:hidden; height: 100%;">
+        <div style="width:257px;" show-gt-xs hide-xs>
+            <style>
+                .highlight-true {
+                    opacity: 1;
+                }
+                .highlight-true-target {
+                    background-color: #E0E0E0;
+                    opacity: 1;
+                }
+                .highlight-true div i {
+                    border-color: #2196f3;
+                }
+                .highlight-false {
+                    opacity: .6;
+                }
+
+                .highlight-false div i {
+                    border-color: #2196f3;
+                }
+            </style>
+            <md-list  style="padding:0px;">
                 <md-list-item
                         class="secondary-button-padding" ng-click="targetMat = null">
-                    <div class="md-caption"> {{0}}: Chapter Information</div>
+                    <div class="md-body-1"> <b>Chapter Information</b> </div>
                 </md-list-item>
                 <md-list-item
+                        ng-class="{'highlight-true': $index < crntIndex, 'highlight-true-target':  $index == crntIndex}"
                         ng-repeat="mat in materialList"
-                        class="secondary-button-padding" ng-click="setTargetMaterial($index)">
-                    <div> {{$index+1}}: {{mat.title}}</div>
+                         ng-click="setTargetMaterial($event, $index)" style="min-height:48px;     margin-top: 10px;
+    margin-bottom: 10px;">
+                    <div layout="row" layout="start start" style="">
+                        <i style="border-color: #2196f3; display: inline-block;
+    font-style: normal;
+    width: 28px;
+    min-width: 28px;
+    background: #fff;
+    border-radius: 50%;
+    text-align: center;
+    height: 28px;
+    vertical-align: middle;
+        font-size: 14px;
+    line-height: 24px;
+    border: 2px solid #bdbdbd;
+    margin-right: 8px;
+    font-weight: 400;">{{$index + 1}}</i>
+                        <span style="line-height: 22px;">{{mat.title}}</span></div>
                 </md-list-item>
+                <div style="font-weight: bold; position: absolute;bottom: 0px;padding: 8px;"> Data Analysis Camp 2016</div>
             </md-list>
         </div>
-        <div flex>
-            <div ng-show="targetMat === null" layout-padding>
-                <div layout="row">
-                    <h3 class="md-display-2">{{chapterInfo.title}}</h3>
-                    <a class="md-body-1" href="#/editContents/chapters/{{chapterInfo.$id}}"> Edit </a>
-                </div>
+        <div flex style="background-color: #E0E0E0; overflow: scroll;height: inherit;">
+            <!-- Chapter Information -->
+            <div ng-show="targetMat === null"
+                 style="height:100%; width: 100%;height: inherit;overflow: scroll;">
 
-                <div class="md-body-1 antial">{{chapterInfo.description}}</div>
-            </div>
-            <div ng-show="targetMat !== null" layout-padding>
-                <div layout="row">
-                    <h3 class="md-display-2">{{targetMat.title}}</h3>
-                    <a class="md-body-1" href="#/editContents/materials/{{targetMat.$id}}"> Edit </a>
+                <md-toolbar md-scroll-shrink style="background-color:#1E88E5">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button" aria-label="Settings" ng-click="back()">
+                            <md-icon md-svg-icon="dImages/ionicIcons/arrow-left-a.svg"></md-icon>
+                        </md-button>
+                        <h2>
+                            <span>{{chapterInfo.title}}</span>
+                        </h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" aria-label="Favorite">
+                            <md-icon md-svg-icon="dImages/ionicIcons/clock.svg" style="color: greenyellow;"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="More">
+                            <md-icon md-svg-icon="dImages/ionicIcons/more.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <div ng-if="chapterInfo.instructor.uid === userAuth.uid" layout="row" style="background-color: #4db6ac">
+                    <md-button ng-if="chapterInfo.instructor.uid === userAuth.uid" class="md-body-1" href="#/editContents/chapters/{{chapterInfo.$id}}"> Edit </md-button>
+                    <md-button ng-if="chapterInfo.instructor.uid === userAuth.uid" class="md-body-1" href="#/new-content/{{chapterInfo.$id}}"> Add </md-button>
+                    <md-button class="md-primary md-raised demo-dialog-open-button" ng-click="showAlert($event)">Delete </md-button>
                 </div>
-                <div class="md-body-1 antial">{{targetMat.description}}</div>
-                <code-terminal></code-terminal>
+                <br>
+                <md-content layout="column" layout="center center" style="background-color:white; width: 100%; max-width:942px; margin:0 auto; padding:20px;">
+                    <!--<div layout="row">-->
+                        <!--<h3 class="md-display-1">{{chapterInfo.title}}</h3>-->
+                    <!--</div>-->
+                    <!--<div class="md-body-1 antial">{{chapterInfo.description}}</div>-->
+
+                    <div  ng-bind-html="chapterInfo.chapterContent"></div>
+                </md-content>
+
             </div>
+
+            <div ng-show="targetMat !== null"
+                 style="height:100%; width: 100%;height: inherit;overflow: scroll;" class="material-list-cnt">
+                <md-toolbar md-scroll-shrink style="background-color:#1E88E5">
+                    <div  class="md-toolbar-tools">
+                        <md-button class="md-icon-button" aria-label="Settings B" ng-click="back()">
+                            <md-icon md-svg-icon="dImages/ionicIcons/arrow-left-a.svg"></md-icon>
+                        </md-button>
+                        <h2>
+                            <span>{{chapterInfo.title}}</span>
+                        </h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" aria-label="Favorite">
+                            <md-icon md-svg-icon="dImages/ionicIcons/clock.svg" style="color: greenyellow;"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="More">
+                            <md-icon md-svg-icon="dImages/ionicIcons/more.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <div ng-if="chapterInfo.instructor.uid === userAuth.uid" layout="row" style="background-color: rgba(0,0,0,.14);">
+                    <!--<md-button class="md-body-1" href="#/editContents/materials/{{targetMat.$id}}"> Edit </md-button>-->
+                    <md-button class="md-body-1" href="#/edit-content/{{targetMat.$id}}"> Edit </md-button>
+
+                    <!--<md-button class="md-body-1" ng-click="removeContent(targetMat.$id)"> Remove </md-button>-->
+                    <md-button class="md-warn md-raised demo-dialog-open-button" ng-click="showAlert($event)">Delete </md-button>
+                </div>
+                <br>
+                <md-content layout="column" layout-align="center center" style="background-color:white; width: 100%; max-width:942px; margin:0 auto; padding:20px;">
+                    <h3 class="md-display-1">{{targetMat.title}}</h3>
+                    <br><br>
+                    <md-content ng-cloak flex class="content" style="width:100%; background:white;">
+
+                    </md-content>
+                    <br><br>
+                    <comment-form ng-show="userAuth" on-target="{{targetMat.$id}}"></comment-form>
+
+                </md-content>
+                <br>
+                <br><br>
+            </div>
+            <footer  style="position: fixed;
+    right: 0;
+    bottom: 16px;
+    padding: 0 16px;
+    /*width: calc(100% - 307px);*/
+    box-sizing: border-box;">
+                <div style="    max-width: calc(800px + 231px);margin: 0 auto;" layout="row">
+                    <md-button class="md-fab md-primary" aria-label="front" ng-click="setTargetMaterial($event, crntIndex-1)">
+                        <md-icon md-svg-src="dImages/ionicIcons/chevron-left.svg"></md-icon>
+                    </md-button>
+                    <span flex></span>
+                    <md-button  class="md-fab md-primary" aria-label="back" ng-click="setTargetMaterial($event, crntIndex+1)">
+                        <md-icon md-svg-src="dImages/ionicIcons/chevron-right.svg"></md-icon>
+                    </md-button>
+                </div>
+            </footer>
         </div>
     </md-content>
-</md-content>
+</div>
 

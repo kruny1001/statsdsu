@@ -41,12 +41,12 @@ function commentFormCtrl($scope,notification, activityScore, $firebaseArray, FBU
   var commentRef= FirebaseRefFactory.getRef();
   var list = $firebaseArray(commentRef);
   list.$loaded(function(data){
-      console.log(data)}
-  );
+//      console.log(data)
+  });
 
   if(authData != null) {
     var url = FBURL + '/users/'+authData.uid;
-    var userRif = new Firebase(url);
+    var userRif = firebase.database().ref().child('users/'+authData.uid);
     //console.log("ilbeView");
     var user = $firebaseObject(userRif);
     user.$loaded().then(function(data) {
@@ -82,11 +82,11 @@ function commentFormCtrl($scope,notification, activityScore, $firebaseArray, FBU
         name: user.name,
         //profileImage: user.profileImage,
         body: body,
-        timestamp: Firebase.ServerValue.TIMESTAMP
+        timestamp: firebase.database.ServerValue.TIMESTAMP
       }
     );
     activityScore.incScore(3);
-    var blogInfoRef = new Firebase(FBURL).child('write').child($scope.target).child('auth');
+    var blogInfoRef = firebase.database().ref().child('write').child($scope.target).child('auth');
     //console.log(blogInfoRef);
     blogInfoRef.once('value', function(snap){
       var targetUser = snap.val()
@@ -98,7 +98,7 @@ function commentFormCtrl($scope,notification, activityScore, $firebaseArray, FBU
         name: user.name,
         //profileImage: user.profileImage,
         body: body,
-        timestamp: Firebase.ServerValue.TIMESTAMP
+        timestamp: firebase.database.ServerValue.TIMESTAMP
       };
       notification.addNotification(cnt);
       //}

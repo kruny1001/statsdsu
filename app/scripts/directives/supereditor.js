@@ -17,13 +17,19 @@ angular.module('statsdsuApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.SECs = [];
-        var cnt = angular.element('.content')
+
+        if(scope.content === undefined)
+          scope.content = [];
+
+        var cnt = angular.element('.content');
+        var SEAs  = SECArray;
         scope.isOpen = false;
         scope.demo = {
           isOpen: false,
           count: 0,
           selectedDirection: 'left'
         };
+
         var compileContent = function(){
           $compile(cnt)(scope);
         }
@@ -31,9 +37,6 @@ angular.module('statsdsuApp')
           cnt.append('<h1> add Directive </h1>');
           console.log(scope.content)
         }
-        var SEAs  = SECArray;
-
-
         // Editor text
         // Pass Object
         scope.addDirectiveEditor = function(){
@@ -69,13 +72,31 @@ angular.module('statsdsuApp')
           cnt.append(editor);
         }
 
+        scope.addDirectiveQuiz = function(){
+          var SEA = new SECService('quiz','','');
+          var index = SECArray.addCnt(SEA);
+          scope.quiz = {description: 'What is the ', options: ['cool', 'boom', 'good'], answer:2}
+          var editor = angular.element('<md-content><md-whiteframe class="md-whiteframe-1dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="column" layout-align="start center"> <h3 class="md-title"> Quiz 1 </h3> <quiz quiz-obj="quiz"></quiz> </md-whiteframe></md-content>');
+          editor = $compile(editor)(scope);
+          cnt.append(editor);
+        }
+
         scope.rCodeExe = function(){
-          var SEA = new RCodeExeService('r-code-exe',{});
+          var SEA = new RCodeExeService('r-code-exe',{code:"", title:"", desc:"", codeOnly:true, cmdCode:false, visualCode:false, result:""});
           var index = SECArray.addCnt(SEA);
           var courseCnt = angular.element(document.createElement('r-code-exe'));
-          courseCnt.attr('target',index);
+          courseCnt.attr('index',index);
           var el = $compile( courseCnt )(scope);
-          //wher e do you want to place the new element?
+          cnt.append(courseCnt);
+        }
+
+        scope.addDirectiveChallenge = function(){
+          var SEA = {type:'challenge', pre:"", sample:"", solution:"", sct:""};
+          var index = SECArray.addCnt(SEA);
+          var courseCnt = angular.element(document.createElement('challenge'));
+          courseCnt.attr('index',index);
+          courseCnt.attr('mode','edit');
+          var el = $compile( courseCnt )(scope);
           cnt.append(courseCnt);
         }
       }

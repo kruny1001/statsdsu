@@ -10,7 +10,7 @@
 angular.module('statsdsuApp')
   .factory('courseFactory', function (FBURL, $firebaseArray, $firebaseObject) {
 
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
 
     // Public API here
     return {

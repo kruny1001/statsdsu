@@ -385,7 +385,8 @@ module.exports = function (grunt) {
           {expand: true, cwd: '<%= yeoman.app %>', src: ['views/**'], dest: '<%= yeoman.dist %>'},
           {expand: true, cwd: '<%= yeoman.app %>', src: ['dImages/**'], dest: '<%= yeoman.dist %>'},
           {expand: true, cwd: '.tmp/images', dest: '<%= yeoman.dist %>/images', src: ['generated/*']},
-          {expand: true, cwd: '<%= yeoman.app %>', src: '3rd/**/*', dest: '<%= yeoman.dist %>'}
+          {expand: true, cwd: '<%= yeoman.app %>', src: '3rd/**/*', dest: '<%= yeoman.dist %>'},
+          {expand: true, cwd: '<%= yeoman.app %>', src: 'fonts/**/*', dest: '<%= yeoman.dist %>'}
         ]
       },
       styles: {
@@ -393,7 +394,8 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
+      },
+
     },
 
     // Run some tasks in parallel to speed up the build process

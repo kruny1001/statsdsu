@@ -9,39 +9,47 @@
   }
 </style>
 
-<md-content layout-padding class="main-container"
-            style="overflow-x: hidden; height: 100%;
-            padding: 24px; background-color: #1f253d; color: #203e54;">
+<md-content layout-padding class="main-container" style="overflow-x: hidden; height: 100%; background-color: #1f253d; color: #203e54;">
+  <div class="profile-container">
+    <div class="main-container">
+      <profile-header></profile-header>
+    </div>
+  </div>
 
   <div class="profile-container">
     <div class="main-container">
-
-      <profile-header></profile-header>
-
-      <div layout="row" layout-sm="column" layout-align="center center">
-        <div class="right-container profile-inner-container">
+      <div layout-gt-xs	="row" layout="column" layout-align="center center">
+        <div flex class="right-container profile-inner-container">
           <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
             <h2 class="titular">SIGN IN TO YOUR ACCOUNT</h2>
-            <div class="input-container">
-              <input type="text" placeholder="yourname@gmail.com" class="email text-input">
-              <div class="input-icon envelope-icon-acount"><span class="fontawesome-envelope scnd-font-color"></span></div>
-            </div>
-            <div class="input-container">
-              <input type="text" placeholder="Password" class="password text-input">
-              <div class="input-icon password-icon"><span class="fontawesome-lock scnd-font-color"></span></div>
-            </div>
-            <a class="sign-in button" >SIGN IN</a>
-            <p class="scnd-font-color">Forgot Password?</p>
             <a class="fb-sign-in">
-              <p><span class="fb-border" ng-click="oauthLogin('facebook')"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>
+              <p><span class="fb-border" ng-click="oauthLogin(facobookProvider)"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>
             </a>
+
+            <div ng-click="oauthLogin(facobookProvider)">
+              <a class="sign-in button" >SIGN IN</a>
+            </div>
+
+            <!--<div class="input-container">-->
+              <!--<input type="text" placeholder="yourname@gmail.com" class="email text-input">-->
+              <!--<div class="input-icon envelope-icon-acount"><span class="fontawesome-envelope scnd-font-color"></span></div>-->
+            <!--</div>-->
+            <!--<div class="input-container">-->
+              <!--<input type="text" placeholder="Password" class="password text-input">-->
+              <!--<div class="input-icon password-icon"><span class="fontawesome-lock scnd-font-color"></span></div>-->
+            <!--</div>-->
+            <!--<a class="sign-in button" >SIGN IN</a>-->
+            <!--<p class="scnd-font-color">Forgot Password?</p>-->
+            <!--<a class="fb-sign-in">-->
+              <!--<p><span class="fb-border" ng-click="oauthLogin(facobookProvider)"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>-->
+            <!--</a>-->
           </div>
         </div>
 
-        <div class="right-container profile-inner-container" style="margin-left:10px; width:100%;">
+        <div flex class="right-container profile-inner-container" style="margin-left:10px; width:100%;">
           <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
             <h2 class="titular">SDSU Statistics</h2>
-            <p> SDSU Statistics</p>
+            <p> 2016 Data Analytics Camp </p>
             <p> asdlkfja alskdfjalkj alksdfjklasdjf alksdjflksj d</p>
           </div>
         </div>

@@ -1,0 +1,7 @@
+{
+  "name": "STATSDSU",
+  "short_name": "STATSDSU",
+  "start_url": "dist/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

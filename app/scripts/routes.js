@@ -45,13 +45,27 @@ angular.module('statsdsuApp')
     $routeProvider.whenAuthenticated = function(path, route) {
       route.resolve = route.resolve || {};
       route.resolve.user = ['Auth', function(Auth) {
-        return Auth.$requireAuth();
+        return Auth.$requireSignIn();
       }];
       $routeProvider.when(path, route);
       SECURED_ROUTES[path] = true;
       return $routeProvider;
     };
   }])
+
+  .config(function (cloudinaryProvider,$routeProvider) {
+    var config = {
+      apiKey: "AIzaSyBQCKGekt4pvvBL0rLRzSpP_kjyx2I-O70",
+      authDomain: "statsdsu.firebaseapp.com",
+      databaseURL: "https://statsdsu.firebaseio.com",
+      storageBucket: "statsdsu.appspot.com",
+    };
+    firebase.initializeApp(config);
+    //   cloudinary setting
+    cloudinaryProvider
+      .set("cloud_name", "dbfirebase")
+      .set("upload_preset", "hb1c23iq");
+  })
 
   // configure views; whenAuthenticated adds a resolve method to ensure users authenticate
   // before trying to access that route
@@ -78,10 +92,6 @@ angular.module('statsdsuApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
-      .when('/start', {
-        templateUrl: 'views/start.html',
-        controller: 'StartCtrl'
-      })
       .when('/opencpu', {
         templateUrl: 'views/opencpu.html',
         controller: 'OpencpuCtrl'
@@ -106,10 +116,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/partials/coursedetail.html',
         controller: 'CoursedetailCtrl'
       })
-      .when('/admin', {
-        templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl'
-      })
+      //.when('/admin', {
+      //  templateUrl: 'views/admin.html',
+      //  controller: 'AdminCtrl'
+      //})
       .when('/resources', {
         templateUrl: 'views/resources.html',
         controller: 'ResourcesCtrl'
@@ -163,6 +173,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/createcontent.html',
         controller: 'CreatecontentCtrl'
       })
+      .whenAuthenticated('/createContent/:chapterId', {
+        templateUrl: 'views/createcontent.html',
+        controller: 'CreatecontentCtrl'
+      })
       .whenAuthenticated('/class/:id', {
         templateUrl: 'views/class.html',
         controller: 'ClassCtrl'
@@ -175,7 +189,7 @@ angular.module('statsdsuApp')
         templateUrl: 'views/chapter-detail.html',
         controller: 'ChapterDetailCtrl'
       })
-      .when('/material-list/:chapterId', {
+      .whenAuthenticated('/material-list/:chapterId', {
         templateUrl: 'views/material-list.html',
         controller: 'MaterialListCtrl'
       })
@@ -223,9 +237,50 @@ angular.module('statsdsuApp')
         templateUrl: 'views/super-blog-detail.html',
         controller: 'SuperBlogDetailCtrl'
       })
-      .when('/widgets', {
-        templateUrl: 'views/widgets.html',
-        controller: 'WidgetsCtrl'
+
+      .when('/super-editor-detail', {
+        templateUrl: 'views/super-editor-detail.html',
+        controller: 'SuperEditorDetailCtrl'
+      })
+      .when('/new-content', {
+        templateUrl: 'views/content-tool/new-content.html',
+        controller: 'NewContentCtrl'
+      })
+      .when('/new-content/:chapterId', {
+        templateUrl: 'views/content-tool/new-content.html',
+        controller: 'NewContentCtrl'
+      })
+      .when('/edit-content/:id', {
+        templateUrl: 'views/content-tool/edit-content.html',
+        controller: 'EditContentCtrl'
+      })
+      .when('/classList', {
+        templateUrl: 'views/classlist.html',
+        controller: 'ClasslistCtrl'
+      })
+      .when('/temp-user-list', {
+        templateUrl: 'views/temp-user-list.html',
+        controller: 'TempUserListCtrl'
+      })
+      .when('/test-image-upload', {
+        templateUrl: 'views/test-image-upload.html',
+        controller: 'TestImageUploadCtrl'
+      })
+      .when('/example', {
+        templateUrl: 'views/example.html',
+        controller: 'ExampleCtrl'
+      })
+      .when('/test-cld', {
+        templateUrl: 'views/test-cld.html',
+        controller: 'TestCldCtrl'
+      })
+      .when('/test-vote', {
+        templateUrl: 'views/test-vote.html',
+        controller: 'TestVoteCtrl'
+      })
+      .when('/test-vote-remote', {
+        templateUrl: 'views/test-vote-remote.html',
+        controller: 'TestVoteRemoteCtrl'
       })
       .otherwise({redirectTo: '/'});
   }])
@@ -239,7 +294,7 @@ angular.module('statsdsuApp')
   .run(['$rootScope', '$location', 'Auth', 'SECURED_ROUTES', 'loginRedirectPath',
     function($rootScope, $location, Auth, SECURED_ROUTES, loginRedirectPath) {
       // watch for login status changes and redirect if appropriate
-      Auth.$onAuth(check);
+      Auth.$onAuthStateChanged(check);
 
       // some of our routes may reject resolve promises with the special {authRequired: true} error
       // this redirects to the login page whenever that is encountered
@@ -261,5 +316,12 @@ angular.module('statsdsuApp')
     }
   ])
 
+  .run(['$rootScope', function($rootScope, FBURL, $firebaseObject){
+    var ref = firebase.database().ref().child('crntUrl');
+    //$rootScope.crntUrl = $firebaseObject(ref);
+    //console.log($rootScope.crntUrl);
+
+
+  }])
   // used by route security
   .constant('SECURED_ROUTES', {});

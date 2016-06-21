@@ -20,7 +20,7 @@ angular.module('statsdsuApp')
         //console.log($routeParams.id);
         scope.editable = false;
         var id = $routeParams.id
-        var postRef = new Firebase(FBURL + '/blogCnt/'+ id);
+        var postRef = firebase.database().ref().child('blogCnt/'+ id);
         scope.post = $firebaseObject(postRef);
         //scope.post.$loaded().then(function(val){
         //
@@ -33,7 +33,7 @@ angular.module('statsdsuApp')
           $location.path('edit/'+scope.post.$id);
         }
 
-        var cmtRef = new Firebase(FBURL+'/comments/'+$routeParams.id);
+        var cmtRef = firebase.database().ref().child('comments/'+$routeParams.id);
         var cmts = $firebaseArray(cmtRef);
         cmts.$loaded().then(function(data){
           console.log(data)

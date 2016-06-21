@@ -15,7 +15,7 @@ angular.module('statsdsuApp')
 
     $scope.editable = false;
     var id = $routeParams.id;
-    var postRef = new Firebase(FBURL + '/write/'+ id);
+    var postRef = firebase.database().ref().child('/write/'+ id);
 
     if(postRef){
       // Increment Number of Views
@@ -87,7 +87,7 @@ angular.module('statsdsuApp')
       $location.path('edit/'+$scope.post.$id);
     }
 
-    var cmtRef = new Firebase(FBURL+'/comments/'+$routeParams.id);
+    var cmtRef = firebase.database().ref().child('comments/'+$routeParams.id);
     var cmts = $firebaseArray(cmtRef);
     cmts.$loaded().then(function(data){
       console.log(data)

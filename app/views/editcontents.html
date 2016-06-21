@@ -1,56 +1,43 @@
+<style>
+    .ex-moved{color:red}
+</style>
 <div>
-    <md-content layout-padding style="background-color:white;">
-        <form name="userForm">
-            <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
-                <div flex-gt-sm="80">
-                    <p>
-                        <code>Material</code> is a content for each chapter. It can be multiple matierials within a chapter
-                    </p>
-                </div>
-                <md-input-container>
-                    <md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label>Name</label>
-                    <input md-maxlength="30" required name="name" ng-model="cnt.title" />
-                    <div class="hint" ng-if="showHints"> Write content's title </div>
-                    <!--<div ng-messages="userForm.name.$error" ng-if="!showHints">-->
-                        <!--<div ng-message="required">Name is required.</div>-->
-                        <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
-                    <!--</div>-->
-                </md-input-container>
-            </div>
-            <div layout-gt-sm="row">
-                <md-input-container class="md-block" flex-gt-sm>
-                    <label> Description </label>
-                    <input name="email" ng-model="cnt.description"
-                           required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-                    <div class="hint" ng-show="showHints"> Explain about the content </div>
-                    <div ng-messages="userForm.email.$error" ng-hide="showHints">
-                        <!--<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">-->
-                            <!--Your email must be between 10 and 100 characters long and look like an e-mail address.-->
-                        <!--</div>-->
-                    </div>
-                </md-input-container>
-                <style>
-                    /*
-                     * The Material demos system does not currently allow targeting the body element, so this
-                     * must go here in the HTML.
-                     */
-                    body[dir=rtl] .hint {
-                        right: 2px;
-                        left: auto;
-                    }
-                </style>
-            </div>
+    <md-content style="background-color:white;">
+        <div layout="row" style="background-color: #4db6ac">
+            <md-button ng-click="back()" class="md-fab" aria-label="Eat cake">
+                <md-icon md-svg-src="dImages/ionicIcons/android-arrow-back.svg"></md-icon>
+            </md-button>
+            <h3 class="md-title" style="color:white; padding-left:20px;"> Material Editor </h3>
             <md-button type="submit" ng-click="update(cnt)">Update Content</md-button>
-        </form>
+        </div>
+        <section style="background:white;" layout="row" layout-align="start start" layout-padding>
+            <form flex="70" style="width:100%; max-width: 800px" name="userForm">
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Name</label>
+                        <input required name="name" ng-model="cnt.title" />
+                        <div class="hint" ng-if="showHints"> Write content's title </div>
+                    </md-input-container>
+                </div>
+                <text-angular style="max-width: 800px;margin: 0 auto;padding: 20px;" ng-if="isChapter" ng-model="cnt.chapterContent"></text-angular>
+                <md-content>
 
+                    <md-content dragula='"test-bag"' dragula-model='cnt.cnt' class="content" style="
+                    width:800px; background:white; max-width:800px;  padding:20px;"></md-content>
 
-        <text-angular ng-model="cnt.htmlVariable"></text-angular>
-        <h1>Bound with ng-bind-html</h1>
-        <div ng-bind-html="cnt.htmlVariable"></div>
+                </md-content>
+            </form>
+            <span flex="5"></span>
+            <md-content flex="25" style="height: 500px; position:fixed; background-color:white;">
+                <md-content style="right: 10px;  background-color:white;">
+                    <super-editor content="cnt.cnt"></super-editor>
+                </md-content>
+                <se-photo></se-photo>
+                <md-content>
+                    <pre>{{cnt.cnt |json}}</pre>
+                </md-content>
+
+            </md-content>
+        </section>
     </md-content>
 </div>

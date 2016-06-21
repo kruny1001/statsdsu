@@ -10,13 +10,14 @@
 angular.module('statsdsuApp')
   .controller('WriteCtrl', function($scope, $location, FBURL, user,$firebaseObject, $firebaseArray, blogService){
 
-    var baseRef = new Firebase(FBURL);
+    var baseRef = firebase.database().ref()
     var authorName = $firebaseObject(baseRef.child('users/'+user.uid+'/name'));
 
     $scope.createNewContent = function(){
       var cnt = $('.editable').html();
       var title = $scope.docTitle;
-      var blogInfo = {title:title, views:0, likes: 0, dislikes: 0, name:authorName.$value, auth:user.uid, date: Firebase.ServerValue.TIMESTAMP};
+      var blogInfo = {title:title, views:0, likes: 0, dislikes: 0,
+        name:authorName.$value, auth:user.uid, date: firebase.database.ServerValue.TIMESTAMP};
       var blogCnt = {cnt:cnt};
       blogService.newItem(blogInfo, blogCnt);
     }

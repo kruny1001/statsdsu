@@ -9,7 +9,7 @@
  */
 angular.module('statsdsuApp')
   .controller('SuperBlogDetailCtrl', function ($scope, $compile, $routeParams, FBURL, $firebaseObject, SECArray, SECService) {
-    var ref = new Firebase(FBURL).child('materials-test').child($routeParams.id);
+    var ref = firebase.database().ref().child('materials-test').child($routeParams.id);
     var cnt = $firebaseObject(ref);
     var SEAs  = SECArray;
     SEAs.reset()
@@ -27,7 +27,7 @@ angular.module('statsdsuApp')
       cnt.forEach(function(val, index){
         if(val.type === 'editor-text'){
           console.log(index);
-          content.append("<md-content><editor-text mode='read' target='"+index+"'></editor-text></md-content>")
+          content.append("<md-content><editor-text-view mode='read' target='"+index+"'></editor-text-view></md-content>")
         } else if(val.type ==='graph'){
           content.append("<md-content><birds></birds></md-content>")
         } else if(val.type === 'code-terminal'){
@@ -41,7 +41,6 @@ angular.module('statsdsuApp')
           courseCnt.attr('target',index);
           content.append(courseCnt)
         }
-
       })
       $compile(content)($scope);
     }

@@ -118,3 +118,11 @@ body {
    }
  }
 
+
+
+.content{
+  & img{ margin:10px;}
+  & iframe{ margin:10px; height:500px;}
+  & md-content{background:white;}
+  p{margin:0px;}
+}

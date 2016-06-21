@@ -9,7 +9,7 @@
  */
 angular.module('statsdsuApp')
   .factory('FirebaseRefFactory', function($firebaseArray, FBURL){
-    var ref = new Firebase(FBURL);
+    var ref = firebase.database().ref()
     var targetRef;
 
     return {
