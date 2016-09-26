@@ -9,16 +9,17 @@
         </form>
         <md-grid-list
                 md-cols="2"
-                md-row-height="2:1"
+                md-row-height="1:2"
                 md-gutter="12px" md-gutter-gt-sm="8px" >
             <md-grid-tile class="gray" ng-repeat="photo in photos"
-                          md-rowspan="3" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-                <a cl-href="{{photo.public_id}}" format="jpg" target="_blank">
-                    <cl-image secure="true" style="width:100%;" public-id="{{photo.public_id}}" quality="100" format="jpg"/>
-                </a>
-                <md-grid-tile-footer>
-                    <button class="btn btn-danger" ng-click="deleteImg(photo.public_id)">삭제</button>
-                </md-grid-tile-footer>
+                          style="background:rgba(12, 0, 0, 0.63)"
+                          md-rowspan="1" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+                <!--<a cl-href="{{photo.id}}" format="jpg" target="_blank" style="height:inherit; width: inherit">-->
+                    <cl-image secure="true" style="width:100%;" public-id="{{photo.id}}" quality="100" format="jpg"/>
+                <!--</a>-->
+                <!--<md-grid-tile-footer>-->
+                    <!--<button class="btn btn-danger" ng-click="deleteImg(photo.public_id)">삭제</button>-->
+                <!--</md-grid-tile-footer>-->
             </md-grid-tile>
         </md-grid-list>
     </div>

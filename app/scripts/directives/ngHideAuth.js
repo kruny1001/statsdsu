@@ -8,7 +8,7 @@
  * to be initialized so there is no initial flashing of incorrect state.
  */
 angular.module('statsdsuApp')
-  .directive('ngHideAuth', ['Auth', '$timeout', function (Auth, $timeout) {
+  .directive('ngHideAuth', ['AuthApp', '$timeout', function (AuthApp, $timeout) {
     'use strict';
 
     return {
@@ -19,11 +19,11 @@ angular.module('statsdsuApp')
           // sometimes if ngCloak exists on same element, they argue, so make sure that
           // this one always runs last for reliability
           $timeout(function () {
-            el.toggleClass('ng-cloak', !!Auth.$getAuth());
+            el.toggleClass('ng-cloak', !!AuthApp.$getAuth());
           }, 0);
         }
 
-        Auth.$onAuthStateChanged(update);
+        AuthApp.$onAuthStateChanged(update);
         update();
       }
     };

@@ -7,7 +7,7 @@
  * Manages authentication to any active providers.
  */
 angular.module('statsdsuApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $q, Ref, $timeout) {
+  .controller('LoginCtrl', function ($scope, AuthApp, $location, $q, $timeout) {
 
     $scope.facobookProvider = new firebase.auth.FacebookAuthProvider();
     $scope.facobookProvider.addScope('email');
@@ -15,17 +15,17 @@ angular.module('statsdsuApp')
 
     $scope.oauthLogin = function(provider) {
       $scope.err = null;
-      Auth.$signInWithPopup(provider).then(redirect, showError);
+      AuthApp.$signInWithPopup(provider).then(redirect, showError);
     };
 
     $scope.anonymousLogin = function() {
       $scope.err = null;
-      Auth.$authAnonymously({rememberMe: true}).then(redirect, showError);
+      AuthApp.$authAnonymously({rememberMe: true}).then(redirect, showError);
     };
 
     $scope.passwordLogin = function(email, pass) {
       $scope.err = null;
-      Auth.$authWithPassword({email: email, password: pass}, {rememberMe: true}).then(
+      AuthApp.$authWithPassword({email: email, password: pass}, {rememberMe: true}).then(
         redirect, showError
       );
     };
@@ -39,17 +39,18 @@ angular.module('statsdsuApp')
         $scope.err = 'Passwords do not match';
       }
       else {
-        Auth.$createUser({email: email, password: pass})
+        AuthApp.$createUser({email: email, password: pass})
           .then(function () {
             // authenticate so we have permission to write to Firebase
-            return Auth.$authWithPassword({email: email, password: pass}, {rememberMe: true});
+            return AuthApp.$authWithPassword({email: email, password: pass}, {rememberMe: true});
           })
           .then(createProfile)
           .then(redirect, showError);
       }
 
       function createProfile(user) {
-        var ref = Ref.child('users/' + user.uid), def = $q.defer();
+
+        var ref = firebase.database().ref().child('users/' + user.uid), def = $q.defer();
         ref.set({email: email, name: firstPartOfEmail(email)}, function(err) {
           $timeout(function() {
             if( err ) {

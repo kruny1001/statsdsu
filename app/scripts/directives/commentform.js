@@ -31,13 +31,13 @@ angular.module('statsdsuApp')
     };
   });
 
-function commentFormCtrl($scope,notification, activityScore, $firebaseArray, FBURL, FirebaseRefFactory, $firebaseObject, Auth){
+function commentFormCtrl($scope,notification, activityScore, $firebaseArray, FBURL, FirebaseRefFactory, $firebaseObject, AuthApp){
 
   //var userAuthUid = new Firebase(FBURL).child('write').child($scope.target).child('auth');
   //console.log(userAuthUid);
 
   FirebaseRefFactory.setRef('comments');
-  var authData = Auth.$getAuth();
+  var authData = AuthApp.$getAuth();
   var commentRef= FirebaseRefFactory.getRef();
   var list = $firebaseArray(commentRef);
   list.$loaded(function(data){

@@ -24,7 +24,7 @@ angular.module('statsdsuApp')
     //Class
     $scope.createClass = function(){
       //Update User Info
-      $scope.class.instructor={uid: user.uid, provider: user.provider};
+      $scope.class.instructor={uid: user.uid};
       Class.create($scope.class);
     };
 
@@ -55,7 +55,7 @@ angular.module('statsdsuApp')
     $scope.createCourse = function(){
       var parentClassId = $scope.parentClass.$id;
       var parentClassTitle = $scope.parentClass.title;
-      $scope.course.instructor={uid: user.uid, provider: user.provider};
+      $scope.course.instructor={uid: user.uid};
       $scope.course.parentClass = {id:parentClassId, title:parentClassTitle};
       Course.create($scope.course);
     }

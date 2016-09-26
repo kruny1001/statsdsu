@@ -44,8 +44,8 @@ angular.module('statsdsuApp')
     // to hack it directly onto the $routeProvider object
     $routeProvider.whenAuthenticated = function(path, route) {
       route.resolve = route.resolve || {};
-      route.resolve.user = ['Auth', function(Auth) {
-        return Auth.$requireSignIn();
+      route.resolve.user = ['AuthApp', function(AuthApp) {
+        return AuthApp.$requireSignIn();
       }];
       $routeProvider.when(path, route);
       SECURED_ROUTES[path] = true;
@@ -92,58 +92,36 @@ angular.module('statsdsuApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
-      .when('/opencpu', {
-        templateUrl: 'views/opencpu.html',
-        controller: 'OpencpuCtrl'
-      })
-      .when('/pixi', {
-        templateUrl: 'views/pixi.html',
-        controller: 'PixiCtrl'
-      })
       .when('/menu', {
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
       })
-      .when('/intro', {
-        templateUrl: 'views/intro.html',
-        controller: 'IntroCtrl'
-      })
-      .when('/course', {
-        templateUrl: 'views/course.html',
-        controller: 'CourseCtrl'
-      })
+      //.when('/course', {
+      //  templateUrl: 'views/course.html',
+      //  controller: 'CourseCtrl'
+      //})
       .when('/course/:className', {
         templateUrl: 'views/partials/coursedetail.html',
         controller: 'CoursedetailCtrl'
       })
-      //.when('/admin', {
-      //  templateUrl: 'views/admin.html',
-      //  controller: 'AdminCtrl'
-      //})
-      .when('/resources', {
-        templateUrl: 'views/resources.html',
-        controller: 'ResourcesCtrl'
-      })
+
+
+
       .when('/editCourse/:sectionId/:idClass', {
         templateUrl: 'views/editcourse.html',
         controller: 'EditcourseCtrl'
       })
+
       .when('/userInfo/:user_id', {
         templateUrl: 'views/userinfo.html',
         controller: 'UserinfoCtrl'
       })
-      .whenAuthenticated('/write', {
-        templateUrl: 'views/write.html',
-        controller: 'WriteCtrl'
-      })
+
       .when('/notification', {
         templateUrl: 'views/notification.html',
         controller: 'NotificationCtrl'
       })
-      .whenAuthenticated('/read/:id', {
-        templateUrl: 'views/read.html',
-        controller: 'ReadCtrl'
-      })
+
       .whenAuthenticated('/edit/:id', {
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl'
@@ -152,22 +130,9 @@ angular.module('statsdsuApp')
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl'
       })
-      .when('/test-progress', {
-        templateUrl: 'views/test-progress.html',
-        controller: 'TestProgressCtrl'
-      })
-      .when('/profile', {
-        templateUrl: 'views/profile.html',
-        controller: 'ProfileCtrl'
-      })
       .when('/course', {
         templateUrl: 'views/course.html',
         controller: 'CourseCtrl'
-      })
-
-      .when('/cs/:id', {
-        templateUrl: 'views/cs.html',
-        controller: 'CsCtrl'
       })
       .whenAuthenticated('/createContent', {
         templateUrl: 'views/createcontent.html',
@@ -185,17 +150,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/course-detail.html',
         controller: 'CourseDetailCtrl'
       })
-      .when('/chapter-detail/:id', {
-        templateUrl: 'views/chapter-detail.html',
-        controller: 'ChapterDetailCtrl'
-      })
-      .whenAuthenticated('/material-list/:chapterId', {
+
+      .when('/material-list/:chapterId', {
         templateUrl: 'views/material-list.html',
         controller: 'MaterialListCtrl'
-      })
-      .when('/quizTest', {
-        templateUrl: 'views/quiztest.html',
-        controller: 'QuiztestCtrl'
       })
       .when('/editContents/:type/:id', {
         templateUrl: 'views/editcontents.html',
@@ -224,10 +182,6 @@ angular.module('statsdsuApp')
       .when('/super-editor-test', {
         templateUrl: 'views/super-editor-test.html',
         controller: 'SuperEditorTestCtrl'
-      })
-      .when('/test-class', {
-        templateUrl: 'views/test-class.html',
-        controller: 'TestClassCtrl'
       })
       .when('/super-blog-list', {
         templateUrl: 'views/super-blog-list.html',
@@ -262,14 +216,6 @@ angular.module('statsdsuApp')
         templateUrl: 'views/temp-user-list.html',
         controller: 'TempUserListCtrl'
       })
-      .when('/test-image-upload', {
-        templateUrl: 'views/test-image-upload.html',
-        controller: 'TestImageUploadCtrl'
-      })
-      .when('/example', {
-        templateUrl: 'views/example.html',
-        controller: 'ExampleCtrl'
-      })
       .when('/test-cld', {
         templateUrl: 'views/test-cld.html',
         controller: 'TestCldCtrl'
@@ -282,6 +228,39 @@ angular.module('statsdsuApp')
         templateUrl: 'views/test-vote-remote.html',
         controller: 'TestVoteRemoteCtrl'
       })
+      .when('/survey', {
+        templateUrl: 'views/survey.html',
+        controller: 'SurveyCtrl'
+      })
+      .when('/survey-result', {
+        templateUrl: 'views/survey-result.html',
+        controller: 'SurveyResultCtrl'
+      })
+
+      .when('/survey-result', {
+        templateUrl: 'views/survey-result.html',
+        controller: 'SurveyResultCtrl'
+      })
+      .when('/class', {
+        templateUrl: 'views/class.html',
+        controller: 'ClassCtrl'
+      })
+      .when('/classes', {
+        templateUrl: 'views/classes.html',
+        controller: 'ClassesCtrl'
+      })
+      .when('/class-edit', {
+        templateUrl: 'views/class-edit.html',
+        controller: 'ClassEditCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .when('/virtual-menus', {
+        templateUrl: 'views/virtual-menus.html',
+        controller: 'VirtualMenusCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
@@ -291,10 +270,10 @@ angular.module('statsdsuApp')
    * for changes in auth status which might require us to navigate away from a path
    * that we can no longer view.
    */
-  .run(['$rootScope', '$location', 'Auth', 'SECURED_ROUTES', 'loginRedirectPath',
-    function($rootScope, $location, Auth, SECURED_ROUTES, loginRedirectPath) {
+  .run(['$rootScope', '$location', 'AuthApp', 'SECURED_ROUTES', 'loginRedirectPath', '$mdDialog',
+    function($rootScope, $location, AuthApp, SECURED_ROUTES, loginRedirectPath, $mdDialog) {
       // watch for login status changes and redirect if appropriate
-      Auth.$onAuthStateChanged(check);
+      AuthApp.$onAuthStateChanged(check);
 
       // some of our routes may reject resolve promises with the special {authRequired: true} error
       // this redirects to the login page whenever that is encountered
@@ -316,12 +295,37 @@ angular.module('statsdsuApp')
     }
   ])
 
-  .run(['$rootScope', function($rootScope, FBURL, $firebaseObject){
+  .run( function($rootScope, $location, FBURL, $firebaseObject, Course, Chapter){
     var ref = firebase.database().ref().child('crntUrl');
-    //$rootScope.crntUrl = $firebaseObject(ref);
-    //console.log($rootScope.crntUrl);
 
+    $rootScope.crntPage = $firebaseObject(ref)
+    $rootScope.crntPage.$loaded().then(function(snap){
+      //snap.path = 'main'
+      //snap.$save();
+    })
 
-  }])
+    //$rootScope.targetApp = true;
+    //
+    //var courseDetail = /course-detail/;
+    //
+    //$rootScope.crntPage.$watch(function(val) {
+    //  console.log($rootScope.crntPage.path);
+    //  var targetPath = $rootScope.crntPage.path
+    //  if($rootScope.crntPage.path =='main')
+    //    targetPath = '';
+    //  if(courseDetail.test($rootScope.crntPage.path)){
+    //    //extract course information
+    //    var id = $rootScope.crntPage.path.split('/')[1]
+    //    console.log(id)
+    //    //id = '-KILYT7Qc0JNwE7GLmLL';
+    //    var courses = Course.getInfo(id);
+    //    console.log(courses)
+    //
+    //  }
+    //  if($rootScope.targetApp)
+    //    $location.path(targetPath)
+    //});
+
+  })
   // used by route security
   .constant('SECURED_ROUTES', {});

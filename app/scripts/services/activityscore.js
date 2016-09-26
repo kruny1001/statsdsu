@@ -8,8 +8,8 @@
  * Factory in the statsdsuApp.
  */
 angular.module('statsdsuApp')
-  .factory('activityScore', function (FBURL, $firebaseObject, Auth) {
-    var userAuth = Auth.$getAuth();
+  .factory('activityScore', function (FBURL, $firebaseObject, AuthApp) {
+    var userAuth = AuthApp.$getAuth();
     var ref = firebase.database().ref().child('actScore');
 
     // Public API here

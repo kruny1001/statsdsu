@@ -1,21 +1,87 @@
 <html>
 <head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
-
-    <script src="./app/3rd/datacamp/datacamp.js"></script>
-    <link rel='shortcut icon' type='image/x-icon' href='https://www.datacamp.com/assets/favicon.ico' />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="bower_components/leapjs/leap-0.6.4.js"></script>
+    <script>
+        $(document).ready(function() {
+            window.controller = new Leap.Controller({enableGestures: true});
+            var swiper = controller.gesture('swipe');
+            var tolerance = 50;
+            var cooloff = 300;
+            var x = 2, y = 2;
+            var updateHighlight = function() {
+                $('.grid div').removeClass('highlight');
+                $('.grid #d'+x+"_"+y).addClass('highlight');
+            }
+            var slider = _.debounce(function(xDir, yDir) {
+                x += xDir;
+                x = (x + 5) % 5;
+                y += yDir;
+                y = (y + 5) % 5;
+                console.log("x:"+x);
+                console.log("y:"+y);
+                console.log('.grid #d'+x+"_"+y);
+                updateHighlight();
+            }, cooloff);
+            swiper.update(function(g) {
+                if (Math.abs(g.translation()[0]) > tolerance || Math.abs(g.translation()[1]) > tolerance) {
+                    var xDir = Math.abs(g.translation()[0]) > tolerance ? (g.translation()[0] > 0 ? -1 : 1) : 0;
+                    var yDir = Math.abs(g.translation()[1]) > tolerance ? (g.translation()[1] < 0 ? -1 : 1) : 0;
+                    slider(xDir, yDir);
+                }
+            });
+            controller.connect();
+            updateHighlight();
+        })
+    </script>
+    <style>
+        .highlight {
+            border: 5px red solid !important;
+        }
+        #slide {
+            background-color:white;
+            float: left;
+            width: 100%;
+            height: 100%;
+        }
+        .grid div {
+            width: 100px;
+            height: 100px;
+            float: left;
+            border: 5px black solid;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h1>Test One Iframe with the R Language and encoded data</h1>
-    <div data-datacamp-exercise data-lang="r" data-height="300" data-encoded="true">eyJwcmVfZXhlcmNpc2VfY29kZSI6IiMgbm8gcGVjIiwic2N0IjoidGVzdF9vYmplY3QoXCJhXCIpXG50ZXN0X2Z1bmN0aW9uKFwicHJpbnRcIilcbnN1Y2Nlc3NfbXNnKFwiR3JlYXQgam9iIVwiKSIsInNvbHV0aW9uIjoiIyBDcmVhdGUgYSB2YXJpYWJsZSBhLCBlcXVhbCB0byA1XG5hIDwtIDVcblxuIyBQcmludCBvdXQgYVxucHJpbnQoYSkiLCJoaW50IjoiPHA%2BVXNlIHRoZSBhc3NpZ25tZW50IG9wZXJhdG9yICg8Y29kZT48LTwvY29kZT4pIHRvIGNyZWF0ZSB0aGUgdmFyaWFibGUgPGNvZGU%2BYTwvY29kZT4uPC9wPiIsInNhbXBsZSI6IiMgQ3JlYXRlIGEgdmFyaWFibGUgYSwgZXF1YWwgdG8gNVxuXG4jIFByaW50IG91dCBhXG4iLCJsYW5ndWFnZSI6InIifQ%3D%3D</div>
-    <div data-datacamp-exercise data-lang="python" data-height="400" data-encoded="true">eyJwcmVfZXhlcmNpc2VfY29kZSI6IiMgbm8gcGVjIiwic2N0IjoidGVzdF9vYmplY3QoXCJhXCIpXG50ZXN0X2Z1bmN0aW9uKFwicHJpbnRcIilcbnN1Y2Nlc3NfbXNnKFwiR3JlYXQgam9iIVwiKSIsInNvbHV0aW9uIjoiIyBDcmVhdGUgYSB2YXJpYWJsZSBhLCBlcXVhbCB0byA1XG5hID0gNVxuXG4jIFByaW50IG91dCBhXG5wcmludChhKSIsImhpbnQiOiJVc2UgdGhlIGFzc2lnbm1lbnQgb3BlcmF0b3IgKDxjb2RlPj08L2NvZGU%2BKSB0byBjcmVhdGUgdGhlIHZhcmlhYmxlIDxjb2RlPmE8L2NvZGU%2BLiIsInNhbXBsZSI6IiMgQ3JlYXRlIGEgdmFyaWFibGUgYSwgZXF1YWwgdG8gNVxuXG5cbiMgUHJpbnQgb3V0IGFcblxuXG4jIE1vcmUgY29tbWVudHNcblxuXG4jIE1vcmUgd2hpdGVzcGFjZVxuXG5cbiMgTW9yZSBldmVyeXRoaW5nXG5cbiIsImxhbmd1YWdlIjoicHl0aG9uIn0%3D</div>
-</div>
+<button onclick="controller.connection.enableGestures(true);">Enable Gestures</button>
+<button onclick="controller.connection.enableGestures(false);">Disable Gestures</button>
+<div class="grid">
+    <div id="d0_0"></div>
+    <div id="d1_0"></div>
+    <div id="d2_0"></div>
+    <div id="d3_0"></div>
+    <div id="d4_0"></div><br clear=both>
+    <div id="d0_1"></div>
+    <div id="d1_1"></div>
+    <div id="d2_1"></div>
+    <div id="d3_1"></div>
+    <div id="d4_1"></div><br clear=both>
+    <div id="d0_2"></div>
+    <div id="d1_2"></div>
+    <div id="d2_2"></div>
+    <div id="d3_2"></div>
+    <div id="d4_2"></div><br clear=both>
+    <div id="d0_3"></div>
+    <div id="d1_3"></div>
+    <div id="d2_3"></div>
+    <div id="d3_3"></div>
+    <div id="d4_3"></div><br clear=both>
+    <div id="d0_4"></div>
+    <div id="d1_4"></div>
+    <div id="d2_4"></div>
+    <div id="d3_4"></div>
+    <div id="d4_4"></div><br clear=both>
 </div>
 </body>
 </html>

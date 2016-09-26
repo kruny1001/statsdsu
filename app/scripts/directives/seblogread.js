@@ -7,7 +7,7 @@
  * # seBlogRead
  */
 angular.module('statsdsuApp')
-  .directive('seBlogRead', function ($sce, FBURL, Auth, $routeParams, $location, $firebaseObject, $firebaseArray) {
+  .directive('seBlogRead', function ($sce, FBURL, AuthApp, $routeParams, $location, $firebaseObject, $firebaseArray) {
     return {
       transclude: true,
       templateUrl: 'views/templates/seBlog/seBlogRead.html',
@@ -16,7 +16,7 @@ angular.module('statsdsuApp')
       },
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-        scope.authData = Auth.$getAuth();
+        scope.authData = AuthApp.$getAuth();
         //console.log($routeParams.id);
         scope.editable = false;
         var id = $routeParams.id

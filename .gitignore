@@ -5,3 +5,15 @@ dist
 .sass-cache
 bower_components
 .idea
+/surveyResult/
+/sh/
+/motion/
+/docker/
+/back/
+/.sass-cache/
+/.tmp/
+/.editorconfig
+/.firebaserc
+/.gitattributes
+/.yo-rc.json
+/codepen.md

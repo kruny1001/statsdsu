@@ -7,9 +7,16 @@
  * Provides rudimentary account management functions.
  */
 angular.module('statsdsuApp')
-  .controller('AccountCtrl', function ($scope, FBURL, $firebaseAuth, user, Auth, Ref, $firebaseObject, $timeout, $firebaseArray) {
+  .controller('AccountCtrl', function ($scope, $rootScope, FBURL, $firebaseAuth, user, AuthApp, $firebaseObject, $timeout, $firebaseArray) {
 
     var ref = firebase.database().ref();
+    $scope.crntPage = $firebaseObject(ref.child('crntUrl'));
+    $scope.crntPage.$loaded().then(function(snap){
+      snap.path = 'account'
+      snap.$save();
+    })
+
+
     $scope.authObj = $firebaseAuth();
 
     //var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6InVuaXF1ZUlkMSIsInNvbWUiOiJhcmJpdHJhcnkiLCJkYXRhIjoiaGVyZSJ9LCJpYXQiOjE0NDU2MjAxMjl9.iHlRzY3ncWsEsu_5ZiCohFfpY8-1XuFcm89WGnorGk8';
@@ -22,9 +29,10 @@ angular.module('statsdsuApp')
 
 
     $scope.user = user;
-    $scope.logout = function() { Auth.$signOut(); };
+    $scope.logout = function() { $scope.authObj.$signOut(); };
     $scope.messages = [];
-    var profile = $firebaseObject(Ref.child('users/'+user.uid));
+    var ref = firebase.database().ref();
+    var profile = $firebaseObject(ref.child('users/'+user.uid));
     console.log(profile);
     profile.$bindTo($scope, 'profile');
 
@@ -38,7 +46,7 @@ angular.module('statsdsuApp')
         error('Passwords do not match');
       }
       else {
-        Auth.$updatePassword({email: profile.email, oldPassword: oldPass, newPassword: newPass})
+        $scope.authObj.$updatePassword({email: profile.email, oldPassword: oldPass, newPassword: newPass})
           .then(function() {
             success('Password changed');
           }, error);
@@ -47,7 +55,7 @@ angular.module('statsdsuApp')
 
     $scope.changeEmail = function(pass, newEmail) {
       $scope.err = null;
-      Auth.$updateEmail({password: pass, newEmail: newEmail, oldEmail: profile.email})
+      $scope.authObj.$updateEmail({password: pass, newEmail: newEmail, oldEmail: profile.email})
         .then(function() {
           profile.email = newEmail;
           profile.$save();

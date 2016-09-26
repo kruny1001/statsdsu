@@ -3,6 +3,9 @@
 @import "font-awesome/scss/font-awesome.scss";
 // endbower
 
+
+@import "bourbon/bourbon";
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -125,4 +128,84 @@ body {
   & iframe{ margin:10px; height:500px;}
   & md-content{background:white;}
   p{margin:0px;}
+}
+
+
+.box{
+  border-radius: 40px;
+  border: 1px solid #2aa4b2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  height: 40px;
+  background-color: #8fdce5;
+  background-image: -webkit-linear-gradient(#8fdce5, #3dc3d1);
+  background-image: linear-gradient(#8fdce5, #3dc3d1);
+  width: 40px;
+
+  @include animation(scale 1.0s ease-in, slide 2.0s ease);
+
+  // The above outputs the same CSS as using independent, granular mixins.
+  @include animation-name(scale, slide);
+  @include animation-duration(2s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(infinite);
+}
+.box:hover {
+  // Animation shorthand works the same as the CSS3 animation shorthand
+  @include animation(scale 1.0s ease-in, slide 2.0s ease);
+
+  // The above outputs the same CSS as using independent, granular mixins.
+  @include animation-name(scale, slide);
+  @include animation-duration(2s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(infinite);
+}
+
+
+.container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.slogan {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 0;
+  margin: 0 auto;
+  padding: 2px 0 0;
+  font-family: 'Courier New', monospace;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-align: center;
+  border-right: 6px solid #27ae60;
+  @include animation-name(blink-start, typing, blink-end);
+  @include animation-duration(1s, 1s, 1s);
+  @include animation-timing-function(linear, steps(13, end), linear);
+  @include animation-iteration-count(1,1,infinite);
+  @include animation-delay(0s, 1s, 2s);
+  @include animation-fill-mode(forwards);
+
+  span {
+    display: block;
+    width: 260px;
+  }
+}
+
+@include keyframes(typing) {
+  from { width: 0; }
+  to   { width: 270px; }
+}
+
+@include keyframes(blink-start) {
+  from, to { border-color: #27ae60; }
+  50% { border-color: transparent; }
+}
+
+@include keyframes(blink-end) {
+  from, to { border-color: #27ae60; }
+  50% { border-color: transparent; }
 }

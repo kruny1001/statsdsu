@@ -1,0 +1,41 @@
+<md-content layout-padding class="main-container" style="overflow-x: hidden; height: 100%;
+          background-color: #1f253d; color: #203e54;">
+    <div class="profile-container">
+        <div class="main-container">
+            <profile-header></profile-header>
+        </div>
+    </div>
+    <md-content>
+        <pre>{{crntPage.path}}</pre>
+
+        <div ng-if="crntPage.path =='main'">
+            <p>Main</p>
+            <md-button ng-click="changePath('course-detail/-KIMnC0W_09BA9RQrjmq')"> Class </md-button>
+            <md-button ng-click="changePath('about')"> About </md-button>
+            <md-button ng-click="changePath('account')"> Account </md-button>
+        </div>
+
+        <div ng-if="crntPage.path =='about'">
+            <p>Main</p>
+            <md-button ng-click="changePath()"> Class </md-button>
+            <md-button ng-click="changePath('main')"> Main </md-button>
+            <md-button ng-click="changePath('account')"> Account </md-button>
+        </div>
+
+        <div ng-if="crntPage.path =='account'">
+            <p>Account</p>
+            <md-button ng-click="changePath()"> Class </md-button>
+            <md-button ng-click="changePath('main')"> Main </md-button>
+            <md-button ng-click="changePath('about')"> About </md-button>
+        </div>
+
+        <div ng-if="crntPage.path =='classList'">
+            <p>Class list</p>
+
+        </div>
+
+        <div ng-if="crntPage.path =='materials'">
+            <p>Materials</p>
+        </div>
+    </md-content>
+</md-content>

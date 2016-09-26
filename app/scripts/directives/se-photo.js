@@ -7,13 +7,20 @@
  * # sePhoto
  */
 angular.module('statsdsuApp')
-  .directive('sePhoto', function ($http,$timeout,
+  .directive('sePhoto', function ($http,$timeout,$firebaseArray,
                                   $rootScope, $routeParams, $location, Upload, cloudinary, IMGTAG) {
     return {
       templateUrl: 'views/templates/superEditor/se-photo.html',
+      scope:{
+        docId:'='
+      },
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
 
+
+        console.log(scope.docId)
+        var photoRef = firebase.database().ref('materials/'+scope.docId+'/photos');
+        scope.photos = $firebaseArray(photoRef)
 
         var database = firebase.database();
         scope.uploadFiles = function(files){
@@ -25,7 +32,7 @@ angular.module('statsdsuApp')
                 url: "https://api.cloudinary.com/v1_1/" + cloudinary.config().cloud_name + "/upload",
                 data: {
                   upload_preset: cloudinary.config().upload_preset,
-                  tags: IMGTAG,
+                  tags: scope.docId,
                   context: 'photo=' + scope.title,
                   file: file
                 }
@@ -34,9 +41,7 @@ angular.module('statsdsuApp')
                 file.status = "업로딩 : " + file.progress + "%";
               }).success(function (data, status, headers, config) {
                 console.log(data);
-                database.ref('public_ids/' + data.public_id).set({
-                  value:true
-                });
+                scope.photos.$add({id: data.public_id, orginalName: data.original_filename})
                 file.status = "업로드 완료!";
                 file.result = data;
               }).error(function (data, status, headers, config) {
@@ -45,18 +50,6 @@ angular.module('statsdsuApp')
             }
           });
         };
-
-
-
-        firebase.database().ref('public_ids').on('value',function(snapshot){
-          scope.photos = [];
-          snapshot.forEach(function(childSnapshot){
-            scope.photos.push({'public_id':childSnapshot.key});
-          });
-          $timeout(function(){
-            console.log("UPDATE ANGULAR UI");
-          });
-        });
 
         scope.deleteImg = function(public_id){
           $http.post('/delete',{'public_id' : public_id}).success(function(data,status){

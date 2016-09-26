@@ -48,10 +48,11 @@ angular.module('statsdsuApp')
         }
 
         scope.addDirectiveCode = function(){
-          var SEA = new SECService('code-terminal','','');
+          var SEA = new SECService('iframe-module','','');
           var index = SECArray.addCnt(SEA);
-          var codeEditor = angular.element('<md-content><code-terminal></code-terminal></md-content>')
+          var codeEditor = angular.element('<md-content><iframe-module mode="edit" target='+index+'></iframe-module></md-content>')
           codeEditor = $compile(codeEditor)(scope);
+
           cnt.append(codeEditor);
         }
 
@@ -82,7 +83,7 @@ angular.module('statsdsuApp')
         }
 
         scope.rCodeExe = function(){
-          var SEA = new RCodeExeService('r-code-exe',{code:"", title:"", desc:"", codeOnly:true, cmdCode:false, visualCode:false, result:""});
+          var SEA = new RCodeExeService('r-code-exe',{code:"", title:"", desc:"", codeOnly:false, cmdCode:true, visualCode:false, result:""});
           var index = SECArray.addCnt(SEA);
           var courseCnt = angular.element(document.createElement('r-code-exe'));
           courseCnt.attr('index',index);
@@ -96,6 +97,15 @@ angular.module('statsdsuApp')
           var courseCnt = angular.element(document.createElement('challenge'));
           courseCnt.attr('index',index);
           courseCnt.attr('mode','edit');
+          var el = $compile( courseCnt )(scope);
+          cnt.append(courseCnt);
+        }
+
+        scope.addDirectiveSurvey = function(){
+          var SEA = {type:'survey', year:'2016'};
+          var index = SECArray.addCnt(SEA);
+          var courseCnt = angular.element(document.createElement('se-survey'));
+          courseCnt.attr('index',index);
           var el = $compile( courseCnt )(scope);
           cnt.append(courseCnt);
         }

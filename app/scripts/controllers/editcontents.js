@@ -8,11 +8,14 @@
  * Controller of the statsdsuApp
  */
 angular.module('statsdsuApp')
-  .controller('EditcontentsCtrl', function ($scope, $compile, $routeParams,$window, $firebaseObject, FBURL, dragulaService, SECArray) {
+  .controller('EditcontentsCtrl', function ($scope, $compile, $routeParams,$window, $firebaseObject, Chapter, FBURL, dragulaService, SECArray) {
     $scope.showHints = true;
     $scope.back = function(){
       $window.history.back();
     }
+    var chapter= Chapter.getChapter($routeParams.id);
+    console.log(chapter)
+
     var type = $routeParams.type;
     var id = $routeParams.id;
     var ref;

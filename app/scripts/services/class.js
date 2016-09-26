@@ -20,6 +20,8 @@ angular.module('statsdsuApp')
         var newClassRef = classRef.push();
         classObj.pubStatus = true;
         classObj.createdAt = firebase.database.ServerValue.TIMESTAMP
+
+        console.log(classObj);
         newClassRef.set(classObj);
       },
       update: function(id, classObj){

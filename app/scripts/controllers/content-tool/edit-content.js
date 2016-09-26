@@ -9,10 +9,9 @@
  */
 angular.module('statsdsuApp')
   .controller('EditContentCtrl', function ($scope, $window, $compile, $routeParams, $firebaseObject, SECArray, dragulaService) {
-    //var ref = firebase.database().ref().child('materials').child($routeParams.id);
-    //$scope.cnt = $firebaseObject(ref);
     //Get SEC object
     SECArray.reset()
+    $scope.docId = $routeParams.id
     $scope.cnt = SECArray.readContentFromFirebase($routeParams.id)
     $scope.cnt.$loaded(function(){
       $scope.contestFromSECs = SECArray.getCnt();
@@ -23,7 +22,6 @@ angular.module('statsdsuApp')
 
     dragulaService.options($scope, 'test-bag', {
       drop: function (el, source, handle, sibling) {
-        //console.log(el, source);
         return true; // elements are always draggable by default
       },
       removeOnSpill: true
@@ -44,7 +42,17 @@ angular.module('statsdsuApp')
           container.append(courseCnt)
           content.append(container)
             //"<editor-text-view ng-cloack mode='edit' target='val' index='"+index+"'></editor-text-view></md-content>")
-        } else if(val.type ==='graph'){
+        } else if(val.type ==='iframe-module'){
+          var container = angular.element(document.createElement('md-content'))
+          container.attr('dragular','test-bag');
+          container.attr('dragula-model','val');
+          var courseCnt = angular.element(document.createElement('iframe-module'));
+          courseCnt.attr('mode', 'edit');
+          courseCnt.attr('target', index);
+          container.append(courseCnt)
+          content.append(container)
+        }
+        else if(val.type ==='graph'){
           content.append("<md-content dragula='test-bag'><birds></birds></md-content>")
         } else if(val.type === 'code-terminal'){
           content.append("<md-content dragula='test-bag'><code-terminal></code-terminal></md-content>")

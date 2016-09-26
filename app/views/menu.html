@@ -8,15 +8,23 @@
         height: 200px;
     }
 </style>
-<md-content layout-padding class="main-container"
-                             style="overflow-x: hidden; height: 100%;
+<md-content layout-padding class="main-container" style="overflow-x: hidden; height: 100%;
           background-color: #1f253d; color: #203e54;">
+
     <div class="profile-container">
         <div class="main-container">
             <profile-header></profile-header>
         </div>
     </div>
-    <div class='menu-box' style="color:black; background: #ffd22e;">
+
+
+    <div class="container">
+        <p class="slogan"><span>Hello world.</span></p>
+    </div>
+
+    <div id="run-demo" class="box"></div>
+
+    <div class='menu-box' style="margin-top: 8px; color:black; background: #ffd22e;">
         <div layout="column" layout-align="center center" layout-padding>
             <div ng-class="{'md-display-1':xsScreen, 'md-display-3':!xsScreen, }">Data Analytics Camp</div>
             <div ng-class="{'md-title':xsScreen, 'md-display-1':!xsScreen, }" style="    padding-top: 0px;padding-left: 8px;">for High School Students</div>
@@ -66,7 +74,7 @@
     <!--<div class='menu-box' style="background: #4ea4eb;">-->
         <!--<div layout="column" layout-align="center center" layout-padding>-->
             <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">-->
-                <!--<a href="#/class/-KAqMQ4NHiq9wQYUD43a">Day 1</a>-->
+                <!--<a href="#/survey" style="text-decoration: none; color:white;">SURVEY</a>-->
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
@@ -75,7 +83,7 @@
     <!--<div class='menu-box' style="background: #e394eb;">-->
         <!--<div layout="column" layout-align="center center" layout-padding>-->
             <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">-->
-                <!--Day 2-->
+                <!--<a href="#/about" style="text-decoration: none; color:white;">About</a>-->
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
@@ -86,5 +94,11 @@
             <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">Day 3</div>-->
         <!--</div>-->
     <!--</div>-->
+
     <br>
+
+
+    <div class='menu-box'>
+        <footer-stat></footer-stat>
+    </div>
 </md-content>

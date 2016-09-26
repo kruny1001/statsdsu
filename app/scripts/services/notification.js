@@ -8,9 +8,9 @@
  * Factory in the statsdsuApp.
  */
 angular.module('statsdsuApp')
-  .factory('notification', function (FBURL, $firebaseArray, $firebaseObject, Auth) {
+  .factory('notification', function (FBURL, $firebaseArray, $firebaseObject, AuthApp) {
 
-    var userAuth = Auth.$getAuth();
+    var userAuth = AuthApp.$getAuth();
     var ref = firebase.database().ref().child('notification');
 
     // Public API here

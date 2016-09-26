@@ -8,21 +8,21 @@
  */
 
 angular.module('statsdsuApp')
-  .directive('rCodeExe', function (rpcFactory, activityScore, SECArray, SECService) {
+  .directive('rCodeExe', function ($timeout, rpcFactory, activityScore, SECArray, SECService) {
     return {
       templateUrl: 'views/templates/superEditor/r-code-exe.html',
-      scope: {target: '@', mode:'@', cnt:'=', index:'@'},
+      scope: {target: '@', mode:'@', cnt:'=', index:'@', code:'='},
       restrict: 'E',
       replace: true,
       link: {
         pre: function preLink(scope, element, attrs){
           var number =false;
-          var theme = 'ambiance';
+          var theme = 'chrome';
           //Read Content
           scope.SEC = scope.cnt; // SECArray.getElement(scope.index);
           if(scope.SEC.codeOnly !== undefined)
           {
-            number = true;
+            number = false;
             theme = 'chrome'
           }
           scope.aceOption =  {
@@ -35,60 +35,63 @@ angular.module('statsdsuApp')
             mode: 'r',
             onLoad: function (_ace) {
               //console.log(element);
-              _ace.renderer.setScrollMargin(10, 0)
+              _ace.renderer.setScrollMargin(10, 10)
               _ace.$blockScrolling =Infinity;
-              if(scope.SEC.codeOnly)
+              if(scope.SEC.codeOnly && scope.mode != 'edit')
                 _ace.setReadOnly(true);
-              _ace.focus();
-
               //var Range = ace.require('ace/range').Range;
               //_ace.getSession().addMarker(new Range(0, 5, 0, 16),"warning", "text");
 
-              //if(_ace.getSession().getScreenLength() == 0){
-              //  console.log('No Code')
-              //
-              //  var newHeight =
-              //    1 * _ace.renderer.lineHeight + _ace.renderer.scrollBar.getWidth() +20;
-              //  element.find('.course-ui-ace ').height((newHeight).toString() + "px");
-              //  console.log('target');
-              //  _ace.resize();
-              //}else{
-              //  console.log('Code')
-              //  var newHeight =
-              //    (_ace.getSession().getScreenLength() + 1)
-              //    * _ace.renderer.lineHeight
-              //    + _ace.renderer.scrollBar.getWidth();
-              //  console.log(newHeight);
-              //  element.find('.course-ui-ace ').height((newHeight).toString() + "px");
-              //  _ace.resize();
-              //}
+              if(_ace.getSession().getScreenLength() == 0){
+                //console.log('No Code')
+
+                var newHeight =
+                  1 * _ace.renderer.lineHeight + _ace.renderer.scrollBar.getWidth() +20;
+                element.find('.course-ui-ace ').height((newHeight).toString() + "px");
+                //console.log('target');
+                _ace.resize();
+              }else{
+                //console.log('Code')
+                //var newHeight =
+                //  //(_ace.getSession().getScreenLength() + 1)
+                //  (scope.SEC.code.split(/\r\n|\r|\n/).length)
+                //  * 16
+                //  + _ace.renderer.scrollBar.getWidth() +30;
+                //console.log(_ace.getSession().getScreenLength(), _ace.renderer.lineHeight, _ace.renderer.scrollBar.getWidth())
+                //console.log(newHeight);
+                //element.find('.course-ui-ace ').height((newHeight).toString() + "px");
+                ////_ace.resize();
+              }
             },
             onChange: function(_ace) {
+              //console.log("onChange")
               var newHeight =
-                _ace[1].getSession().getScreenLength()
-                * _ace[1].renderer.lineHeight
-                + _ace[1].renderer.scrollBar.getWidth()+ 20;
+                (_ace[1].getSession().getScreenLength()+1)
+                //* _ace[1].renderer.lineHeight
+                * 16
+                + _ace[1].renderer.scrollBar.getWidth() + 16;
 
-
+              //console.log(_ace[1].getSession().getScreenLength(), _ace[1].renderer.lineHeight, _ace[1].renderer.scrollBar.getWidth())
               element.find('.course-ui-ace').height(newHeight.toString() + "px");
               element.find('.ace_content').height(newHeight.toString() + "px");
-
-              _ace[1].resize(true);
+              //_ace[1].resize();
+              //_ace[1].resize(true);
             }
           }
         },
         post: function postLink(scope, element, attrs) {
-
           scope.tool = true;
           scope.activate = false;
           scope.isRunning =false;
+          scope.success = false;
           if(scope.SEC.result === undefined)
             scope.SEC.result = null;
+          //scope.SEC.graphOnly = false;
           scope.SEC.result = null;
 
           scope.deleteElement = function(){
             SECArray.removeElement(scope.SEC.uid)
-            console.log(SECArray.getCnt())
+            //console.log(SECArray.getCnt())
             element.empty();
             scope.$destroy();
           }
@@ -126,7 +129,6 @@ angular.module('statsdsuApp')
             });
           }
 
-
           scope.runOpenCpu = function (ele) {
             scope.isRunning =true;
             //alert(ele.code);
@@ -152,7 +154,6 @@ angular.module('statsdsuApp')
                   ele.result = consoleVal;
                 }
               });
-
               output.getConsole( function(val){
                 console.log('getConsole')
                 // break the textblock into an array of lines
@@ -172,30 +173,14 @@ angular.module('statsdsuApp')
                   ele.result = consoleVal;
                 }
               } )
-
               //console.log(output.getKey());
               //ele.result = output.value;
-
               scope.$digest();
             });
-
             req.success(function(session){
+              scope.success = true;
               console.log(session);
-
-
-
               var result = [];
-              //_.forEach(session.split('\n'), function(item) {
-              //  if(_.includes(item, 'graphics'))
-              //    result.push(item)
-              //})
-              //ele.graphics = result;
-              //if(result.length >0 ){
-              //  ele.result = "dd"
-              //  ele.visualCode = true;
-              //  scope.exePlot(scope.SEC);
-              //}
-
             })
             //if R returns an error, alert the error message
             req.fail(function () {
@@ -216,30 +201,26 @@ angular.module('statsdsuApp')
           scope.exePlot = function (ele) {
             scope.isRunning =true;
             ocpu.seturl("//kruny1001.ocpu.io/rRemoteSDSU/R");
-            var ticker = $("#ticker").val();
+            scope.success = true;
             //console.log(console.log(element[0].querySelector('.plotdiv')))
             var req = $(element[0].querySelector('.plotdiv')).rplot("runSrc", {
               text: ele.code
             })
-            //optional: add custom callbacks
-            //console.log(req);
             req.success(function(session){
-              console.log(session);
               scope.isRunning =false;
+              scope.$digest();
             })
             req.fail(function () {
+              scope.success = false;
               alert("R returned an error: " + req.responseText);
             });
           }
+          if(scope.SEC.graphOnly){
 
-          scope.checkRecord = function () {
-            //console.log(scope.target);
-            //console.log(materials);
-            //console.log(challenge);
-          }
+            $timeout(function(){
+              scope.exePlot(scope.SEC);
+            })
 
-          if(scope.SEC.visualCode){
-            //scope.exePlot(scope.SEC);
           }
         }
       }
