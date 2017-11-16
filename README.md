@@ -22,3 +22,7 @@ firebaseArray
 Show Chapters and Materials under Course (course-detail view)
 
 docker run -d -P --name rstatsdsu -v /opt/webapp:ro kruny1001/rstatsdsu
+
+### rebuild rRemuteSDSU 
+regenerate roxygen document in order to genearte namespace 
+push repository 

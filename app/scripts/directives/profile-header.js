@@ -11,7 +11,7 @@
 angular.module('statsdsuApp')
   .directive('profileHeader', function (AuthApp, $location) {
     return {
-      templateUrl: 'views/templates/profile/header.html',
+      templateUrl: 'views/templates/profile/profile-header.html',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.logout = function() { AuthApp.$signOut(); };

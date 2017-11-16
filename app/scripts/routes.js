@@ -261,6 +261,10 @@ angular.module('statsdsuApp')
         templateUrl: 'views/virtual-menus.html',
         controller: 'VirtualMenusCtrl'
       })
+      .when('/instructor', {
+        templateUrl: 'views/instructor/instructor.html',
+        controller: 'InstructorCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

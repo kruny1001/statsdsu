@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name statsdsuApp.controller:AboutCtrl
+ * @name statsdsuApp.controller:InstructorCtrl
  * @description
- * # AboutCtrl
+ * # InstructorCtrl
  * Controller of the statsdsuApp
  */
 angular.module('statsdsuApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('InstructorCtrl', function ($scope) {
 
   });
