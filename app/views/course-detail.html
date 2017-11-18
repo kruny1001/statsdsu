@@ -1,28 +1,24 @@
-<!--
-10/1 remove style
--->
 <md-content layout-padding class="main-container ge-lab-style">
-    <div class="profile-container">
-        <div class="main-container">
-            <profile-header></profile-header>
-        </div>
+  <div class="profile-container">
+    <div class="main-container">
+      <profile-header></profile-header>
     </div>
-    <section class="course-detail">
-        <md-content layout-padding>
-            <section>
-                <div class="md-display-1"> {{courseInfo.title}} <span class="md-caption"><a>Edit</a></span></div>
-                <div layout="row">
-                    <div class="md-caption course-detail-description-menu"> <strong>Instructor:</strong> {{author.name}}</div> <div class="md-caption"><strong>Class:</strong> {{courseInfo.parentClass.title}}</div>
-                </div>
-                <div class="md-body-1"> {{courseInfo.description}}</div>
-                <hr style="margin-top:10px; margin-bottom:2px;"/>
-            </section>
-        </md-content>
-
-    <!--<md-button ng-click="recover()"> recover </md-button>-->
-        <md-content style="    overflow-y: hidden;">
+  </div>
+  <section class="course-detail">
+      <md-content layout-padding>
+        <section>
+          <div class="md-display-1"> {{courseInfo.title}} <span class="md-caption"><a>Edit</a></span></div>
+          <div layout="row">
+            <div class="md-caption course-detail-description-menu"> <strong>Instructor:</strong> {{author.name}}</div> <div class="md-caption"><strong>Class:</strong> {{courseInfo.parentClass.title}}</div>
+          </div>
+          <div class="md-body-1"> {{courseInfo.description}}</div>
+          <hr style="margin-top:10px; margin-bottom:2px;"/>
+        </section>
+      </md-content>
+      <!--<md-button ng-click="recover()"> recover </md-button>-->
+      <md-content style="    overflow-y: hidden;">
             <!-- Admin menu -->
-            <section ng-if="auth.Role === 'admin'">
+        <section ng-if="auth.Role === 'admin'">
                 <div ng-show-auth style="margin-left:8px; margin-right:8px; border: 2px solid gray;">
                     <md-toolbar class="md-menu-toolbar" style="min-height: 32px;">
                         <div layout="row">
@@ -121,74 +117,74 @@
                                     </md-menu-content>
                                 </md-menu>
                                 <md-menu>
-                                    <button ng-click="$mdOpenMenu()">
-                                        View
-                                    </button>
-                                    <md-menu-content>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.printLayout">Print layout</md-menu-item>
-                                        <md-menu-item class="md-indent">
-                                            <md-menu>
-                                                <md-button ng-click="$mdOpenMenu()">Mode</md-button>
-                                                <md-menu-content width="3">
-                                                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'presentation'">Presentation</md-menu-item>
-                                                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'edit'">Edit</md-menu-item>
-                                                    <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'modifiable'">Modifiable</md-menu-item>
-                                                </md-menu-content>
-                                            </md-menu>
-                                        </md-menu-item>
-                                        <md-menu-divider></md-menu-divider>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.showRuler">Show ruler</md-menu-item>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.showEquationToolbar">Show equation toolbar</md-menu-item>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.showSpellingSuggestions">Show spelling suggestions</md-menu-item>
-                                        <md-menu-divider></md-menu-divider>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.compactControls">Compact controls</md-menu-item>
-                                        <md-menu-item type="checkbox" ng-model="ctrl.settings.fullScreen">Full screen</md-menu-item>
-                                    </md-menu-content>
+                                  <button ng-click="$mdOpenMenu()">
+                                      View
+                                  </button>
+                                  <md-menu-content>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.printLayout">Print layout</md-menu-item>
+                                    <md-menu-item class="md-indent">
+                                      <md-menu>
+                                        <md-button ng-click="$mdOpenMenu()">Mode</md-button>
+                                        <md-menu-content width="3">
+                                          <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'presentation'">Presentation</md-menu-item>
+                                          <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'edit'">Edit</md-menu-item>
+                                          <md-menu-item type="radio" ng-model="ctrl.settings.presentationMode" value="'modifiable'">Modifiable</md-menu-item>
+                                        </md-menu-content>
+                                      </md-menu>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.showRuler">Show ruler</md-menu-item>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.showEquationToolbar">Show equation toolbar</md-menu-item>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.showSpellingSuggestions">Show spelling suggestions</md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.compactControls">Compact controls</md-menu-item>
+                                    <md-menu-item type="checkbox" ng-model="ctrl.settings.fullScreen">Full screen</md-menu-item>
+                                  </md-menu-content>
                                 </md-menu>
                                 <md-menu>
-                                    <button ng-click="$mdOpenMenu()">
-                                        Format
-                                    </button>
-                                    <md-menu-content>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('bold', $event)">
-                                                Bold
-                                                <span class="md-alt-text"> {{ 'M-B' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('italic', $event)">
-                                                Italic
-                                                <span class="md-alt-text">{{ 'M-I' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('underline', $event)">
-                                                Underline
-                                                <span class="md-alt-text">{{ 'M-U' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('strikethrough', $event)">
-                                                Strikethrough
-                                                <span class="md-alt-text">{{ 'A-S-5' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('superscript', $event)">
-                                                Superscript
-                                                <span class="md-alt-text">{{ 'M-.' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-item>
-                                            <md-button ng-click="ctrl.sampleAction('subscript', $event)">
-                                                Subscript
-                                                <span class="md-alt-text">{{ 'M-,' | keyboardShortcut }}</span>
-                                            </md-button>
-                                        </md-menu-item>
-                                        <md-menu-divider></md-menu-divider>
-                                        <md-menu-item><md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button></md-menu-item>
-                                    </md-menu-content>
+                                  <button ng-click="$mdOpenMenu()">
+                                      Format
+                                  </button>
+                                  <md-menu-content>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('bold', $event)">
+                                              Bold
+                                              <span class="md-alt-text"> {{ 'M-B' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('italic', $event)">
+                                              Italic
+                                              <span class="md-alt-text">{{ 'M-I' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('underline', $event)">
+                                              Underline
+                                              <span class="md-alt-text">{{ 'M-U' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('strikethrough', $event)">
+                                              Strikethrough
+                                              <span class="md-alt-text">{{ 'A-S-5' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('superscript', $event)">
+                                              Superscript
+                                              <span class="md-alt-text">{{ 'M-.' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="ctrl.sampleAction('subscript', $event)">
+                                              Subscript
+                                              <span class="md-alt-text">{{ 'M-,' | keyboardShortcut }}</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-divider></md-menu-divider>
+                                      <md-menu-item><md-button ng-click="ctrl.toggleSetting('clearFormatting')">Clear Formatting</md-button></md-menu-item>
+                                  </md-menu-content>
                                 </md-menu>
                             </md-menu-bar>
                         </div>
@@ -201,59 +197,51 @@
                     <!--<div class="md-raised" href="">Delete</div>-->
                     <!--</div>-->
                 </div>
-
-
-                <!--<md-button ng-click="debug = !debug" ng-init="debug=false;"> Edit </md-button>-->
-                <md-content layout="row" ng-show="debug">
-                    <div flex="50">
-                        <md-button ng-click="updateOrder()"> Save </md-button>
-                        <div ng-cloak dragula='"bag-one"' dragula-model="chapterList">
-                            <div ng-repeat="ch in chapterList">
-                                <p> {{ ch.title }} </p>
-                                <!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
-                            </div>
-                        </div>
+              <!--<md-button ng-click="debug = !debug" ng-init="debug=false;"> Edit </md-button>-->
+              <md-content layout="row" ng-show="debug">
+                <div flex="50">
+                  <md-button ng-click="updateOrder()"> Save </md-button>
+                  <div ng-cloak dragula='"bag-one"' dragula-model="chapterList">
+                    <div ng-repeat="ch in chapterList">
+                      <p> {{ ch.title }} </p>
+                      <!--<md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>-->
                     </div>
-                    <div flex="50">
-                        <pre>{{courseInfo | json}}</pre>
-                    </div>
-                </md-content>
+                  </div>
+                </div>
+                <div flex="50">
+                  <pre>{{courseInfo | json}}</pre>
+                </div>
+              </md-content>
             </section>
+      <!-- Course Chapter List -->
+      <md-grid-list
+          style="margin:8px"
+          md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="3"
+          md-row-height-gt-md="1:1" md-row-height="3:2" md-row-height-xs="2:1"
+          md-gutter="4px" md-gutter-gt-sm="5px">
+        <md-grid-tile dragular="'chapter-bag'" dragula-model="ch" ng-repeat="ch in chapterList">
+          <md-card style="height:100%;" class="chapterCard" flex ng-click="goToChapter(ch.$id)">
+            <md-card-header>
+                <md-card-avatar><img src="dImages/Rlogo.png"/></md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{courseInfo.title}}</span>
+                    <span class="md-subhead">{{ch.createdAt | date}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <md-card-title style="padding: 8px;">
+                <md-card-title-text>
+                    <span class="md-headline"> {{ch.title | short:true:titleLength:' ...'}} </span>
+                </md-card-title-text>
+            </md-card-title>
 
-            <!-- Course Chapter List -->
-            <md-grid-list
-                    md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="3"
-                    md-row-height-gt-md="1:1" md-row-height="3:2" md-row-height-xs="2:1"
-                    md-gutter="4px" md-gutter-gt-sm="5px" >
-                <md-grid-tile dragular="'chapter-bag'" dragula-model="ch" ng-repeat="ch in chapterList">
-                    <md-card style="height:100%;" class="chapterCard" flex ng-click="goToChapter(ch.$id)">
-                        <md-card-header>
-                            <md-card-avatar>
-                                <img src="dImages/Rlogo.png"/>
-                            </md-card-avatar>
-                            <md-card-header-text>
-                                <span class="md-title">{{courseInfo.title}}</span>
-                                <span class="md-subhead">{{ch.createdAt | date}}</span>
-                            </md-card-header-text>
-                        </md-card-header>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline"> {{ch.title | short:true:titleLength:' ...'}} </span>
-                            </md-card-title-text>
-                        </md-card-title>
-
-                        <md-card-content>
-                            <p>
-                                {{ch.description | short:true:180:' ...'}}
-                            </p>
-                            <!--<md-button ng-click="updateProgress(ch.$id)"> Start </md-button>-->
-                        </md-card-content>
-                    </md-card>
-                    <!--<md-grid-tile-footer>-->
-                        <!--<h3>#1: (3r x 2c)</h3>-->
-                    <!--</md-grid-tile-footer>-->
-                </md-grid-tile>
-            </md-grid-list>
+            <md-card-content>
+              <p>
+                {{ch.description | short:true:bodyLength:' ...'}}
+              </p>
+            </md-card-content>
+          </md-card>
+        </md-grid-tile>
+      </md-grid-list>
     </md-content>
   </section>
 </md-content>

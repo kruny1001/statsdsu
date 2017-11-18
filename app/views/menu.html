@@ -1,160 +1,28 @@
 <md-content layout-padding class="main-container ge-lab-style">
-    <div class="profile-container">
-        <div class="main-container">
-            <profile-header></profile-header>
-        </div>
+  <div class="profile-container">
+    <div class="main-container">
+        <profile-header></profile-header>
     </div>
-
-    <style>
-        .interface {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 111;
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .text {
-            font-family: "Open Sans";
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-size: 14px;
-            color: #fff;
-        }
-        .text-made {
-            position: absolute;
-            bottom: 24px;
-            left: 24px;
-        }
-        .text-inspiration {
-            position: absolute;
-            bottom: 24px;
-            right: 24px;
-        }
-        .text-link {
-            position: relative;
-            color: #fff;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .text-link:after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: #fff;
-            -webkit-transition: width 0.2s ease-out;
-            -moz-transition: width 0.2s ease-out;
-            -o-transition: width 0.2s ease-out;
-            transition: width 0.2s ease-out;
-        }
-        .text-link:hover:after {
-            width: 100%;
-        }
-        .love svg {
-            width: 12px;
-            height: 12px;
-            fill: #F44336;
-        }
-        .opensans {
-            font-family: "Open Sans";
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .dg.ac {
-            z-index: 999 !important;
-        }
-
-    </style>
-    <!--<div style="position:relative;">-->
-        <!--<div class="interface">-->
-
-        <!--</div>-->
-    <!--</div>-->
-    <!-- 2016 poster -->
-    <!--<div class='menu-box' style="margin-top: 8px; color:black; background: #ffd22e;">-->
-        <!--<div layout="column" layout-align="center center" layout-padding>-->
-            <!--<div ng-class="{'md-display-1':xsScreen, 'md-display-3':!xsScreen, }">Data Analytics Camp</div>-->
-            <!--<div ng-class="{'md-title':xsScreen, 'md-display-1':!xsScreen, }" style="    padding-top: 0px;padding-left: 8px;">for High School Students</div>-->
-        <!--</div>-->
-
-        <!--<md-icon md-svg-src="dImages/board.svg" ng-class="{'boardSvg': !xsScreen, 'boardSvg-xs': xsScreen}"></md-icon>-->
-
-        <!--<div layout="row" layout-align="center center">-->
-            <!--<div style="max-width: 600px;">-->
-                <!--It is a FREE 4-day summer camp. Food and lodging provided.-->
-                <!--You will learn some basic statistics and math topics. Have fun analyzing and visualizing data. Learn how to write computer programs through examples.-->
-                <!--Led by SDSU professors and graduate students, you will work in a computer lab at SDSU.-->
-                <!--Spaces are limited. So act fast.-->
-                <!--<br/>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-        <!--<div layout="row" layout-align="center center" layout-padding>-->
-            <!--&lt;!&ndash;<md-button href="#/" href="#/registerForm" class="md-raised md-primary">Register Now</md-button>&ndash;&gt;-->
-            <!--&lt;!&ndash;<md-button disabled="true" href="#/registerForm" class="md-raised md-primary">Register Now</md-button>&ndash;&gt;-->
-        <!--</div>-->
-
-        <!--<div  layout="column" layout-align="center center" layout-margin>-->
-            <!--<div layout="row">-->
-                <!--<div style="max-width: 600px;">-->
-                    <!--<div> <b>Date: June 27th ~ 30th </b></div>-->
-
-                    <!--<div> <b>Place: <a href="https://www.sdstate.edu/index/maps/upload/CampusMap.pdf" target="_blank">Solberg Hall</a>, South Dakota State University</b></div>-->
-                    <!--<div> <b>Contact at: <a href="mailto:Linda.Wendt@sdstate.edu">Linda.Wendt@sdstate.edu</a></b></div>-->
-                    <!--<div> <b>Facebook Page: <a href="https://www.facebook.com/SDSUstatistics" target="_blank"> Link</a></b></div>-->
-                    <!--<div> <b>Phone: (605) 688-6196</b></div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<br/>-->
-            <!--<br/>-->
-            <!--<div style="max-width: 600px;">This is supported by National Sciene Foundation through SD EPSCoR program, and also by SDSU Department of Mathmatics and Statistics</div>-->
-            <!--<div layout="column" layout-gt-xs="row" layout-margin>-->
-                <!--<img style="height:35px;" src="dImages/logo/epscor.png">-->
-                <!--<img style="height:35px;" src="dImages/logo/sdsu.png">-->
-                <!--<img style="height:35px;" src="dImages/logo/nsf.png">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <!-- survey -->
-    <!--<div class='menu-box' style="background: #4ea4eb;">-->
-        <!--<div layout="column" layout-align="center center" layout-padding>-->
-            <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">-->
-                <!--<a href="#/survey" style="text-decoration: none; color:white;">SURVEY</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<br>-->
-
-    <!-- About -->
-    <!--<div class='menu-box' style="background: #e394eb;">-->
-        <!--<div layout="column" layout-align="center center" layout-padding>-->
-            <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">-->
-                <!--<a href="#/about" style="text-decoration: none; color:white;">About</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<br>-->
-
-    <!-- Day 3-->
-    <!--<div class='menu-box' style="background: #d32972;">-->
-        <!--<div layout="column" layout-align="center center" layout-padding>-->
-            <!--<div class="md-display-1" style="    padding-top: 0px;padding-left: 8px;">Day 3</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <br>
-
-
-    <div class='menu-box'>
-        <footer-stat></footer-stat>
-    </div>
+  </div>
+  <div> 
+    <a href="#!/course-detail/-KIMnC0W_09BA9RQrjmq">
+      <span class="icon fontawesome-user scnd-font-color"></span>
+      <span> R tutorial </span>
+    </a>
+  </div>
+  <div> 
+    <a href="#!/course-detail/-KIMnC0W_09BA9RQrjmq">
+      <span class="icon fontawesome-user scnd-font-color"></span>
+      <span> Apply T-SNE </span>
+    </a>
+  </div>
+  <div> 
+    <a href="#!/course-detail/-KzBARSdi3gix3OaSqLG">
+      <span class="icon fontawesome-user scnd-font-color"></span>
+      <span> Docker Basic </span>
+    </a>
+  </div>
+  <div class='menu-box'>
+    <footer-stat></footer-stat>
+  </div>
 </md-content>

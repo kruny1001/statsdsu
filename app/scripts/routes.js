@@ -104,24 +104,18 @@ angular.module('statsdsuApp')
         templateUrl: 'views/partials/coursedetail.html',
         controller: 'CoursedetailCtrl'
       })
-
-
-
       .when('/editCourse/:sectionId/:idClass', {
         templateUrl: 'views/editcourse.html',
         controller: 'EditcourseCtrl'
       })
-
       .when('/userInfo/:user_id', {
         templateUrl: 'views/userinfo.html',
         controller: 'UserinfoCtrl'
       })
-
       .when('/notification', {
         templateUrl: 'views/notification.html',
         controller: 'NotificationCtrl'
       })
-
       .whenAuthenticated('/edit/:id', {
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl'
@@ -191,7 +185,6 @@ angular.module('statsdsuApp')
         templateUrl: 'views/super-blog-detail.html',
         controller: 'SuperBlogDetailCtrl'
       })
-
       .when('/super-editor-detail', {
         templateUrl: 'views/super-editor-detail.html',
         controller: 'SuperEditorDetailCtrl'
@@ -286,13 +279,11 @@ angular.module('statsdsuApp')
           $location.path(loginRedirectPath);
         }
       });
-
       function check(user) {
         if( !user && authRequired($location.path()) ) {
           $location.path(loginRedirectPath);
         }
       }
-
       function authRequired(path) {
         return SECURED_ROUTES.hasOwnProperty(path);
       }
@@ -301,35 +292,9 @@ angular.module('statsdsuApp')
 
   .run( function($rootScope, $location, FBURL, $firebaseObject, Course, Chapter){
     var ref = firebase.database().ref().child('crntUrl');
-
     $rootScope.crntPage = $firebaseObject(ref)
     $rootScope.crntPage.$loaded().then(function(snap){
-      //snap.path = 'main'
-      //snap.$save();
     })
-
-    //$rootScope.targetApp = true;
-    //
-    //var courseDetail = /course-detail/;
-    //
-    //$rootScope.crntPage.$watch(function(val) {
-    //  console.log($rootScope.crntPage.path);
-    //  var targetPath = $rootScope.crntPage.path
-    //  if($rootScope.crntPage.path =='main')
-    //    targetPath = '';
-    //  if(courseDetail.test($rootScope.crntPage.path)){
-    //    //extract course information
-    //    var id = $rootScope.crntPage.path.split('/')[1]
-    //    console.log(id)
-    //    //id = '-KILYT7Qc0JNwE7GLmLL';
-    //    var courses = Course.getInfo(id);
-    //    console.log(courses)
-    //
-    //  }
-    //  if($rootScope.targetApp)
-    //    $location.path(targetPath)
-    //});
-
   })
-  // used by route security
+  
   .constant('SECURED_ROUTES', {});

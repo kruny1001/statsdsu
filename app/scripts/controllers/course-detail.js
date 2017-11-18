@@ -27,14 +27,10 @@ angular.module('statsdsuApp')
       })
       return target;
     }, function(screen){
-      if(screen =='xs')
-        $scope.titleLength = 25;
-      else if(screen =='sm')
-        $scope.titleLength = 25;
-      else if(screen =='md')
-        $scope.titleLength = 25;
-      else if(screen =='lg')
-        $scope.titleLength = 20;
+      if(screen =='xs')       {$scope.titleLength = 25; $scope.bodyLength = 100;}
+      else if(screen =='sm')  {$scope.titleLength = 25; $scope.bodyLength = 100;}
+      else if(screen =='md')  {$scope.titleLength = 25; $scope.bodyLength = 120;}
+      else if(screen =='lg')  {$scope.titleLength = 20; $scope.bodyLength = 140;}
     });
 
     var courseId = $routeParams.id;
