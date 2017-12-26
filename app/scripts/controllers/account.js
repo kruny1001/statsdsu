@@ -16,18 +16,8 @@ angular.module('statsdsuApp')
       snap.$save();
     })
 
-
     $scope.authObj = $firebaseAuth();
-
-    //var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2IjowLCJkIjp7InVpZCI6InVuaXF1ZUlkMSIsInNvbWUiOiJhcmJpdHJhcnkiLCJkYXRhIjoiaGVyZSJ9LCJpYXQiOjE0NDU2MjAxMjl9.iHlRzY3ncWsEsu_5ZiCohFfpY8-1XuFcm89WGnorGk8';
-    //$scope.authObj.$authWithCustomToken(token).then(function(authData) {
-    //  console.log("Logged in as:", authData.uid);
-    //  console.log(authData);
-    //}).catch(function(error) {
-    //  console.error("Authentication failed:", error);
-    //});
-
-
+    console.log($scope.authObj)
     $scope.user = user;
     $scope.logout = function() { $scope.authObj.$signOut(); };
     $scope.messages = [];
@@ -35,7 +25,6 @@ angular.module('statsdsuApp')
     var profile = $firebaseObject(ref.child('users/'+user.uid));
     console.log(profile);
     profile.$bindTo($scope, 'profile');
-
 
     $scope.changePassword = function(oldPass, newPass, confirm) {
       $scope.err = null;

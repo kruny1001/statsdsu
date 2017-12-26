@@ -50,8 +50,12 @@ angular.module('statsdsuApp')
       list: function(){
         return $firebaseArray(classRef);
       },
+      listQuery:function(courseId){
+        var listChapterRef = firebase.database().ref().child('chapters')
+           .orderByChild('parentCourseId').equalTo(courseId);
+        return $firebaseArray(listChapterRef);
+      },
       listByCourseId:function(arrChapterId){
-
         //var listChapterRef = firebase.database().ref().child('chapters')
         //    .orderByChild('parentCourseId').equalTo(courseId);
         //return $firebaseArray(listChapterRef);
@@ -60,7 +64,6 @@ angular.module('statsdsuApp')
           var chapter = firebase.database().ref().child('chapters').child(val)
           chapterArray.push($firebaseObject(chapter))
         })
-
         return chapterArray;
       },
       addMaterial: function(materialObj){

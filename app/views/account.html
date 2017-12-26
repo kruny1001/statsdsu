@@ -1,11 +1,12 @@
 <md-content layout-padding class="main-container ge-lab-style">
+  
   <div class="profile-container">
     <div class="main-container">
       <profile-header></profile-header>
     </div>
   </div>
 
-  <div flex class="profile-container" style="background:transparent;">
+  <div class="profile-container" style="background:transparent;">
     <div class="main-container">
       <section layout="column" layout-gt-xs="row" layout-align="center start" layout-margin style="width:100%; max-width:941px;">
         <div class="profile-inner-container">
@@ -18,33 +19,34 @@
     </div>
   </div>
 
-  <!--<div flex class="profile-container" style="background:transparent;">-->
-    <!--<div class="main-container">-->
-      <!--<section layout="column" layout-gt-xs="row" layout-align="center start" layout-margin style="width:100%; max-width:941px;">-->
-        <!--<div>-->
-          <!--<h3>Profile</h3>-->
-          <!--<form role="form">-->
-            <!--<p class="form-group">-->
-              <!--<label>Account ID</label>-->
-              <!--<br />{{user.uid}}-->
-            <!--</p>-->
-            <!--<p class="form-group">-->
-              <!--<label>Name:</label>-->
-              <!--<input style="color:black" type="text" name="name" ng-model="profile.name" />-->
-            <!--</p>-->
-            <!--<p class="form-group">-->
-              <!--<label>Email:</label>-->
-              <!--<br />{{profile.email}}-->
-            <!--</p>-->
-          <!--</form>-->
-          <!--<p>-->
-            <!--<button style="color:black" role="button" ng-click="logout()">Log Out</button>-->
-          <!--</p>-->
-        <!--</div>-->
-      <!--</section></div></div>-->
+  <!-- Profile Infomation -->
+  <div flex class="profile-container" style="background:transparent;">
+    <div class="main-container">
+      <section layout="column" layout-gt-xs="row" layout-align="center start" layout-margin style="width:100%; max-width:941px;">
+        <div>
+          <h3>Profile</h3>
+          <form role="form">
+            <p class="form-group">
+              <label>Account ID</label>
+              <br />{{user.uid}}
+            </p>
+            <div> Role: {{profile.Role}}</div>
+            <p class="form-group">
+              <label>Name:</label>
+              <input style="color:black" type="text" name="name" ng-model="profile.name" />
+            </p>
+            <p class="form-group">
+              <label>Email:</label>
+              <br />{{profile.email}}
+            </p>
+          </form>
+          <p>
+            <button style="color:black" role="button" ng-click="logout()">Log Out</button>
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
   <div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>
 
 </md-content>
-
-
-

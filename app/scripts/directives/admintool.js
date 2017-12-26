@@ -2,17 +2,16 @@
 
 /**
  * @ngdoc directive
- * @name statsdsuApp.directive:quiz
+ * @name statsdsuApp.directive:adminTool
  * @description
- * # quiz
+ * # adminTool
  */
 angular.module('statsdsuApp')
-  .directive('quiz', function ($window) {
+  .directive('adminTool', function () {
     return {
-      templateUrl: 'views/templates/quiz/quiz.html',
-      scope:{quizObj: '='},
+      templateUrl: 'views/admin/admin-tool.html',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
       }
-    }
+    };
   });

@@ -1,0 +1,10 @@
+<section>
+  <div class="pa2 f2 b"> Featured Contents </div>
+  <div class="pa2" ng-repeat="feature in featuredContents">
+    <a ng-href="#!/{{feature.link}}">
+      <span class="f3 course-title"> {{feature.title}} </span>
+    </a>
+    <span class="bg-white light-red fw6"> New! </span>
+    <p class="f4 measure-wide">{{feature.desc}}</p>
+  </div>
+</section>

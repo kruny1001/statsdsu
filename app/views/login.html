@@ -1,48 +1,39 @@
-
-<style>
-  .account-container {
-    height: 100vh;
-    width: 100vw;
-    max-width: 100%;
-    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/194122/07t2mb2.gif');
-
-  }
-</style>
-
 <md-content layout-padding class="main-container ge-lab-style">
   <div class="profile-container">
     <div class="main-container">
       <profile-header></profile-header>
     </div>
   </div>
-
   <div class="profile-container">
     <div class="main-container">
       <div layout-gt-xs	="row" layout="column" layout-align="center center">
         <div flex class="right-container profile-inner-container">
           <div class="account block"> <!-- ACCOUNT (RIGHT-CONTAINER) -->
             <h2 class="titular">SIGN IN TO YOUR ACCOUNT</h2>
-            <a class="fb-sign-in">
-              <p><span class="fb-border" ng-click="oauthLogin(facobookProvider)"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>
-            </a>
+            
+            
+              <md-button class="fb-border" ng-click="oauthLogin(facobookProvider)">
+                Sign in with Facebook
+              </md-button>
+              <md-button class="" ng-click="anonymousLogin()">anonymousLogin</md-button>
 
             <div ng-click="oauthLogin(facobookProvider)">
               <a class="sign-in button" >SIGN IN</a>
             </div>
 
-            <!--<div class="input-container">-->
-              <!--<input type="text" placeholder="yourname@gmail.com" class="email text-input">-->
-              <!--<div class="input-icon envelope-icon-acount"><span class="fontawesome-envelope scnd-font-color"></span></div>-->
-            <!--</div>-->
-            <!--<div class="input-container">-->
-              <!--<input type="text" placeholder="Password" class="password text-input">-->
-              <!--<div class="input-icon password-icon"><span class="fontawesome-lock scnd-font-color"></span></div>-->
-            <!--</div>-->
-            <!--<a class="sign-in button" >SIGN IN</a>-->
-            <!--<p class="scnd-font-color">Forgot Password?</p>-->
-            <!--<a class="fb-sign-in">-->
-              <!--<p><span class="fb-border" ng-click="oauthLogin(facobookProvider)"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>-->
-            <!--</a>-->
+            <div class="input-container">
+              <input type="text" placeholder="yourname@gmail.com" class="email text-input">
+              <div class="input-icon envelope-icon-acount"><span class="fontawesome-envelope scnd-font-color"></span></div>
+            </div>
+            <div class="input-container">
+              <input type="text" placeholder="Password" class="password text-input">
+              <div class="input-icon password-icon"><span class="fontawesome-lock scnd-font-color"></span></div>
+            </div>
+            <a class="sign-in button" >SIGN IN</a>
+            <p class="scnd-font-color">Forgot Password?</p>
+            <a class="fb-sign-in">
+              <p><span class="fb-border" ng-click="oauthLogin(facobookProvider)"><span class="icon zocial-facebook"></span></span>Sign in with Facebook</p>
+            </a>
           </div>
         </div>
 
@@ -96,7 +87,7 @@
         <!--<md-button class="md-raised" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</md-button>-->
       <!--</p>-->
     <!--</form>-->
-    <!--<p ng-show="err" class="error">{{err}}</p>-->
+    <p ng-show="err" class="error">{{err}}</p>
   <!--</div>-->
 <!--<md-content layout-padding class="account-container"-->
             <!--style="overflow-x: hidden; height: 100%;-->

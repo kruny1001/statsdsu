@@ -1,0 +1,37 @@
+<style>
+	.handle{
+		padding: 0 5px;
+    margin-right: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: move;
+	}
+</style>
+<md-content layout-padding class="main-container ge-lab-style">
+  <div class="profile-container">
+    <div class="main-container">
+      <profile-header></profile-header>
+    </div>
+  </div>
+  <section class="pa3 course-detail">
+    <div class="f3 b"> Classes</div>
+    <md-button ng-click="expandCourse()"> Expand Courses </md-button>
+		<md-button ng-click="expandChapter()"> Expand Chapters</md-button>
+		<md-button ng-click="setPriority()"> Set Priority</md-button>
+    <section dragula='"test-bag"' dragula-model='classes'>
+      <div class="ma2" ng-repeat="class in classes">
+        <div class="b ph3">
+					<span class="handle">+</span>
+					{{class.title}} <span class="f5">{{class.$id}} : {{class.$priority}}</span></div>
+        <div class="f4 code ph4">{{class.description}}</div>
+        <div class="ph6" ng-repeat="course in class.courses">
+          <div class="b f4">{{course.title}} <span class="f5">{{course.$id}}</span></div>
+          <div class="f4">{{course.description}}</div>
+          <div class="ph3" ng-repeat="chapter in course.chapters">
+            <div class="b f5">{{chapter.title}}</div>
+            <div class="f5">{{chapter.description}}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</md-content>

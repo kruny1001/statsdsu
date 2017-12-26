@@ -12,10 +12,14 @@ angular.module('statsdsuApp')
     $scope.facobookProvider = new firebase.auth.FacebookAuthProvider();
     $scope.facobookProvider.addScope('email');
     $scope.facobookProvider.addScope('user_friends');
+    $scope.facobookProvider.setCustomParameters({
+      'display': 'popup'
+    });
 
-    $scope.oauthLogin = function(provider) {
+    $scope.oauthLogin = function() {
       $scope.err = null;
-      AuthApp.$signInWithPopup(provider).then(redirect, showError);
+      AuthApp.$signInWithPopup('facebook')
+        .then(redirect, showError);
     };
 
     $scope.anonymousLogin = function() {
@@ -49,7 +53,6 @@ angular.module('statsdsuApp')
       }
 
       function createProfile(user) {
-
         var ref = firebase.database().ref().child('users/' + user.uid), def = $q.defer();
         ref.set({email: email, name: firstPartOfEmail(email)}, function(err) {
           $timeout(function() {
@@ -64,26 +67,19 @@ angular.module('statsdsuApp')
         return def.promise;
       }
     };
-
     function firstPartOfEmail(email) {
       return ucfirst(email.substr(0, email.indexOf('@'))||'');
     }
-
     function ucfirst (str) {
       // inspired by: http://kevin.vanzonneveld.net
       str += '';
       var f = str.charAt(0).toUpperCase();
       return f + str.substr(1);
     }
-
-
     function redirect() {
       $location.path('/account');
     }
-
     function showError(err) {
       $scope.err = err;
     }
-
-
   });

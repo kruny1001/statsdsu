@@ -4,22 +4,6 @@
  * @name statsdsuApp:routes
  * @description
  * # routes.js
- *
- * Configure routes for use with Angular, and apply authentication security
- * Add new routes using `yo angularfire:route` with the optional --auth-required flag.
- *
- * Any controller can be secured so that it will only load if user is logged in by
- * using `whenAuthenticated()` in place of `when()`. This requires the user to
- * be logged in to view this route, and adds the current user into the dependencies
- * which can be injected into the controller. If user is not logged in, the promise is
- * rejected, which is handled below by $routeChangeError
- *
- * Any controller can be forced to wait for authentication to resolve, without necessarily
- * requiring the user to be logged in, by adding a `resolve` block similar to the one below.
- * It would then inject `user` as a dependency. This could also be done in the controller,
- * but abstracting it makes things cleaner (controllers don't need to worry about auth state
- * or timing of displaying its UI components; it can assume it is taken care of when it runs)
- *
  *   resolve: {
  *     user: ['Auth', function(Auth) {
  *       return Auth.$getAuth();
@@ -71,19 +55,20 @@ angular.module('statsdsuApp')
   // before trying to access that route
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
+    // Main Page 
       .when('/', {
-        templateUrl: 'views/menu.html',
-        controller: 'MenuCtrl'
-      })
-      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      // .when('/main', {
+      //   templateUrl: 'views/main.html',
+      //   controller: 'MainCtrl'
+      // })
 
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
-      })
+      // .when('/chat', {
+      //   templateUrl: 'views/chat.html',
+      //   controller: 'ChatCtrl'
+      // })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -92,14 +77,17 @@ angular.module('statsdsuApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
-      .when('/menu', {
-        templateUrl: 'views/menu.html',
-        controller: 'MenuCtrl'
-      })
+
+      // .when('/menu', {
+      //   templateUrl: 'views/menu.html',
+      //   controller: 'MenuCtrl'
+      // })
+
       //.when('/course', {
       //  templateUrl: 'views/course.html',
       //  controller: 'CourseCtrl'
       //})
+
       .when('/course/:className', {
         templateUrl: 'views/partials/coursedetail.html',
         controller: 'CoursedetailCtrl'
@@ -108,26 +96,30 @@ angular.module('statsdsuApp')
         templateUrl: 'views/editcourse.html',
         controller: 'EditcourseCtrl'
       })
+      
       .when('/userInfo/:user_id', {
         templateUrl: 'views/userinfo.html',
         controller: 'UserinfoCtrl'
       })
-      .when('/notification', {
-        templateUrl: 'views/notification.html',
-        controller: 'NotificationCtrl'
-      })
+
+      // .when('/notification', {
+      //   templateUrl: 'views/notification.html',
+      //   controller: 'NotificationCtrl'
+      // })
       .whenAuthenticated('/edit/:id', {
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl'
       })
-      .when('/edit', {
-        templateUrl: 'views/edit.html',
-        controller: 'EditCtrl'
+      .whenAuthenticated('/editClass', {
+        templateUrl: 'views/admin/editClass.html',
+        controller: 'EditclassCtrl'
       })
-      .when('/course', {
-        templateUrl: 'views/course.html',
-        controller: 'CourseCtrl'
-      })
+      // .when('/course', {
+      //   templateUrl: 'views/course.html',
+      //   controller: 'CourseCtrl'
+      // })
+      
+      //Create Content 
       .whenAuthenticated('/createContent', {
         templateUrl: 'views/createcontent.html',
         controller: 'CreatecontentCtrl'
@@ -296,5 +288,5 @@ angular.module('statsdsuApp')
     $rootScope.crntPage.$loaded().then(function(snap){
     })
   })
-  
+
   .constant('SECURED_ROUTES', {});
